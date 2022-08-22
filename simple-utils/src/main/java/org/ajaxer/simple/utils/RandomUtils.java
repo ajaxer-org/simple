@@ -10,7 +10,6 @@ import java.util.Random;
  * @since v0.0.1
  */
 @Log4j2
-@SuppressWarnings("unused")
 public class RandomUtils
 {
 	/**
