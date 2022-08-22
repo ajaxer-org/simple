@@ -24,4 +24,38 @@ public class CollectionUtils
 	{
 		return !isBlank(collection);
 	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection)
+	{
+		if (CollectionUtils.isBlank(collection))
+		{
+			throw new NullPointerException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, String customExceptionMessage)
+	{
+		if (CollectionUtils.isBlank(collection))
+		{
+			throw new NullPointerException(customExceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
+	{
+		if (CollectionUtils.isBlank(collection))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
 }

@@ -22,4 +22,38 @@ public class StringUtils
 	{
 		return !isBlank(string);
 	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string)
+	{
+		if (StringUtils.isBlank(string))
+		{
+			throw new NullPointerException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, String customExceptionMessage)
+	{
+		if (StringUtils.isBlank(string))
+		{
+			throw new NullPointerException(customExceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, Throwable throwable)
+	{
+		if (StringUtils.isBlank(string))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
 }

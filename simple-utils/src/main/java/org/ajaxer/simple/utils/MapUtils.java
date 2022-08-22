@@ -24,4 +24,37 @@ public class MapUtils
 	{
 		return !isBlank(map);
 	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map)
+	{
+		if (MapUtils.isBlank(map))
+		{
+			throw new NullPointerException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map, String customExceptionMessage)
+	{
+		if (MapUtils.isBlank(map))
+		{
+			throw new NullPointerException(customExceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
+	{
+		if (MapUtils.isBlank(map))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
 }
