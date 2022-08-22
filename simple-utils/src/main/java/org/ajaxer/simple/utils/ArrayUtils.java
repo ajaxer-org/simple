@@ -15,6 +15,150 @@ public class ArrayUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static boolean isBlank(boolean[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(boolean[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(char[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(char[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(byte[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(byte[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(short[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(short[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(int[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(int[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(long[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(long[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(float[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(double[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isBlank(double[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean isNotBlank(float[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> boolean isBlank(T[] array)
+	{
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> boolean isNotBlank(T[] array)
+	{
+		return !isBlank(array);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static <T> void swap(T[] array, int pos1, int pos2)
 	{
 		T temp = array[pos1];
