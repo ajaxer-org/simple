@@ -9,6 +9,7 @@ import java.util.Random;
  * @version 2022-08-22
  * @since v0.0.1
  */
+@SuppressWarnings("unused")
 @Log4j2
 public class RandomUtils
 {
@@ -17,7 +18,7 @@ public class RandomUtils
 	 */
 	public static byte getByte()
 	{
-		return (byte) getInt(Byte.MIN_VALUE, Byte.MAX_VALUE);
+		return getByte(Byte.MIN_VALUE, Byte.MAX_VALUE);
 	}
 
 	/**
@@ -25,23 +26,23 @@ public class RandomUtils
 	 */
 	public static byte getByte(byte min, byte max)
 	{
-		return (byte) getInt(min, max);
+		return (byte) (min + (byte) (Math.random() * (max - min)));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static byte getByteLessThan(byte lowerValue)
+	public static byte getByteLessThanOrEqualTo(byte lowerValue)
 	{
-		return (byte) getIntLessThan(lowerValue);
+		return getByte(Byte.MIN_VALUE, lowerValue);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static byte getByteGreaterThan(byte highValue)
+	public static byte getByteGreaterThanOrEqualTo(byte highValue)
 	{
-		return (byte) getIntGreaterThan(highValue);
+		return getByte(highValue, Byte.MAX_VALUE);
 	}
 
 	/**
@@ -49,7 +50,7 @@ public class RandomUtils
 	 */
 	public static short getShort()
 	{
-		return (short) getInt(Short.MIN_VALUE, Short.MAX_VALUE);
+		return getShort(Short.MIN_VALUE, Short.MAX_VALUE);
 	}
 
 	/**
@@ -57,23 +58,23 @@ public class RandomUtils
 	 */
 	public static short getShort(short min, short max)
 	{
-		return (short) getInt(min, max);
+		return (short) (min + (short) (Math.random() * (max - min)));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static short getShortLessThan(short lowerValue)
+	public static short getShortLessThanOrEqualTo(short lowerValue)
 	{
-		return (short) getIntLessThan(lowerValue);
+		return getShort(Short.MIN_VALUE, lowerValue);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static short getShortGreaterThan(short highValue)
+	public static short getShortGreaterThanOrEqualTo(short highValue)
 	{
-		return (short) getIntGreaterThan(highValue);
+		return getShort(highValue, Short.MAX_VALUE);
 	}
 
 	/**
@@ -119,6 +120,31 @@ public class RandomUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static long getLong(long min, long max)
+	{
+		return min + (long) (Math.random() * (max - min));
+//		return min + (getLong() * (max - min));
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static long getLongLessThanOrEqualTo(long lowValue)
+	{
+		return getLong(Long.MIN_VALUE, lowValue);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static long getLongGreaterThanOrEqualTo(long highValue)
+	{
+		return getLong(highValue, Long.MAX_VALUE);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static float getFloat()
 	{
 		return new Random().nextFloat();
@@ -127,9 +153,25 @@ public class RandomUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static float getFloat(float min, float max)
+	{
+		return (getFloat() % (max - min + 1)) + min;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static double getDouble()
 	{
 		return new Random().nextDouble();
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double getDouble(double min, double max)
+	{
+		return (getDouble() % (max - min + 1)) + min;
 	}
 
 	/**
