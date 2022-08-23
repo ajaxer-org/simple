@@ -179,4 +179,93 @@ public class MathUtils
 		return value * percentage / 100;
 	}
 
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(byte[] array, byte val)
+	{
+		for (byte e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(short[] array, short val)
+	{
+		for (short e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(int[] array, int val)
+	{
+		for (int e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(long[] array, long val)
+	{
+		for (long e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(float[] array, float val)
+	{
+		for (float e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equalsToAny(double[] array, double val)
+	{
+		for (double e : array)
+		{
+			if (e == val)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
