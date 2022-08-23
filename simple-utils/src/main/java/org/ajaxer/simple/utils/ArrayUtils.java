@@ -967,19 +967,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(char[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(char[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			char temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			char t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -990,19 +992,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(byte[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(byte[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			byte temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			byte t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1013,19 +1017,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(short[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(short[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			short temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			short t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1036,19 +1042,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(int[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(int[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			int temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			int t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1059,19 +1067,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(long[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(long[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			long temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			long t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1082,19 +1092,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(float[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(float[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			float temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			float t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1105,19 +1117,21 @@ public class ArrayUtils
 	 */
 	public static void reverse(double[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void reverse(double[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			double temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-
-			left++;
-			right--;
+			double t = array[i];
+			array[i] = array[len - i - 1];
+			array[len - i - 1] = t;
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
@@ -1128,17 +1142,21 @@ public class ArrayUtils
 	 */
 	public static <T> void reverse(T[] array)
 	{
+		reverse(array, array.length);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> void reverse(T[] array, int len)
+	{
 		log.debug("array before reverse: {}", Arrays.toString(array));
 
-		int left = 0;
-		int right = array.length - 1;
-
-		while (left < right)
+		for (int i = 0; i < len / 2; i++)
 		{
-			swap(array, left++, right--);
+			swap(array, i, len - i - 1);
 		}
 
 		log.debug("array after reverse: {}", Arrays.toString(array));
 	}
-
 }
