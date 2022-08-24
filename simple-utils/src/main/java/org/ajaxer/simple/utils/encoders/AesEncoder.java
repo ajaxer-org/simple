@@ -27,10 +27,12 @@ public class AesEncoder implements Encoder
 	{
 		StringUtils.throwWhenBlank(key, "Key cannot be null");
 
-		while (key.length() < 16)
+		StringBuilder keyBuilder = new StringBuilder(key);
+		while (keyBuilder.length() < 16)
 		{
-			key = key + "0";
+			keyBuilder.append("0");
 		}
+		key = keyBuilder.toString();
 
 		ValidationUtils.throwWhenTrue(key.length() != 16, "Secret key should must be 16 char long only");
 
@@ -39,6 +41,7 @@ public class AesEncoder implements Encoder
 //			key = key.substring(0, 15);
 //		}
 //		System.out.println("AesEncryptor.checkKey() - key: [" + key + "], len: [" + key.length() + "]");
+
 		return Base64.getDecoder().decode(key);
 	}
 
