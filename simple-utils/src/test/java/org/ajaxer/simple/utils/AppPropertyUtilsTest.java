@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,8 +40,8 @@ class AppPropertyUtilsTest
 	@Test
 	public void getKeyWhenKeyIsBlank()
 	{
-		Assertions.assertThrows(NullPointerException.class, () -> propertyUtils.getKey(null));
-		Assertions.assertThrows(NullPointerException.class, () -> propertyUtils.getKey(""));
+		Assertions.assertThrows(BlankPointerException.class, () -> propertyUtils.getKey(null));
+		Assertions.assertThrows(BlankPointerException.class, () -> propertyUtils.getKey(""));
 	}
 
 	@Test

@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 public class ArrayUtilsTest
 {
 	@Nested
-	class isBlankArray
+	class IsBlankArray
 	{
 		@Test
 		void booleanArray()
@@ -86,7 +87,7 @@ public class ArrayUtilsTest
 	}
 
 	@Nested
-	class isNotBlankArray
+	class IsNotBlankArray
 	{
 		@Test
 		void booleanArray()
@@ -149,6 +150,86 @@ public class ArrayUtilsTest
 		{
 			String[] array1 = {"ajaxer", "org"};
 			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array1));
+		}
+	}
+
+	@Nested
+	class ThrowWhenBlank
+	{
+		@Test
+		void booleanArray()
+		{
+			boolean[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void charArray()
+		{
+			char[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void byteArray()
+		{
+			byte[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void shortArray()
+		{
+			short[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void intArray()
+		{
+			int[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void longArray()
+		{
+			long[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void floatArray()
+		{
+			float[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void doubleArray()
+		{
+			double[] array = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+		}
+
+		@Test
+		void StringArray()
+		{
+			final String[] array = null;
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+
+			final String[] array1 = {};
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array1));
+			Assertions.assertThrows(BlankPointerException.class, () -> ArrayUtils.throwWhenBlank(array1, new IllegalArgumentException()));
 		}
 	}
 
