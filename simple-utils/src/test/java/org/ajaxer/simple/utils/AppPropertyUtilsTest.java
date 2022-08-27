@@ -7,6 +7,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+/**
+ * @author Shakir
+ * @version 2022-08-27
+ * @since v0.0.1
+ */
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AppPropertyUtilsTest
