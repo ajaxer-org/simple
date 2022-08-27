@@ -23,14 +23,14 @@ public class CollectionUtilsTest
 	class CollectionBlankOrNotBlank
 	{
 		@Test
-		void whenList_null()
+		void when_list_null()
 		{
 			Assertions.assertTrue(CollectionUtils.isBlank(null));
 			Assertions.assertFalse(CollectionUtils.isNotBlank(null));
 		}
 
 		@Test
-		void whenList_empty()
+		void when_list_empty()
 		{
 			List<String> list = new ArrayList<>();
 			Assertions.assertTrue(CollectionUtils.isBlank(list));
@@ -38,7 +38,7 @@ public class CollectionUtilsTest
 		}
 
 		@Test
-		void whenList_not_empty()
+		void when_list_not_empty()
 		{
 			List<String> list = Arrays.asList("ajaxer", "dot", "org");
 			Assertions.assertFalse(CollectionUtils.isBlank(list));
