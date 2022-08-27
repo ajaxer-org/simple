@@ -16,6 +16,157 @@ import java.util.Arrays;
 public class ArrayUtilsTest
 {
 	@Nested
+	class isBlankArray
+	{
+		@Test
+		void booleanArray()
+		{
+			boolean[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void charArray()
+		{
+			char[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void byteArray()
+		{
+			byte[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void shortArray()
+		{
+			short[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void intArray()
+		{
+			int[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void longArray()
+		{
+			long[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void floatArray()
+		{
+			float[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void doubleArray()
+		{
+			double[] array = {};
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array));
+		}
+
+		@Test
+		void StringArray()
+		{
+			String[] array1 = null;
+			String[] array2 = {};
+
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array1));
+			Assertions.assertEquals(true, ArrayUtils.isBlank(array2));
+		}
+	}
+
+	@Nested
+	class isNotBlankArray
+	{
+		@Test
+		void booleanArray()
+		{
+			boolean[] array = {true, false};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void charArray()
+		{
+			char[] array = {'a', 'o'};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void byteArray()
+		{
+			byte[] array = {Byte.MIN_VALUE, 0, 1, 2};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void shortArray()
+		{
+			short[] array = {0, 1, 2, Short.MAX_VALUE};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void intArray()
+		{
+			int[] array = {10, 20, 30, Integer.MAX_VALUE};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void longArray()
+		{
+			long[] array = {10, 20, 30, Long.MAX_VALUE};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void floatArray()
+		{
+			float[] array = {0, 1.34F, 34.78F, Float.MIN_VALUE};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void doubleArray()
+		{
+			double[] array = {0, 1.34D, 34.78D, Double.MIN_VALUE};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array));
+		}
+
+		@Test
+		void StringArray()
+		{
+			String[] array1 = {"ajaxer", "org"};
+			Assertions.assertEquals(true, ArrayUtils.isNotBlank(array1));
+		}
+	}
+
+	@Nested
+	class Swap
+	{
+		@Test
+		void swap()
+		{
+			String[] args = {"ajaxer", "dot", "org"};
+			ArrayUtils.swap(args, 0, 1);
+			String[] expected = {"dot", "ajaxer", "org"};
+
+			Assertions.assertArrayEquals(args, expected);
+		}
+	}
+
+	@Nested
 	class BubbleSortTest
 	{
 		@Test
