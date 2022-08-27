@@ -34,6 +34,15 @@ public class ExceptionUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static <T> T rethrow(Throwable throwable, T t)
+	{
+		rethrow(throwable);
+		return t;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static List<String> getStackTraces(Throwable throwable, String packageFilter)
 	{
 		if (throwable == null)
