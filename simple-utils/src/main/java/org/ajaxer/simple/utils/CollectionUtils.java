@@ -156,7 +156,7 @@ public class CollectionUtils
 			return list;
 		}
 
-		return list.subList(startIndex, list.size());
+		return subList(list, startIndex, list.size());
 	}
 
 	/**
@@ -181,9 +181,7 @@ public class CollectionUtils
 
 		if (startIndex > endIndex)
 		{
-			int temp = startIndex;
-			startIndex = endIndex;
-			endIndex = temp;
+			throw new IllegalArgumentException(String.format("startIndex: [%d], cannot be greaterOrEqualsTo endIndex: [%d]", startIndex, endIndex));
 		}
 
 		if (startIndex == 0 && endIndex == list.size())
