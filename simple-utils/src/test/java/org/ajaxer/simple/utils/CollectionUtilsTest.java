@@ -19,27 +19,31 @@ import java.util.List;
 @Log4j2
 public class CollectionUtilsTest
 {
-	@Test
-	void whenList_null()
+	@Nested
+	class CollectionBlankOrNotBlank
 	{
-		Assertions.assertTrue(CollectionUtils.isBlank(null));
-		Assertions.assertFalse(CollectionUtils.isNotBlank(null));
-	}
+		@Test
+		void whenList_null()
+		{
+			Assertions.assertTrue(CollectionUtils.isBlank(null));
+			Assertions.assertFalse(CollectionUtils.isNotBlank(null));
+		}
 
-	@Test
-	void whenList_empty()
-	{
-		List<String> list = new ArrayList<>();
-		Assertions.assertTrue(CollectionUtils.isBlank(list));
-		Assertions.assertFalse(CollectionUtils.isNotBlank(list));
-	}
+		@Test
+		void whenList_empty()
+		{
+			List<String> list = new ArrayList<>();
+			Assertions.assertTrue(CollectionUtils.isBlank(list));
+			Assertions.assertFalse(CollectionUtils.isNotBlank(list));
+		}
 
-	@Test
-	void whenList_not_empty()
-	{
-		List<String> list = Arrays.asList("ajaxer", "dot", "org");
-		Assertions.assertFalse(CollectionUtils.isBlank(list));
-		Assertions.assertTrue(CollectionUtils.isNotBlank(list));
+		@Test
+		void whenList_not_empty()
+		{
+			List<String> list = Arrays.asList("ajaxer", "dot", "org");
+			Assertions.assertFalse(CollectionUtils.isBlank(list));
+			Assertions.assertTrue(CollectionUtils.isNotBlank(list));
+		}
 	}
 
 	@Test
