@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.Collection;
 import java.util.Map;
@@ -216,11 +217,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenTrue(boolean trueCondition, String customExceptionMessage)
+	public static void throwWhenTrue(boolean trueCondition, String exceptionMessage)
 	{
 		if (trueCondition)
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -249,11 +250,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenFalse(boolean trueCondition, String customExceptionMessage)
+	public static void throwWhenFalse(boolean trueCondition, String exceptionMessage)
 	{
 		if (!trueCondition)
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -282,11 +283,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenEquals(int i1, int i2, String customExceptionMessage)
+	public static void throwWhenEquals(int i1, int i2, String exceptionMessage)
 	{
 		if (i1 == i2)
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -315,11 +316,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenNotEquals(int i1, int i2, String customExceptionMessage)
+	public static void throwWhenNotEquals(int i1, int i2, String exceptionMessage)
 	{
 		if (i1 != i2)
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -348,11 +349,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenEquals(Object o1, Object o2, String customExceptionMessage)
+	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
 	{
 		if (o1.equals(o2))
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -381,11 +382,11 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenNotEquals(Object o1, Object o2, String customExceptionMessage)
+	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
 	{
 		if (!o1.equals(o2))
 		{
-			throw new AssertionError(customExceptionMessage);
+			throw new AssertionError(exceptionMessage);
 		}
 	}
 
@@ -401,36 +402,33 @@ public class ValidationUtils
 	}
 
 	/**
+	 * throws BlankPointerException when object is null
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenNull(Object object)
+	public static <T> void throwWhenNull(T t)
 	{
-		if (object == null)
-		{
-			throw new NullPointerException();
-		}
+		SimpleUtils.throwWhenNull(t);
 	}
 
 	/**
+	 * throws BlankPointerException when object is null
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenNull(Object object, String customExceptionMessage)
+	public static <T> void throwWhenNull(T t, String exceptionMessage)
 	{
-		if (object == null)
-		{
-			throw new NullPointerException(customExceptionMessage);
-		}
+		SimpleUtils.throwWhenNull(t, exceptionMessage);
 	}
 
 	/**
+	 * throws BlankPointerException when object is null
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenNull(Object object, Throwable throwable)
+	public static <T> void throwWhenNull(T t, Throwable throwable)
 	{
-		if (object == null)
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenNull(t, throwable);
 	}
 
 	/**
@@ -444,9 +442,9 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenBlank(String string, String customExceptionMessage)
+	public static void throwWhenBlank(String string, String exceptionMessage)
 	{
-		StringUtils.throwWhenBlank(string, customExceptionMessage);
+		StringUtils.throwWhenBlank(string, exceptionMessage);
 	}
 
 	/**
@@ -468,9 +466,9 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> void throwWhenBlank(Collection<T> collection, String customExceptionMessage)
+	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
 	{
-		CollectionUtils.throwWhenBlank(collection, customExceptionMessage);
+		CollectionUtils.throwWhenBlank(collection, exceptionMessage);
 	}
 
 	/**
@@ -492,9 +490,9 @@ public class ValidationUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, String customExceptionMessage)
+	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
-		MapUtils.throwWhenBlank(map, customExceptionMessage);
+		MapUtils.throwWhenBlank(map, exceptionMessage);
 	}
 
 	/**

@@ -39,11 +39,11 @@ public class MapUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, String customExceptionMessage)
+	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
 		if (MapUtils.isBlank(map))
 		{
-			throw new NullPointerException(customExceptionMessage);
+			throw new NullPointerException(exceptionMessage);
 		}
 	}
 

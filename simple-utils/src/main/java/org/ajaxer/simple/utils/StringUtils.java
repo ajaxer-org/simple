@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.List;
 import java.util.UUID;
@@ -98,6 +99,8 @@ public class StringUtils
 	}
 
 	/**
+	 * throws BlankPointerException when given string is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
 	public static void throwWhenBlank(String string)
@@ -109,17 +112,21 @@ public class StringUtils
 	}
 
 	/**
+	 * throws BlankPointerException when given string is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenBlank(String string, String customExceptionMessage)
+	public static void throwWhenBlank(String string, String exceptionMessage)
 	{
 		if (StringUtils.isBlank(string))
 		{
-			throw new NullPointerException(customExceptionMessage);
+			throw new BlankPointerException(exceptionMessage);
 		}
 	}
 
 	/**
+	 * throws BlankPointerException when given string is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
 	public static void throwWhenBlank(String string, Throwable throwable)

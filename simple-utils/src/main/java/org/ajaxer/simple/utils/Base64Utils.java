@@ -17,6 +17,7 @@ public class Base64Utils
 	 */
 	public static byte[] encode(byte[] bytes)
 	{
+		ArrayUtils.throwWhenBlank(bytes, "blank bytes cannot be encoded");
 		return Base64.getEncoder().encode(bytes);
 	}
 
@@ -25,6 +26,7 @@ public class Base64Utils
 	 */
 	public static byte[] decode(byte[] bytes)
 	{
+		ArrayUtils.throwWhenBlank(bytes, "blank bytes cannot be decoded");
 		return Base64.getDecoder().decode(bytes);
 	}
 
@@ -33,6 +35,7 @@ public class Base64Utils
 	 */
 	public static String encode(String text)
 	{
+		StringUtils.throwWhenBlank(text, "null String cannot be encoded");
 		return new String(encode(text.getBytes()));
 	}
 
@@ -41,6 +44,7 @@ public class Base64Utils
 	 */
 	public static String decode(String text)
 	{
+		StringUtils.throwWhenBlank(text, "null String cannot be decoded");
 		return new String(decode(text.getBytes()));
 	}
 
@@ -49,6 +53,9 @@ public class Base64Utils
 	 */
 	public static void encode(String sourceFile, String targetFile)
 	{
+		StringUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
+		StringUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
+
 		encode(new File(sourceFile), new File(targetFile));
 	}
 
@@ -57,6 +64,9 @@ public class Base64Utils
 	 */
 	public static void decode(String sourceFile, String targetFile)
 	{
+		StringUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
+		StringUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
+
 		decode(new File(sourceFile), new File(targetFile));
 	}
 
@@ -65,6 +75,9 @@ public class Base64Utils
 	 */
 	public static void encode(File sourceFile, File targetFile)
 	{
+		SimpleUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
+		SimpleUtils.throwWhenNull(targetFile, "targetFile cannot be null");
+
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{
@@ -83,6 +96,9 @@ public class Base64Utils
 	 */
 	public static void decode(File sourceFile, File targetFile)
 	{
+		SimpleUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
+		SimpleUtils.throwWhenNull(targetFile, "targetFile cannot be null");
+
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{

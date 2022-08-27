@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 /**
  * @author Shakir
@@ -50,4 +51,44 @@ public class SimpleUtils
 	{
 		sleep(2000);
 	}
+
+	/**
+	 * throws BlankPointerException when object is null
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNull(T t)
+	{
+		if (t == null)
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException when object is null
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNull(T t, String exceptionMessage)
+	{
+		if (t == null)
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException when object is null
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNull(T t, Throwable throwable)
+	{
+		if (t == null)
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
 }

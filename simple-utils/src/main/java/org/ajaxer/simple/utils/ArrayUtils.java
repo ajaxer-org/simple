@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.Arrays;
 
@@ -154,6 +155,357 @@ public class ArrayUtils
 	public static <T> boolean isNotBlank(T[] array)
 	{
 		return !isBlank(array);
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException();
+		}
+	}
+
+	/**
+	 * throws BlankPointerException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array, String exceptionMessage)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array, Throwable throwable)
+	{
+		if (isBlank(array))
+		{
+			throw new BlankPointerException(throwable);
+		}
 	}
 
 	/**

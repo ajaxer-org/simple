@@ -39,11 +39,11 @@ public class CollectionUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> void throwWhenBlank(Collection<T> collection, String customExceptionMessage)
+	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
 	{
 		if (CollectionUtils.isBlank(collection))
 		{
-			throw new NullPointerException(customExceptionMessage);
+			throw new NullPointerException(exceptionMessage);
 		}
 	}
 
