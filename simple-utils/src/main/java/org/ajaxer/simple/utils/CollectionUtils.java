@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
-import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +37,7 @@ public class CollectionUtils
 	{
 		if (CollectionUtils.isBlank(collection))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -49,7 +48,7 @@ public class CollectionUtils
 	{
 		if (CollectionUtils.isBlank(collection))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 

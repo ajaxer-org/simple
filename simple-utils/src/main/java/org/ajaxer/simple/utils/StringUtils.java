@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
-import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.List;
 import java.util.UUID;
