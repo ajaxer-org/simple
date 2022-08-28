@@ -118,6 +118,22 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static void writeFile(String filePath, String msg)
+	{
+		writeFile(filePath, msg, true);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void writeFile(File file, String msg)
+	{
+		writeFile(file, msg, true);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static Object readSerializedObject(String filePath)
 	{
 		log.debug("filePath: {}", filePath);
@@ -342,6 +358,7 @@ public class FileUtils
 	}
 
 	/**
+	 * <code>/home/user/files/some-text-file.txt</code> will give you <code>txt</code>
 	 * @since v0.0.1
 	 */
 	public static String getExtension(String text)
