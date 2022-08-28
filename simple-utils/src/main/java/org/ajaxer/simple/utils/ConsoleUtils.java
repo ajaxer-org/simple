@@ -2,7 +2,6 @@ package org.ajaxer.simple.utils;
 
 import java.io.BufferedReader;
 import java.io.Console;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -41,15 +40,22 @@ public class ConsoleUtils implements AutoCloseable
 	/**
 	 * @since v0.0.1
 	 */
-	private String readConsoleLine() throws IOException
+	private String readConsoleLine()
 	{
-		return bufferedReader.readLine();
+		try
+		{
+			return bufferedReader.readLine();
+		} catch (Exception exception)
+		{
+			ExceptionUtils.rethrow(exception);
+			return null;
+		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public String readPassword() throws IOException
+	public String readPassword()
 	{
 		String pass = null;
 
@@ -68,7 +74,7 @@ public class ConsoleUtils implements AutoCloseable
 	/**
 	 * @since v0.0.1
 	 */
-	public String readString() throws IOException
+	public String readString()
 	{
 		return readConsoleLine();
 	}
@@ -76,31 +82,39 @@ public class ConsoleUtils implements AutoCloseable
 	/**
 	 * @since v0.0.1
 	 */
-	public int readInt() throws IOException
+	public int readInt()
 	{
-		return Integer.parseInt(this.readConsoleLine());
+		return NumberUtils.toInt(this.readString());
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public float readFloat() throws IOException
+	public long readLong()
 	{
-		return Float.parseFloat(this.readConsoleLine());
+		return NumberUtils.toLong(this.readString());
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public double readDouble() throws IOException
+	public float readFloat()
 	{
-		return Double.parseDouble(this.readConsoleLine());
+		return NumberUtils.toFloat(this.readString());
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public boolean readBoolean() throws IOException
+	public double readDouble()
+	{
+		return NumberUtils.toDouble(this.readString());
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public boolean readBoolean()
 	{
 		return Boolean.parseBoolean(this.readConsoleLine());
 	}
@@ -108,8 +122,8 @@ public class ConsoleUtils implements AutoCloseable
 	/**
 	 * @since v0.0.1
 	 */
-		@Override
-	public void close() throws Exception
+	@Override
+	public void close()
 	{
 		if (this.autoClose)
 		{

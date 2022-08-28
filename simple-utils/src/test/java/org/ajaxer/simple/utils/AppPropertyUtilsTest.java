@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.io.IOException;
+
 /**
  * @author Shakir
  * @version 2022-08-27
@@ -19,15 +21,9 @@ class AppPropertyUtilsTest
 	private AppPropertyUtils propertyUtils;
 
 	@BeforeAll
-	void beforeAll()
+	void beforeAll() throws IOException
 	{
-		try
-		{
-			propertyUtils = new AppPropertyUtils("app.properties");
-		} catch (Exception exception)
-		{
-			ExceptionUtils.rethrow(exception);
-		}
+		propertyUtils = new AppPropertyUtils("app.properties");
 	}
 
 	@AfterAll
