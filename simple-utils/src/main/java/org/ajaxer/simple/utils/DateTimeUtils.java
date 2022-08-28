@@ -160,7 +160,7 @@ public class DateTimeUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static DateTimeDTO getDifference(long start, long end)
+	public static DateTimeDTO getDifference(long end, long start)
 	{
 		log.debug("start: {}, end: {}", start, end);
 
