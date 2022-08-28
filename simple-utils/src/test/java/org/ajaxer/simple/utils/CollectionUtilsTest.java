@@ -49,7 +49,7 @@ public class CollectionUtilsTest
 	void throwWhenBlank_null()
 	{
 		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(null));
-		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(null, new IllegalArgumentException()));
+		Assertions.assertThrows(NullPointerException.class, () -> CollectionUtils.throwWhenBlank(null, new NullPointerException()));
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class CollectionUtilsTest
 		List<String> list = new ArrayList<>();
 
 		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(list));
-		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(list, new IllegalArgumentException()));
+		Assertions.assertThrows(NullPointerException.class, () -> CollectionUtils.throwWhenBlank(list, new NullPointerException()));
 	}
 
 	@Nested
@@ -174,4 +174,196 @@ public class CollectionUtilsTest
 			Assertions.assertTrue(CollectionUtils.equals(list1, result));
 		}
 	}
+
+	@Nested
+	class SubList
+	{
+		@Test
+		void when_list_null()
+		{
+			List<String> l1 = null;
+			Assertions.assertNull(CollectionUtils.subList(l1, 0));
+			Assertions.assertNull(CollectionUtils.subList(l1, 0, 2));
+		}
+
+		@Test
+		void when_list_empty()
+		{
+			List<String> l1 = new ArrayList<>();
+			List<String> resultList1 = CollectionUtils.subList(l1, 0);
+			List<String> resultList2 = CollectionUtils.subList(l1, 0, 2);
+			List<String> expectedList = new ArrayList<>();
+
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList1));
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList2));
+		}
+
+		@Test
+		void when_list_have_same_data_t1()
+		{
+			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
+			List<String> resultList = CollectionUtils.subList(l1, 1);
+			List<String> expectedList = Arrays.asList("dot", "org");
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t2()
+		{
+			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
+			List<String> resultList = CollectionUtils.subList(l1, 1, 2);
+			List<String> expectedList = Arrays.asList("dot");
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t3()
+		{
+			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
+			List<String> resultList = CollectionUtils.subList(l1, 1, l1.size());
+			List<String> expectedList = Arrays.asList("dot", "org");
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+	}
+
+	@Nested
+	class GetNextChunk
+	{
+		@Test
+		void when_list_null()
+		{
+			List<String> l1 = null;
+			Assertions.assertNull(CollectionUtils.getNextChunk(l1, 10, 0));
+		}
+
+		@Test
+		void when_list_empty()
+		{
+			List<String> l1 = new ArrayList<>();
+			List<String> resultList = CollectionUtils.getNextChunk(l1, 10, 0);
+			List<String> expectedList = new ArrayList<>();
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t1()
+		{
+			List<Integer> l1 = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140);
+			List<Integer> resultList = CollectionUtils.getNextChunk(l1, 5, 2);
+			List<Integer> expectedList = Arrays.asList(20, 30, 40, 50, 60);
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t2()
+		{
+			List<Integer> l1 = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140);
+			List<Integer> resultList = CollectionUtils.getNextChunk(l1, 8, 6);
+			List<Integer> expectedList = Arrays.asList(60, 70, 80, 90, 100, 110, 120, 130);
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+	}
+
+	@Nested
+	class Reverse
+	{
+		@Test
+		void when_list_null()
+		{
+			List<String> l1 = null;
+			Assertions.assertNull(CollectionUtils.reverse(l1));
+		}
+
+		@Test
+		void when_list_empty()
+		{
+			List<String> l1 = new ArrayList<>();
+			List<String> resultList = CollectionUtils.reverse(l1);
+			List<String> expectedList = new ArrayList<>();
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t1()
+		{
+			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
+			List<String> resultList = CollectionUtils.reverse(l1);
+			List<String> expectedList = Arrays.asList("org", "dot", "ajaxer");
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_list_have_same_data_t2()
+		{
+			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
+			List<String> resultList = CollectionUtils.reverse(l1);
+			List<String> expectedList = Arrays.asList("org", "DOT", "ajaxer");
+			boolean expected = false;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+	}
+
+	@Nested
+	class AsArrayList
+	{
+		@Test
+		void when_array_null()
+		{
+			String[] array = null;
+			Assertions.assertNull(CollectionUtils.asArrayList(array));
+		}
+
+		@Test
+		void when_array_empty()
+		{
+			String[] array = {};
+			List<String> resultList = CollectionUtils.asArrayList(array);
+			List<String> expectedList = new ArrayList<>();
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+
+		@Test
+		void when_array_have_same_data_t1()
+		{
+			String[] array = {"ajaxer", "dot", "org"};
+			List<String> resultList = CollectionUtils.asArrayList(array);
+			List<String> expectedList = Arrays.asList("ajaxer", "dot", "org");
+			boolean expected = true;
+
+			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+	}
+
+	@Test
+	void get_top_list()
+	{
+		List<Integer> l1 = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140);
+		List<Integer> resultList = CollectionUtils.getTopList(l1, 8);
+		List<Integer> expectedList = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70);
+		boolean expected = true;
+
+		Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+	}
+
 }

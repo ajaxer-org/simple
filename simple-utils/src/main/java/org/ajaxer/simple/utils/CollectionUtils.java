@@ -165,6 +165,8 @@ public class CollectionUtils
 	}
 
 	/**
+	 * From startIndex to endIndex - 1
+	 *
 	 * @since v0.0.1
 	 */
 	public static <T> List<T> subList(List<T> list, int startIndex, int endIndex)
@@ -195,7 +197,7 @@ public class CollectionUtils
 		}
 
 		List<T> responseList = new ArrayList<>();
-		for (int i = startIndex; i < endIndex - 1; i++)
+		for (int i = startIndex; i < endIndex; i++)
 		{
 			responseList.add(list.get(i));
 		}
@@ -206,7 +208,7 @@ public class CollectionUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> List<T> getNextIdList(List<T> idList, int chunk, int startIndex)
+	public static <T> List<T> getNextChunk(List<T> idList, int chunk, int startIndex)
 	{
 		if (isBlank(idList))
 		{
@@ -235,15 +237,13 @@ public class CollectionUtils
 			return list;
 		}
 
-		int size = list.size();
-		for (int i = 0; i < size / 2; i++)
+		List<T> resultList = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++)
 		{
-			T temp = list.get(i);
-			list.set(i, list.get(size - 1 - i));
-			list.set(size - 1 - i, temp);
+			resultList.add(list.get(list.size() - 1 - i));
 		}
 
-		return list;
+		return resultList;
 	}
 
 	/**
@@ -251,9 +251,14 @@ public class CollectionUtils
 	 */
 	public static <T> List<T> asArrayList(T[] tArray)
 	{
-		if (ArrayUtils.isBlank(tArray))
+		if (tArray == null)
 		{
 			return null;
+		}
+
+		if (tArray.length == 0)
+		{
+			return new ArrayList<>();
 		}
 
 		List<T> tList = new ArrayList<>();
@@ -270,31 +275,6 @@ public class CollectionUtils
 	 */
 	public static <T> List<T> getTopList(List<T> idList, int chunkSize)
 	{
-		if (isBlank(idList))
-		{
-			log.warn("idList is null or empty");
-			return null;
-		}
-
-		if (chunkSize > idList.size())
-		{
-			log.warn("chunkSize: {} is greater then idList.size(): {}", chunkSize, idList.size());
-			return idList;
-		}
-
-		List<T> topIdList = null;
-		for (int i = 0; i < chunkSize; i++)
-		{
-			if (i < idList.size())
-			{
-				if (topIdList == null)
-				{
-					topIdList = new ArrayList<>();
-				}
-
-				topIdList.add(idList.get(i));
-			}
-		}
-		return topIdList;
+		return getNextChunk(idList, chunkSize, 0);
 	}
 }
