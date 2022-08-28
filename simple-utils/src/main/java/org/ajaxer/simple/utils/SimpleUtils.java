@@ -52,7 +52,7 @@ public class SimpleUtils
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */
@@ -60,12 +60,12 @@ public class SimpleUtils
 	{
 		if (t == null)
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */
@@ -73,12 +73,12 @@ public class SimpleUtils
 	{
 		if (t == null)
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */

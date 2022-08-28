@@ -31,6 +31,8 @@ public class CollectionUtils
 	}
 
 	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection)
@@ -42,6 +44,8 @@ public class CollectionUtils
 	}
 
 	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
@@ -53,6 +57,8 @@ public class CollectionUtils
 	}
 
 	/**
+	 * throws provided Throwable, if given {@link Collection} is either null or empty
+	 *
 	 * @since v0.0.1
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)

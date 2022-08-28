@@ -39,8 +39,8 @@ class AppPropertyUtilsTest
 	@Test
 	public void getKeyWhenKeyIsBlank()
 	{
-		Assertions.assertThrows(BlankPointerException.class, () -> propertyUtils.getKey(null));
-		Assertions.assertThrows(BlankPointerException.class, () -> propertyUtils.getKey(""));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> propertyUtils.getKey(null));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> propertyUtils.getKey(""));
 	}
 
 	@Test

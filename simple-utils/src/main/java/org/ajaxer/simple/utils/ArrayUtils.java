@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
-import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.Arrays;
 
@@ -158,7 +157,7 @@ public class ArrayUtils
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -166,12 +165,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -179,7 +178,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -192,12 +191,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -205,12 +204,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -218,7 +217,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -231,12 +230,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -244,12 +243,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -257,7 +256,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -270,12 +269,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -283,12 +282,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -296,7 +295,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -309,12 +308,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -322,12 +321,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -335,7 +334,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -348,12 +347,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -361,12 +360,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -374,7 +373,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -387,12 +386,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -400,12 +399,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -413,7 +412,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -426,12 +425,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -439,12 +438,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -452,7 +451,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -465,12 +464,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -478,12 +477,12 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
 	/**
-	 * throws BlankPointerException, if given array is either null or empty
+	 * throws IllegalArgumentException, if given array is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -491,7 +490,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -504,7 +503,7 @@ public class ArrayUtils
 	{
 		if (isBlank(array))
 		{
-			throw new BlankPointerException(throwable);
+			throw new IllegalArgumentException(throwable);
 		}
 	}
 

@@ -44,8 +44,8 @@ public class Base64UtilsTest
 	{
 		byte[] array = {};
 
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.encode(array));
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.decode(array));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.encode(array));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.decode(array));
 	}
 
 	@Test
@@ -65,8 +65,8 @@ public class Base64UtilsTest
 	{
 		String text = null;
 
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.encode(text));
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.decode(text));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.encode(text));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.decode(text));
 	}
 
 	@Test
@@ -86,8 +86,8 @@ public class Base64UtilsTest
 		File sourceFile = null;
 		File destinationFile = null;
 
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.encode(sourceFile, destinationFile));
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.decode(sourceFile, destinationFile));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.encode(sourceFile, destinationFile));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.decode(sourceFile, destinationFile));
 	}
 
 	@Test
@@ -106,8 +106,8 @@ public class Base64UtilsTest
 		String sourceFile = null;
 		String destinationFile = null;
 
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.encode(sourceFile, destinationFile));
-		Assertions.assertThrows(BlankPointerException.class, () -> Base64Utils.decode(sourceFile, destinationFile));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.encode(sourceFile, destinationFile));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Base64Utils.decode(sourceFile, destinationFile));
 	}
 
 	@Test

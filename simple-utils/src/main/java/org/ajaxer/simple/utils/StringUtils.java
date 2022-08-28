@@ -98,7 +98,7 @@ public class StringUtils
 	}
 
 	/**
-	 * throws BlankPointerException when given string is either null or empty
+	 * throws IllegalArgumentException when given string is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -111,7 +111,7 @@ public class StringUtils
 	}
 
 	/**
-	 * throws BlankPointerException when given string is either null or empty
+	 * throws IllegalArgumentException when given string is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
@@ -119,12 +119,12 @@ public class StringUtils
 	{
 		if (StringUtils.isBlank(string))
 		{
-			throw new BlankPointerException(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
 	/**
-	 * throws BlankPointerException when given string is either null or empty
+	 * throws IllegalArgumentException when given string is either null or empty
 	 *
 	 * @since v0.0.1
 	 */

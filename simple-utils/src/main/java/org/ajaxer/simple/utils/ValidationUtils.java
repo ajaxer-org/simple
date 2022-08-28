@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
-import org.ajaxer.simple.utils.exceptions.BlankPointerException;
 
 import java.util.Collection;
 import java.util.Map;
@@ -402,7 +401,7 @@ public class ValidationUtils
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */
@@ -412,7 +411,7 @@ public class ValidationUtils
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */
@@ -422,7 +421,7 @@ public class ValidationUtils
 	}
 
 	/**
-	 * throws BlankPointerException when object is null
+	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1
 	 */

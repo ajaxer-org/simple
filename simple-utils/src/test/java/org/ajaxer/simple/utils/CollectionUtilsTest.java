@@ -48,7 +48,7 @@ public class CollectionUtilsTest
 	@Test
 	void throwWhenBlank_null()
 	{
-		Assertions.assertThrows(BlankPointerException.class, () -> CollectionUtils.throwWhenBlank(null));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(null));
 		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(null, new IllegalArgumentException()));
 	}
 
@@ -57,7 +57,7 @@ public class CollectionUtilsTest
 	{
 		List<String> list = new ArrayList<>();
 
-		Assertions.assertThrows(BlankPointerException.class, () -> CollectionUtils.throwWhenBlank(list));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(list));
 		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(list, new IllegalArgumentException()));
 	}
 
