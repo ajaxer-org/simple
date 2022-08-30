@@ -52,25 +52,27 @@ public class ExceptionUtils
 
 		List<String> traces = new ArrayList<>();
 
-		if (ValidationUtils.isNotBlank(throwable.getMessage()))
+		if (StringUtils.isNotBlank(throwable.getMessage()))
 		{
 			traces.add(throwable.getMessage());
 		}
 
 		StackTraceElement[] stackTraceElements = throwable.getStackTrace();
-		if (ValidationUtils.isNotBlank(stackTraceElements))
+		if (ArrayUtils.isBlank(stackTraceElements))
 		{
-			for (StackTraceElement stackTraceElement : stackTraceElements)
+			return traces;
+		}
+
+		for (StackTraceElement stackTraceElement : stackTraceElements)
+		{
+			if (ValidationUtils.isBlank(packageFilter))
 			{
-				if (ValidationUtils.isBlank(packageFilter))
+				traces.add(stackTraceElement.toString());
+			} else
+			{
+				if (stackTraceElement.toString().startsWith(packageFilter))
 				{
 					traces.add(stackTraceElement.toString());
-				} else
-				{
-					if (stackTraceElement.toString().startsWith(packageFilter))
-					{
-						traces.add(stackTraceElement.toString());
-					}
 				}
 			}
 		}
