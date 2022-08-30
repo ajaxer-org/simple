@@ -13,8 +13,7 @@ import java.util.List;
  * @version 2022-08-30
  * @since v0.0.1
  */
-public
-class ExceptionUtilsTest
+public class ExceptionUtilsTest
 {
 	@Test
 	public void rethrow_unchecked_exception()

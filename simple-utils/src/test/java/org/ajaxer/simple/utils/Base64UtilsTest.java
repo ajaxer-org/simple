@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 
 /**
@@ -91,7 +92,7 @@ public class Base64UtilsTest
 	}
 
 	@Test
-	void withFiles() throws FileAlreadyExistsException
+	void withFiles() throws IOException
 	{
 		FileUtils.writeFile(sourceFile, "HelloWorld", true);
 		Base64Utils.encode(sourceFile, encodedFile);
@@ -111,12 +112,12 @@ public class Base64UtilsTest
 	}
 
 	@Test
-	void withFileNames() throws FileAlreadyExistsException
+	void withFileNames() throws IOException
 	{
 		FileUtils.writeFile(sourceFile, "HelloWorld", true);
 
 		String sourceFileName = sourceFile.getAbsolutePath();
-		String encodedFileName =encodedFile.getAbsolutePath();
+		String encodedFileName = encodedFile.getAbsolutePath();
 		String decodedFileName = decodedFile.getAbsolutePath();
 
 		Base64Utils.encode(sourceFileName, encodedFileName);

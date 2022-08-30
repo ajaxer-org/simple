@@ -145,7 +145,7 @@ public class DateTimeUtils
 	{
 		log.debug("start: {}, end: {}", start, end);
 
-		return getDifference(start.getTime(), end.getTime());
+		return getDifference(end.getTime(), start.getTime());
 	}
 
 	/**

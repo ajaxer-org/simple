@@ -1,5 +1,6 @@
 package org.ajaxer.simple.utils;
 
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 import java.beans.XMLDecoder;
@@ -30,9 +31,11 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static List<String> readLines(File file)
+	public static List<String> readLines(File file) throws IOException
 	{
 		log.debug("file: {}", file);
+		SimpleUtils.throwWhenNull(file);
+
 		List<String> lines = new ArrayList<>();
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
@@ -43,10 +46,6 @@ public class FileUtils
 			{
 				lines.add(line);
 			}
-		} catch (Exception e)
-		{
-			log.error("Exception", e);
-			ExceptionUtils.rethrow(e);
 		}
 
 		return lines;
@@ -55,28 +54,39 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static List<String> readLines(String file)
+	public static List<String> readLines(String path) throws IOException
 	{
-		return readLines(new File(file));
+		log.debug("path: {}", path);
+		StringUtils.throwWhenBlank(path);
+
+		return readLines(new File(path));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static String readFile(String file)
+	public static String readFile(String path) throws IOException
 	{
-		return readFile(new File(file));
+		log.debug("path: {}", path);
+		StringUtils.throwWhenBlank(path);
+
+		return readFile(new File(path));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static String readFile(File file)
+	public static String readFile(File file) throws IOException
 	{
 		log.debug("file: {}", file);
 		StringBuilder builder = new StringBuilder();
 
 		List<String> lines = readLines(file);
+		if (CollectionUtils.isBlank(lines))
+		{
+			return builder.toString();
+		}
+
 		for (int i = 0; i < lines.size(); i++)
 		{
 			builder.append(lines.get(i));
@@ -94,39 +104,41 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeFile(String filePath, String msg, boolean append)
+	public static void writeFile(String path, String msg, boolean append) throws IOException
 	{
-		writeFile(new File(filePath), msg, append);
+		log.debug("path: {}", path);
+		StringUtils.throwWhenBlank(path);
+
+		writeFile(new File(path), msg, append);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeFile(File file, String msg, boolean append)
+	public static void writeFile(File file, String msg, boolean append) throws IOException
 	{
 		log.debug("file: {}, append: {}, msg: {}", file, append, msg);
+		SimpleUtils.throwWhenNull(file);
+
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file, append))
 		{
 			fileOutputStream.write(msg.getBytes());
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeFile(String filePath, String msg)
+	public static void writeFile(String path, String msg) throws IOException
 	{
-		writeFile(filePath, msg, true);
+		log.debug("path: {}", path);
+		writeFile(path, msg, true);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeFile(File file, String msg)
+	public static void writeFile(File file, String msg) throws IOException
 	{
 		writeFile(file, msg, true);
 	}
@@ -134,160 +146,204 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static Object readSerializedObject(String filePath)
+	@SneakyThrows
+	public static <T extends Serializable> T readSerializedObject(String path, Class<T> tClass)
 	{
-		log.debug("filePath: {}", filePath);
-		return readSerializedObject(new File(filePath));
+		log.debug("tClass: {}, path: {}", tClass, path);
+		StringUtils.throwWhenBlank(path);
+
+		return readSerializedObject(new File(path), tClass);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static Object readSerializedObject(File file)
+	@SneakyThrows
+	@SuppressWarnings("unchecked")
+	public static <T extends Serializable> T readSerializedObject(File file, Class<T> tClass)
 	{
-		log.debug("file: {}", file);
+		log.debug("tClass:{}, file: {}", tClass, file);
+		SimpleUtils.throwWhenNull(file);
+
 		try (FileInputStream fileInputStream = new FileInputStream(file);
 			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
 		{
-			return objectInputStream.readObject();
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
-			return null;
+			return (T) objectInputStream.readObject();
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeSerializedObject(String filePath, Object object)
+	public static <T extends Serializable> void writeSerializedObject(String path, T t) throws IOException
 	{
-		log.debug("filePath: {}, object: {}", filePath, object);
-		writeSerializedObject(new File(filePath), object);
+		log.debug("path: {}, t: {}", path, t);
+		StringUtils.throwWhenBlank(path);
+
+		writeSerializedObject(new File(path), t);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeSerializedObject(File file, Object object)
+	public static <T extends Serializable> void writeSerializedObject(File file, T t) throws IOException
 	{
-		log.debug("file: {}, object: {}", file, object);
+		log.debug("file: {}, t: {}", file, t);
+		SimpleUtils.throwWhenNull(file);
+
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
 			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
 		{
-			objectOutputStream.writeObject(object);
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
+			objectOutputStream.writeObject(t);
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static Object readXmlObject(String filePath)
+	public static <T> T readXmlObject(String path, Class<T> tClass) throws IOException
 	{
-		log.debug("file: {}", filePath);
-		return readXmlObject(new File(filePath));
+		log.debug("tClass: {}, path: {}", tClass, path);
+		StringUtils.throwWhenBlank(path);
+		SimpleUtils.throwWhenNull(tClass);
+
+		return readXmlObject(new File(path), tClass);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static Object readXmlObject(File file)
+	@SuppressWarnings("unchecked")
+	public static <T> T readXmlObject(File file, Class<T> tClass) throws IOException
 	{
-		log.debug("file: {}", file);
+		log.debug("tClass: {}, file: {}", tClass, file);
+		SimpleUtils.throwWhenNull(file);
+		SimpleUtils.throwWhenNull(tClass);
+
 		try (FileInputStream fileInputStream = new FileInputStream(file);
 			 XMLDecoder xMLDecoder = new XMLDecoder(fileInputStream))
 		{
-			return xMLDecoder.readObject();
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
-			return null;
+			return (T) xMLDecoder.readObject();
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeXmlObject(String filePath, Object object)
+	public static <T> void writeXmlObject(String path, T t) throws IOException
 	{
-		log.debug("filePath: {}, object: {}", filePath, object);
-		writeXmlObject(new File(filePath), object);
+		log.debug("path: {}, t: {}", path, t);
+		StringUtils.throwWhenBlank(path);
+
+		writeXmlObject(new File(path), t);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeXmlObject(File file, Object object)
+	public static <T> void writeXmlObject(File file, T t) throws IOException
 	{
-		log.debug("file: {}, object: {}", file, object);
+		log.debug("file: {}, t: {}", file, t);
+		SimpleUtils.throwWhenNull(file);
+
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
 			 XMLEncoder xMLEncoder = new XMLEncoder(fileOutputStream))
 		{
-			xMLEncoder.writeObject(object);
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
+			xMLEncoder.writeObject(t);
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> T readJsonObject(Class<T> outputClass, String file)
+	public static <T> T readJsonObject(String path, Class<T> tClass) throws IOException
 	{
-		return readJsonObject(outputClass, new File(file));
+		log.debug("tClass: {}, path: {}", tClass, path);
+		StringUtils.throwWhenBlank(path);
+		SimpleUtils.throwWhenNull(tClass);
+
+		return readJsonObject(new File(path), tClass);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> T readJsonObject(Class<T> outputClass, File file)
+	public static <T> T readJsonObject(File file, Class<T> tClass) throws IOException
 	{
-		log.debug("outputClass: {}, file: {}, object", outputClass, file);
+		log.debug("tClass: {}, file: {}", tClass, file);
+		SimpleUtils.throwWhenNull(file);
+		SimpleUtils.throwWhenNull(tClass);
+
 		String fileData = readFile(file);
-		return JsonUtils.getGson().fromJson(fileData, outputClass);
+		return JsonUtils.getGson().fromJson(fileData, tClass);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeJsonObject(String file, Object object)
+	public static <T> void writeJsonObject(String path, T t) throws IOException
 	{
-		writeJsonObject(new File(file), object);
+		log.debug("path: {}, t: {}", path, t);
+		StringUtils.throwWhenBlank(path);
+
+		writeJsonObject(new File(path), t);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void writeJsonObject(File file, Object object)
+	public static <T> void writeJsonObject(File file, T t) throws IOException
 	{
-		log.debug("file: {}, object: {}", file, object);
-		String jsonString = JsonUtils.getGson().toJson(object);
+		log.debug("file: {}, t: {}", file, t);
+		SimpleUtils.throwWhenNull(file);
+
+		String jsonString = JsonUtils.getGson().toJson(t);
 		writeFile(file, jsonString, false);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile() throws FileAlreadyExistsException
+	public static File createTempFile()
 	{
-		return createTempFile(StringUtils.getUUID());
+		return createTempFile(null, null);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile(String tempFileName) throws FileAlreadyExistsException
+	public static File createTempFile(String prefix, String suffix)
 	{
-		log.debug("tempFileName: {}", tempFileName);
-		File file = new File(SystemUtils.getTempDirectory(), tempFileName);
+		try
+		{
+			return createTempFile(prefix + StringUtils.getUUID() + suffix);
+		} catch (FileAlreadyExistsException e)
+		{
+			return createTempFile();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static File createTempFile(String fileName) throws FileAlreadyExistsException
+	{
+		return createTempFile(null, fileName, null);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static File createTempFile(String prefix, String filename, String suffix) throws FileAlreadyExistsException
+	{
+		log.debug("prefix: {}, filename: {}, suffix: {}", prefix, filename, suffix);
+
+		StringUtils.throwWhenBlank(filename, "filename cannot be blank");
+
+		prefix = prefix == null ? "" : prefix.trim();
+		suffix = suffix == null ? "" : suffix.trim();
+
+		File file = new File(SystemUtils.getTempDirectory(), prefix + filename + suffix);
 		if (file.exists())
 		{
 			throw new FileAlreadyExistsException(file.getAbsolutePath());
@@ -359,6 +415,7 @@ public class FileUtils
 
 	/**
 	 * <code>/home/user/files/some-text-file.txt</code> will give you <code>txt</code>
+	 *
 	 * @since v0.0.1
 	 */
 	public static String getExtension(String text)

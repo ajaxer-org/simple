@@ -3,6 +3,7 @@ package org.ajaxer.simple.utils;
 import lombok.extern.log4j.Log4j2;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 

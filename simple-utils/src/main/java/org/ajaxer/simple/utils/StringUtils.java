@@ -106,7 +106,7 @@ public class StringUtils
 	{
 		if (StringUtils.isBlank(string))
 		{
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
