@@ -209,7 +209,7 @@ public class ValidationUtils
 	{
 		if (trueCondition)
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -220,7 +220,7 @@ public class ValidationUtils
 	{
 		if (trueCondition)
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -242,7 +242,7 @@ public class ValidationUtils
 	{
 		if (!trueCondition)
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -253,7 +253,7 @@ public class ValidationUtils
 	{
 		if (!trueCondition)
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -275,7 +275,7 @@ public class ValidationUtils
 	{
 		if (i1 == i2)
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -286,7 +286,7 @@ public class ValidationUtils
 	{
 		if (i1 == i2)
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -308,7 +308,7 @@ public class ValidationUtils
 	{
 		if (i1 != i2)
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -319,7 +319,7 @@ public class ValidationUtils
 	{
 		if (i1 != i2)
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -341,7 +341,7 @@ public class ValidationUtils
 	{
 		if (o1.equals(o2))
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -352,7 +352,7 @@ public class ValidationUtils
 	{
 		if (o1.equals(o2))
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 
@@ -374,7 +374,7 @@ public class ValidationUtils
 	{
 		if (!o1.equals(o2))
 		{
-			throw new AssertionError();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -385,7 +385,7 @@ public class ValidationUtils
 	{
 		if (!o1.equals(o2))
 		{
-			throw new AssertionError(exceptionMessage);
+			throw new IllegalArgumentException(exceptionMessage);
 		}
 	}
 

@@ -25,7 +25,7 @@ public class Base64UtilsTest
 	private File decodedFile;
 
 	@BeforeAll
-	void beforeAll() throws FileAlreadyExistsException
+	void beforeAll() throws IOException
 	{
 		sourceFile = FileUtils.createTempFile();
 		encodedFile = FileUtils.createTempFile();

@@ -304,7 +304,7 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile()
+	public static File createTempFile() throws IOException
 	{
 		return createTempFile(null, null);
 	}
@@ -312,21 +312,15 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile(String prefix, String suffix)
+	public static File createTempFile(String prefix, String suffix) throws IOException
 	{
-		try
-		{
-			return createTempFile(prefix + StringUtils.getUUID() + suffix);
-		} catch (FileAlreadyExistsException e)
-		{
-			return createTempFile();
-		}
+		return createTempFile(prefix, StringUtils.getUUID(), suffix);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile(String fileName) throws FileAlreadyExistsException
+	public static File createTempFile(String fileName) throws IOException
 	{
 		return createTempFile(null, fileName, null);
 	}
@@ -334,7 +328,7 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static File createTempFile(String prefix, String filename, String suffix) throws FileAlreadyExistsException
+	public static File createTempFile(String prefix, String filename, String suffix) throws IOException
 	{
 		log.debug("prefix: {}, filename: {}, suffix: {}", prefix, filename, suffix);
 
@@ -348,69 +342,72 @@ public class FileUtils
 		{
 			throw new FileAlreadyExistsException(file.getAbsolutePath());
 		}
-		return file;
+		return file.createNewFile() ? file : null;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copy(String source, String target)
+	public static void copy(String source, String target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
+		StringUtils.throwWhenBlank(source);
+		StringUtils.throwWhenBlank(target);
+
 		copy(new File(source), new File(target));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copy(File source, File target)
+	public static void copy(File source, File target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
+		SimpleUtils.throwWhenNull(source);
+		SimpleUtils.throwWhenNull(target);
+
 		try (FileInputStream fileInputStream = new FileInputStream(source);
 			 FileOutputStream fileOutputStream = new FileOutputStream(target))
 		{
 			copyBytes(fileInputStream, fileOutputStream);
-		} catch (Exception ex)
-		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copyBytes(InputStream inputStream, OutputStream outputStream)
+	public static void copyBytes(InputStream inputStream, OutputStream outputStream) throws IOException
 	{
 		log.debug("inputStream: {}, outputStream: {}", inputStream, outputStream);
+		SimpleUtils.throwWhenNull(inputStream);
+		SimpleUtils.throwWhenNull(outputStream);
+
 		copyBytes(FileUtils.BUFFER_SIZE, inputStream, outputStream);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copyBytes(int bufferSize, InputStream inputStream, OutputStream outputStream)
+	public static void copyBytes(int bufferSize, InputStream inputStream, OutputStream outputStream) throws IOException
 	{
 		log.debug("bufferSize: {}, inputStream: {}, outputStream: {}", bufferSize, inputStream, outputStream);
-		try
-		{
-			int i;
-			byte[] buffer = new byte[bufferSize];
-			long totalReadBytes = 0L;
 
-			while ((i = inputStream.read(buffer)) != -1)
-			{
-				outputStream.write(buffer, 0, i);
-				totalReadBytes += i;
-			}
+		ValidationUtils.throwWhenTrue(bufferSize <= 0, "bufferSize cannot be less or equals to zero");
+		SimpleUtils.throwWhenNull(inputStream);
+		SimpleUtils.throwWhenNull(outputStream);
 
-			log.debug("totalReadBytes: {}", totalReadBytes);
-			outputStream.flush();
-		} catch (Exception ex)
+		int i;
+		byte[] buffer = new byte[bufferSize];
+		long totalReadBytes = 0L;
+
+		while ((i = inputStream.read(buffer)) != -1)
 		{
-			log.error("Exception", ex);
-			ExceptionUtils.rethrow(ex);
+			outputStream.write(buffer, 0, i);
+			totalReadBytes += i;
 		}
+
+		log.debug("totalReadBytes: {}", totalReadBytes);
+		outputStream.flush();
 	}
 
 	/**

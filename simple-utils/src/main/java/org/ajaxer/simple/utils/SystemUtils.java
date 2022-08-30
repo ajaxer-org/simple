@@ -17,7 +17,7 @@ public class SystemUtils
 	 */
 	public static void setProperty(String key, String value)
 	{
-		log.info("key: {}, value: {}", key, value);
+		log.debug("key: {}, value: {}", key, value);
 		System.setProperty(key, value);
 	}
 
@@ -26,7 +26,7 @@ public class SystemUtils
 	 */
 	public static String getProperty(String key)
 	{
-		log.info("key: {}", key);
+		log.debug("key: {}", key);
 		return System.getProperty(key);
 	}
 
@@ -35,7 +35,7 @@ public class SystemUtils
 	 */
 	public static String clearProperty(String key)
 	{
-		log.info("key: {}", key);
+		log.debug("key: {}", key);
 		return System.clearProperty(key);
 	}
 
@@ -77,7 +77,7 @@ public class SystemUtils
 	public static boolean isUnix()
 	{
 		String osName = getOsName();
-		log.info("osName: {}", osName);
+		log.debug("osName: {}", osName);
 
 		return osName.toLowerCase().contains("nix")
 				|| osName.toLowerCase().contains("nux")
