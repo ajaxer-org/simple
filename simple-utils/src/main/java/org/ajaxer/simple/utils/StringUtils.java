@@ -104,10 +104,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string)
 	{
-		if (StringUtils.isBlank(string))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(string));
 	}
 
 	/**
@@ -117,10 +114,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string, String exceptionMessage)
 	{
-		if (StringUtils.isBlank(string))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(string), exceptionMessage);
 	}
 
 	/**
@@ -130,10 +124,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string, Throwable throwable)
 	{
-		if (StringUtils.isBlank(string))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(string), throwable);
 	}
 
 	/**
