@@ -246,7 +246,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection)
 	{
-		throwWhenBlank(collection, new IllegalArgumentException());
+		SimpleUtils.throwWhenTrue(isBlank(collection));
 	}
 
 	/**
@@ -256,7 +256,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
 	{
-		throwWhenBlank(collection, new IllegalArgumentException(exceptionMessage));
+		SimpleUtils.throwWhenTrue(isBlank(collection), exceptionMessage);
 	}
 
 	/**
@@ -266,10 +266,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
 	{
-		if (CollectionUtils.isBlank(collection))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(collection), throwable);
 	}
 
 	/**
@@ -279,7 +276,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection)
 	{
-		throwWhenNotBlank(collection, new IllegalArgumentException());
+		SimpleUtils.throwWhenTrue(isNotBlank(collection));
 	}
 
 	/**
@@ -289,7 +286,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection, String exceptionMessage)
 	{
-		throwWhenNotBlank(collection, new IllegalArgumentException(exceptionMessage));
+		SimpleUtils.throwWhenTrue(isNotBlank(collection), exceptionMessage);
 	}
 
 	/**
@@ -299,10 +296,6 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
 	{
-		if (CollectionUtils.isNotBlank(collection))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isNotBlank(collection), throwable);
 	}
-
 }
