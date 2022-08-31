@@ -28,7 +28,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <log4j2.console.pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %level [%c{1.}.%M():%L] - %msg%n</log4j2.console.pattern>
+        <log4j2.console.pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1.}.%M():%L]%n%msg%n%n</log4j2.console.pattern>
 
         <!-- versions -->
         <version.flatten>1.2.7</version.flatten>
@@ -42,6 +42,13 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
 
         <plugins>
             <!--flatten-maven-plugin-->
