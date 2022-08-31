@@ -24,6 +24,46 @@ public class FileUtils
 	public static final int ONE_BYTE = 1024;
 
 	/**
+	 * <p> return true if given file is <b>not</b> <code>null</code> and do <code>exists</code></p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isValid(File file)
+	{
+		return file != null && file.exists();
+	}
+
+	/**
+	 * <p> return true if given file is <code>null</code> or do <b>not</b> <code>exists</code> </p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isNotValid(File file)
+	{
+		return !isValid(file);
+	}
+
+	/**
+	 * <p> return true if given path is <b>not</b> <code>null</code> and do <code>exists</code></p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isValid(String path)
+	{
+		return path != null && new File(path).exists();
+	}
+
+	/**
+	 * <p> return true if given path is <code>null</code> or do <b>not</b> <code>exists</code> </p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isNotValid(String path)
+	{
+		return !isValid(path);
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static boolean equals(String file0, String file1)
@@ -37,10 +77,10 @@ public class FileUtils
 	public static boolean equals(File file0, File file1)
 	{
 		String hash0 = HashUtils.getSHA1Hash(file0);
-		log.debug("file0: {}, hash0: {}", file0, hash0);
+		log.info("file0: {}, hash0: {}", file0, hash0);
 
 		String hash1 = HashUtils.getSHA1Hash(file1);
-		log.debug("file1: {}, hash1: {}", file1, hash1);
+		log.info("file1: {}, hash1: {}", file1, hash1);
 
 		return hash0.equals(hash1);
 	}
@@ -502,4 +542,63 @@ public class FileUtils
 		log.info("[{}] \t {}", file.delete(), file.getAbsolutePath());
 	}
 
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(file));
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file, String exceptionMessage)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(file), exceptionMessage);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file, Throwable throwable)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(file), throwable);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(path));
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path, String exceptionMessage)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(path), exceptionMessage);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path, Throwable throwable)
+	{
+		SimpleUtils.throwWhenTrue(isNotValid(path), throwable);
+	}
 }

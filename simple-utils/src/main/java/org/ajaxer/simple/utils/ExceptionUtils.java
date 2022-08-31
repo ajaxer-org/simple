@@ -1,5 +1,7 @@
 package org.ajaxer.simple.utils;
 
+import lombok.SneakyThrows;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class ExceptionUtils
 	/**
 	 * @since v0.0.1
 	 */
+	@SneakyThrows
 	public static void rethrow(Throwable throwable)
 	{
 		if (throwable == null)
@@ -29,6 +32,8 @@ public class ExceptionUtils
 		{
 			throw (Error) throwable;
 		}
+
+		throw throwable;
 
 //		throw new RuntimeException(throwable);
 	}

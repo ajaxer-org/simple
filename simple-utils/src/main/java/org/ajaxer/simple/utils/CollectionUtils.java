@@ -31,45 +31,6 @@ public class CollectionUtils
 	}
 
 	/**
-	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static <T> void throwWhenBlank(Collection<T> collection)
-	{
-		if (CollectionUtils.isBlank(collection))
-		{
-			throw new IllegalArgumentException();
-		}
-	}
-
-	/**
-	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
-	{
-		if (CollectionUtils.isBlank(collection))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
-	}
-
-	/**
-	 * throws provided Throwable, if given {@link Collection} is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
-	{
-		if (CollectionUtils.isBlank(collection))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
-	}
-
-	/**
 	 * @since v0.0.1
 	 */
 	public static <T> boolean equals(Collection<T> c1, Collection<T> c2)
@@ -277,4 +238,71 @@ public class CollectionUtils
 	{
 		return getNextChunk(idList, chunkSize, 0);
 	}
+
+	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection)
+	{
+		throwWhenBlank(collection, new IllegalArgumentException());
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
+	{
+		throwWhenBlank(collection, new IllegalArgumentException(exceptionMessage));
+	}
+
+	/**
+	 * throws provided Throwable, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
+	{
+		if (CollectionUtils.isBlank(collection))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection)
+	{
+		throwWhenNotBlank(collection, new IllegalArgumentException());
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection, String exceptionMessage)
+	{
+		throwWhenNotBlank(collection, new IllegalArgumentException(exceptionMessage));
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
+	{
+		if (CollectionUtils.isNotBlank(collection))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
 }

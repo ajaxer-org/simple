@@ -49,7 +49,7 @@ public class HashUtils
 		{
 			MessageDigest digest = MessageDigest.getInstance(encodeType);
 
-			byte[] byteArray = new byte[FileUtils.BUFFER_SIZE];
+			byte[] byteArray = new byte[FileUtils.ONE_BYTE];
 			int bytesCount = 0;
 			while ((bytesCount = inputStream.read(byteArray)) != -1)
 			{
