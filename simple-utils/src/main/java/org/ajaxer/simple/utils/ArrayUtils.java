@@ -163,10 +163,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -176,10 +173,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -189,10 +183,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -202,10 +193,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -215,10 +203,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -228,10 +213,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -241,10 +223,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -254,10 +233,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -267,10 +243,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -280,10 +253,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -293,10 +263,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -306,10 +273,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -319,10 +283,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -332,10 +293,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -345,10 +303,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -358,10 +313,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -371,10 +323,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -384,10 +333,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -397,10 +343,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -410,10 +353,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -423,10 +363,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -436,10 +373,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -449,10 +383,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -462,10 +393,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -475,10 +403,7 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -488,10 +413,7 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array, String exceptionMessage)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -501,10 +423,7 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array, Throwable throwable)
 	{
-		if (isBlank(array))
-		{
-			throw new IllegalArgumentException(throwable);
-		}
+		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
