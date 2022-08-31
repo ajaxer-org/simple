@@ -34,8 +34,6 @@ public class ExceptionUtils
 		}
 
 		throw throwable;
-
-//		throw new RuntimeException(throwable);
 	}
 
 	/**
