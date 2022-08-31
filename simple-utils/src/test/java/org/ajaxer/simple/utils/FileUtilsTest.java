@@ -11,8 +11,12 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.List;
 
@@ -25,7 +29,8 @@ import java.util.List;
 public class FileUtilsTest
 {
 	private File validFile;
-	private File invalidFile;
+	private File invalidFile1;
+	private File invalidFile2;
 	private File tempFile;
 	private String tempPath;
 
@@ -33,7 +38,8 @@ public class FileUtilsTest
 	void beforeEach() throws IOException
 	{
 		validFile = new File(FileUtilsTest.class.getClassLoader().getResource("file-utils-test-data.txt").getFile());
-		invalidFile = new File("NOT-EXIST", "invalid-file-utils-test-data.txt");
+		invalidFile1 = new File("NOT-EXIST", "invalid-file-1.txt");
+		invalidFile2 = new File("NOT-EXIST", "invalid-file-2.txt");
 		tempFile = FileUtils.createTempFile();
 		tempPath = tempFile.getAbsolutePath();
 	}
@@ -41,7 +47,7 @@ public class FileUtilsTest
 	@AfterEach
 	void afterEach()
 	{
-		tempFile.delete();
+		log.debug("delete response: {}, for file: {}", tempFile.delete(), tempFile.getAbsolutePath());
 	}
 
 	@Nested
@@ -64,7 +70,7 @@ public class FileUtilsTest
 		@Test
 		void with_invalid_file()
 		{
-			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readLines(invalidFile));
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readLines(invalidFile1));
 		}
 
 		@Test
@@ -84,7 +90,7 @@ public class FileUtilsTest
 		@Test
 		void with_invalid_path()
 		{
-			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readLines(invalidFile.getAbsolutePath()));
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readLines(invalidFile1.getAbsolutePath()));
 		}
 	}
 
@@ -94,7 +100,7 @@ public class FileUtilsTest
 		@Test
 		void with_invalid_file()
 		{
-			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readFile(invalidFile));
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readFile(invalidFile1));
 		}
 
 		@Test
@@ -107,7 +113,7 @@ public class FileUtilsTest
 		@Test
 		void with_invalid_path()
 		{
-			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readFile(invalidFile.getAbsolutePath()));
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.readFile(invalidFile1.getAbsolutePath()));
 		}
 
 		@Test
@@ -282,10 +288,11 @@ public class FileUtilsTest
 		void read_write_with_valid_file_and_valid_data() throws IOException
 		{
 			SerializedObject serializedObject = new SerializedObject("value1", "value2");
+			log.info("serializedObject: {}", serializedObject);
 			FileUtils.writeSerializedObject(tempFile, serializedObject);
 
 			SerializedObject result = FileUtils.readSerializedObject(tempFile, SerializedObject.class);
-			System.out.println(result.toString());
+			log.info("result: {}", result);
 			Assertions.assertEquals(serializedObject, result);
 		}
 
@@ -293,10 +300,11 @@ public class FileUtilsTest
 		void read_write_with_valid_path_and_valid_data() throws IOException
 		{
 			SerializedObject serializedObject = new SerializedObject("value1", "value2");
+			log.info("serializedObject: {}", serializedObject);
 			FileUtils.writeSerializedObject(tempFile, serializedObject);
 
 			SerializedObject result = FileUtils.readSerializedObject(tempPath, SerializedObject.class);
-			System.out.println(result.toString());
+			log.info("result: {}", result);
 			Assertions.assertEquals(serializedObject, result);
 		}
 	}
@@ -340,9 +348,9 @@ public class FileUtilsTest
 			UserDto userDto = new UserDto("user", "user@ajaxer.org", "123-456-7890");
 			FileUtils.writeXmlObject(tempFile, userDto);
 
-			UserDto result = FileUtils.readXmlObject(tempFile, UserDto.class);
-			System.out.println(result.toString());
-			Assertions.assertEquals(userDto, result);
+			UserDto resultUserDto = FileUtils.readXmlObject(tempFile, UserDto.class);
+			log.info("resultUserDto: {}", resultUserDto);
+			Assertions.assertEquals(userDto, resultUserDto);
 		}
 
 		@Test
@@ -351,9 +359,9 @@ public class FileUtilsTest
 			UserDto userDto = new UserDto("user", "user@ajaxer.org", "123-456-7890");
 			FileUtils.writeXmlObject(tempFile, userDto);
 
-			UserDto result = FileUtils.readXmlObject(tempPath, UserDto.class);
-			System.out.println(result.toString());
-			Assertions.assertEquals(userDto, result);
+			UserDto resultUserDto = FileUtils.readXmlObject(tempPath, UserDto.class);
+			log.info("resultUserDto: {}", resultUserDto);
+			Assertions.assertEquals(userDto, resultUserDto);
 		}
 	}
 
@@ -394,22 +402,25 @@ public class FileUtilsTest
 		void read_write_with_valid_file_and_valid_data() throws IOException
 		{
 			UserDto userDto = new UserDto("user", "user@ajaxer.org", "123-456-7890");
+			log.info("userDto: {}", userDto);
 			FileUtils.writeJsonObject(tempFile, userDto);
 
-			UserDto result = FileUtils.readJsonObject(tempFile, UserDto.class);
-			System.out.println(result.toString());
-			Assertions.assertEquals(userDto, result);
+			UserDto resultUserDto = FileUtils.readJsonObject(tempFile, UserDto.class);
+			log.info("resultUserDto: {}", resultUserDto);
+			Assertions.assertEquals(userDto, resultUserDto);
 		}
 
 		@Test
 		void read_write_with_valid_path_and_valid_data() throws IOException
 		{
 			UserDto userDto = new UserDto("user", "user@ajaxer.org", "123-456-7890");
+			log.info("userDto: {}", userDto);
 			FileUtils.writeJsonObject(tempFile, userDto);
 
-			UserDto result = FileUtils.readJsonObject(tempPath, UserDto.class);
-			System.out.println(result.toString());
-			Assertions.assertEquals(userDto, result);
+			UserDto resultUserDto = FileUtils.readJsonObject(tempPath, UserDto.class);
+			log.info("resultUserDto: {}", resultUserDto);
+
+			Assertions.assertEquals(userDto, resultUserDto);
 		}
 	}
 
@@ -479,6 +490,220 @@ public class FileUtilsTest
 	@Nested
 	class CopyTest
 	{
+		@Test
+		void when_both_source_and_target_files_null()
+		{
+			File source = null;
+			File target = null;
 
+			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.copy(source, target));
+		}
+
+		@Test
+		void when_both_source_and_target_paths_null()
+		{
+			String source = null;
+			String target = null;
+
+			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.copy(source, target));
+		}
+
+		@Test
+		void when_both_source_and_target_streams_null()
+		{
+			InputStream source = null;
+			OutputStream target = null;
+
+			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.copy(source, target));
+		}
+
+		@Test
+		void when_both_source_and_target_streams_null_and_buffer_size_zero()
+		{
+			InputStream source = null;
+			OutputStream target = null;
+			int bufferSize = 0;
+
+			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.copy(bufferSize, source, target));
+		}
+
+		@Test
+		void when_both_source_and_target_file_not_exists()
+		{
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.copy(invalidFile1, invalidFile2));
+		}
+
+		@Test
+		void when_both_source_and_target_path_not_exists()
+		{
+			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.copy(invalidFile1.getAbsolutePath(), invalidFile2.getAbsolutePath()));
+		}
+
+		@Test
+		void copy_with_files() throws IOException
+		{
+			Assertions.assertFalse(FileUtils.equals(validFile, tempFile));
+
+			long copiedBytes = FileUtils.copy(validFile, tempFile);
+			log.info("copiedBytes: {}", copiedBytes);
+
+			Assertions.assertTrue(FileUtils.equals(validFile, tempFile));
+		}
+
+		@Test
+		void copy_with_paths() throws IOException
+		{
+			Assertions.assertFalse(FileUtils.equals(validFile.getAbsolutePath(), tempFile.getAbsolutePath()));
+
+			long copiedBytes = FileUtils.copy(validFile.getAbsolutePath(), tempFile.getAbsolutePath());
+			log.info("copiedBytes: {}", copiedBytes);
+
+			Assertions.assertTrue(FileUtils.equals(validFile.getAbsolutePath(), tempFile.getAbsolutePath()));
+		}
+
+		@Test
+		void copy_with_streams() throws IOException
+		{
+			Assertions.assertFalse(FileUtils.equals(validFile, tempFile));
+
+			try (InputStream inputStream = new FileInputStream(validFile);
+				 OutputStream outputStream = new FileOutputStream(tempFile);)
+			{
+				long copiedBytes = FileUtils.copy(inputStream, outputStream);
+				log.info("copiedBytes: {}", copiedBytes);
+			}
+
+			Assertions.assertTrue(FileUtils.equals(validFile, tempFile));
+		}
+
+		@Test
+		void copy_with_streams_and_buffer_size() throws IOException
+		{
+			Assertions.assertFalse(FileUtils.equals(validFile, tempFile));
+
+			try (InputStream inputStream = new FileInputStream(validFile);
+				 OutputStream outputStream = new FileOutputStream(tempFile);)
+			{
+				long copiedBytes = FileUtils.copy(12, inputStream, outputStream);
+				log.info("copiedBytes: {}", copiedBytes);
+			}
+
+			Assertions.assertTrue(FileUtils.equals(validFile, tempFile));
+		}
+	}
+
+	@Nested
+	class GetExtension
+	{
+		@Nested
+		class WithoutDot
+		{
+			@Test
+			void with_null_string()
+			{
+				Assertions.assertNull(FileUtils.getExtension(null));
+			}
+
+			@Test
+			void with_empty_string()
+			{
+				Assertions.assertNull(FileUtils.getExtension(""));
+			}
+
+			@Test
+			void with_valid_string_t1()
+			{
+				Assertions.assertNull(FileUtils.getExtension("hello-world"));
+			}
+
+			@Test
+			void with_valid_string_t2()
+			{
+				Assertions.assertEquals("jpg", FileUtils.getExtension("hello-world.jpg"));
+			}
+		}
+
+		@Nested
+		class WithDot
+		{
+			@Test
+			void with_null_string()
+			{
+				Assertions.assertNull(FileUtils.getExtension(null, true));
+			}
+
+			@Test
+			void with_empty_string()
+			{
+				Assertions.assertNull(FileUtils.getExtension("", true));
+			}
+
+			@Test
+			void with_valid_string_t1()
+			{
+				Assertions.assertNull(FileUtils.getExtension("hello-world", true));
+			}
+
+			@Test
+			void with_valid_string_t2()
+			{
+				Assertions.assertEquals(".jpg", FileUtils.getExtension("hello-world.jpg", true));
+			}
+		}
+	}
+
+	@Nested
+	class Delete
+	{
+		File parentFolder;
+
+		@BeforeEach
+		void beforeEach() throws IOException
+		{
+			parentFolder = new File(SystemUtils.getTempDirectory(), "to-be-deleted");
+			parentFolder.mkdirs();
+			createTempFiles(parentFolder);
+
+			File child1Folder = new File(parentFolder, "child-1-to-be-deleted");
+			child1Folder.mkdirs();
+			createTempFiles(child1Folder);
+
+			File child2Folder = new File(parentFolder, "child-2-to-be-deleted");
+			child2Folder.mkdirs();
+			createTempFiles(child2Folder);
+		}
+
+		private void createTempFiles(File parent) throws IOException
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				File f = new File(parent, "file-" + (i + 1) + ".txt");
+				f.createNewFile();
+			}
+		}
+
+		@Test
+		void delete_non_recursive()
+		{
+			FileUtils.delete(parentFolder, false);
+		}
+
+		@Test
+		void delete_recursive()
+		{
+			FileUtils.delete(parentFolder, true);
+		}
+
+		@Test
+		void delete_with_path_non_recursive()
+		{
+			FileUtils.delete(parentFolder.getAbsolutePath(), false);
+		}
+
+		@Test
+		void delete_with_path_recursive()
+		{
+			FileUtils.delete(parentFolder.getAbsolutePath(), true);
+		}
 	}
 }

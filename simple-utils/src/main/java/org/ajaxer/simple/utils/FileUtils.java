@@ -21,12 +21,29 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static final int BUFFER_SIZE = 1024;
+	public static final int ONE_BYTE = 1024;
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static final int ONE_BYTE = 1024;
+	public static boolean equals(String file0, String file1)
+	{
+		return equals(new File(file0), new File(file1));
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean equals(File file0, File file1)
+	{
+		String hash0 = HashUtils.getSHA1Hash(file0);
+		log.debug("file0: {}, hash0: {}", file0, hash0);
+
+		String hash1 = HashUtils.getSHA1Hash(file1);
+		log.debug("file1: {}, hash1: {}", file1, hash1);
+
+		return hash0.equals(hash1);
+	}
 
 	/**
 	 * @since v0.0.1
@@ -348,47 +365,50 @@ public class FileUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copy(String source, String target) throws IOException
+	public static long copy(String source, String target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
 		StringUtils.throwWhenBlank(source);
 		StringUtils.throwWhenBlank(target);
 
-		copy(new File(source), new File(target));
+		return copy(new File(source), new File(target));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copy(File source, File target) throws IOException
+	public static long copy(File source, File target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
 		SimpleUtils.throwWhenNull(source);
 		SimpleUtils.throwWhenNull(target);
 
+		SimpleUtils.throwWhenFalse(source.exists(), new FileNotFoundException());
+		SimpleUtils.throwWhenFalse(target.exists(), new FileNotFoundException());
+
 		try (FileInputStream fileInputStream = new FileInputStream(source);
 			 FileOutputStream fileOutputStream = new FileOutputStream(target))
 		{
-			copyBytes(fileInputStream, fileOutputStream);
+			return copy(fileInputStream, fileOutputStream);
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copyBytes(InputStream inputStream, OutputStream outputStream) throws IOException
+	public static long copy(InputStream inputStream, OutputStream outputStream) throws IOException
 	{
 		log.debug("inputStream: {}, outputStream: {}", inputStream, outputStream);
 		SimpleUtils.throwWhenNull(inputStream);
 		SimpleUtils.throwWhenNull(outputStream);
 
-		copyBytes(FileUtils.BUFFER_SIZE, inputStream, outputStream);
+		return copy(FileUtils.ONE_BYTE, inputStream, outputStream);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void copyBytes(int bufferSize, InputStream inputStream, OutputStream outputStream) throws IOException
+	public static long copy(int bufferSize, InputStream inputStream, OutputStream outputStream) throws IOException
 	{
 		log.debug("bufferSize: {}, inputStream: {}, outputStream: {}", bufferSize, inputStream, outputStream);
 
@@ -408,6 +428,8 @@ public class FileUtils
 
 		log.debug("totalReadBytes: {}", totalReadBytes);
 		outputStream.flush();
+
+		return totalReadBytes;
 	}
 
 	/**
@@ -417,12 +439,14 @@ public class FileUtils
 	 */
 	public static String getExtension(String text)
 	{
-		if (text.contains("."))
+		if (StringUtils.isBlank(text))
 		{
-			return text.substring(text.lastIndexOf(".") + 1);
+			return null;
 		}
 
-		return null;
+		return text.contains(".")
+				? text.substring(text.lastIndexOf(".") + 1)
+				: null;
 	}
 
 	/**
@@ -455,39 +479,27 @@ public class FileUtils
 			return;
 		}
 
-		if (recursive && file.isDirectory())
+		if (file.isDirectory())
 		{
-			//noinspection ConstantConditions
-			for (File childFile : file.listFiles())
+			File[] children = file.listFiles();
+			if (ArrayUtils.isNotBlank(children))
 			{
-				//noinspection ConstantConditions
-				delete(childFile, recursive);
+				for (File child : children)
+				{
+					if (child.isFile())
+					{
+						delete(child, false);
+					}
+
+					if (child.isDirectory() && recursive)
+					{
+						delete(child, true);
+					}
+				}
 			}
 		}
 
-		// deleting
 		log.info("[{}] \t {}", file.delete(), file.getAbsolutePath());
 	}
 
-	/**
-	 * @since v0.0.1
-	 */
-	public static boolean equals(String file0, String file1)
-	{
-		return equals(new File(file0), new File(file1));
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static boolean equals(File file0, File file1)
-	{
-		String hash0 = HashUtils.getSHA1Hash(file0);
-		log.debug("file0: {}, hash0: {}", file0, hash0);
-
-		String hash1 = HashUtils.getSHA1Hash(file1);
-		log.debug("file1: {}, hash1: {}", file1, hash1);
-
-		return hash0.equals(hash1);
-	}
 }

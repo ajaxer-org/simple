@@ -13,13 +13,14 @@ import java.util.Date;
  * @since v0.0.1
  */
 @Log4j2
+@SuppressWarnings("deprecation")
 public class DateTimeUtilsTest
 {
 	@Test
 	void addMilliSeconds()
 	{
-		long mili = 222_222_000L;
-		long result = DateTimeUtils.addMilliSeconds(new Date(mili), 222).getTime();
+		long milli = 222_222_000L;
+		long result = DateTimeUtils.addMilliSeconds(new Date(milli), 222).getTime();
 		long expected = 222_222_222L;
 		Assertions.assertEquals(expected, result);
 	}
@@ -47,10 +48,10 @@ public class DateTimeUtilsTest
 	@Test
 	void addHours()
 	{
-		int shours = 12;
+		int hours = 12;
 		Date startDate = new Date();
-		long result = DateTimeUtils.addHours(startDate, shours).getTime() % startDate.getTime();
-		long expected = shours * 1000 * 60 * 60;
+		long result = DateTimeUtils.addHours(startDate, hours).getTime() % startDate.getTime();
+		long expected = hours * 1000 * 60 * 60;
 		Assertions.assertEquals(expected, result);
 	}
 

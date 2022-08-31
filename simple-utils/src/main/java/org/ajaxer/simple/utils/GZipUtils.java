@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -22,18 +23,18 @@ public class GZipUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(FileInputStream fileInputStream, GZIPOutputStream gZIPOutputStream)
+	public static boolean zip(FileInputStream fileInputStream, GZIPOutputStream gZIPOutputStream) throws IOException
 	{
-		FileUtils.copyBytes(fileInputStream, gZIPOutputStream);
+		FileUtils.copy(fileInputStream, gZIPOutputStream);
 		return true;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(GZIPInputStream gZIPInputStream, FileOutputStream fileOutputStream)
+	public static boolean unzip(GZIPInputStream gZIPInputStream, FileOutputStream fileOutputStream) throws IOException
 	{
-		FileUtils.copyBytes(gZIPInputStream, fileOutputStream);
+		FileUtils.copy(gZIPInputStream, fileOutputStream);
 		return true;
 	}
 

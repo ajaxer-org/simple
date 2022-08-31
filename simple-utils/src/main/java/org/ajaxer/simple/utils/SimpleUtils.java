@@ -52,6 +52,204 @@ public class SimpleUtils
 	}
 
 	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenTrue(boolean trueCondition)
+	{
+		if (trueCondition)
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenTrue(boolean trueCondition, String exceptionMessage)
+	{
+		if (trueCondition)
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenTrue(boolean trueCondition, Throwable throwable)
+	{
+		if (trueCondition)
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenFalse(boolean falseCondition)
+	{
+		if (!falseCondition)
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenFalse(boolean falseCondition, String exceptionMessage)
+	{
+		if (!falseCondition)
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenFalse(boolean falseCondition, Throwable throwable)
+	{
+		if (!falseCondition)
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(int i1, int i2)
+	{
+		if (i1 == i2)
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(int i1, int i2, String exceptionMessage)
+	{
+		if (i1 == i2)
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(int i1, int i2, Throwable throwable)
+	{
+		if (i1 == i2)
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(int i1, int i2)
+	{
+		if (i1 != i2)
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(int i1, int i2, String exceptionMessage)
+	{
+		if (i1 != i2)
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(int i1, int i2, Throwable throwable)
+	{
+		if (i1 != i2)
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(Object o1, Object o2)
+	{
+		if (o1.equals(o2))
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
+	{
+		if (o1.equals(o2))
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenEquals(Object o1, Object o2, Throwable throwable)
+	{
+		if (o1.equals(o2))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(Object o1, Object o2)
+	{
+		if (!o1.equals(o2))
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
+	{
+		if (!o1.equals(o2))
+		{
+			throw new IllegalArgumentException(exceptionMessage);
+		}
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static void throwWhenNotEquals(Object o1, Object o2, Throwable throwable)
+	{
+		if (!o1.equals(o2))
+		{
+			ExceptionUtils.rethrow(throwable);
+		}
+	}
+
+	/**
 	 * throws IllegalArgumentException when object is null
 	 *
 	 * @since v0.0.1

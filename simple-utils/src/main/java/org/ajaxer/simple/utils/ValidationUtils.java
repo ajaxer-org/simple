@@ -207,10 +207,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition)
 	{
-		if (trueCondition)
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenTrue(true);
 	}
 
 	/**
@@ -218,10 +215,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition, String exceptionMessage)
 	{
-		if (trueCondition)
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(trueCondition, exceptionMessage);
 	}
 
 	/**
@@ -229,43 +223,31 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition, Throwable throwable)
 	{
-		if (trueCondition)
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenTrue(trueCondition, throwable);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenFalse(boolean trueCondition)
+	public static void throwWhenFalse(boolean falseCondition)
 	{
-		if (!trueCondition)
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenFalse(falseCondition);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenFalse(boolean trueCondition, String exceptionMessage)
+	public static void throwWhenFalse(boolean falseCondition, String exceptionMessage)
 	{
-		if (!trueCondition)
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenFalse(falseCondition, exceptionMessage);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void throwWhenFalse(boolean trueCondition, Throwable throwable)
+	public static void throwWhenFalse(boolean falseCondition, Throwable throwable)
 	{
-		if (!trueCondition)
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenFalse(falseCondition, throwable);
 	}
 
 	/**
@@ -273,10 +255,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2)
 	{
-		if (i1 == i2)
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenEquals(i1, i2);
 	}
 
 	/**
@@ -284,10 +263,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2, String exceptionMessage)
 	{
-		if (i1 == i2)
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenEquals(i1, i2, exceptionMessage);
 	}
 
 	/**
@@ -295,10 +271,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2, Throwable throwable)
 	{
-		if (i1 == i2)
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenEquals(i1, i2, throwable);
 	}
 
 	/**
@@ -306,10 +279,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2)
 	{
-		if (i1 != i2)
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenNotEquals(i1, i2);
 	}
 
 	/**
@@ -317,10 +287,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2, String exceptionMessage)
 	{
-		if (i1 != i2)
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenNotEquals(i1, i2, exceptionMessage);
 	}
 
 	/**
@@ -328,10 +295,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2, Throwable throwable)
 	{
-		if (i1 != i2)
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenNotEquals(i1, i2, throwable);
 	}
 
 	/**
@@ -339,10 +303,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2)
 	{
-		if (o1.equals(o2))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenEquals(o1, o2);
 	}
 
 	/**
@@ -350,10 +311,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		if (o1.equals(o2))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenEquals(o1, o2, exceptionMessage);
 	}
 
 	/**
@@ -361,10 +319,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, Throwable throwable)
 	{
-		if (o1.equals(o2))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenEquals(o1, o2, throwable);
 	}
 
 	/**
@@ -372,10 +327,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2)
 	{
-		if (!o1.equals(o2))
-		{
-			throw new IllegalArgumentException();
-		}
+		SimpleUtils.throwWhenNotEquals(o1, o2);
 	}
 
 	/**
@@ -383,10 +335,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		if (!o1.equals(o2))
-		{
-			throw new IllegalArgumentException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenNotEquals(o1, o2, exceptionMessage);
 	}
 
 	/**
@@ -394,10 +343,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, Throwable throwable)
 	{
-		if (!o1.equals(o2))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenNotEquals(o1, o2, throwable);
 	}
 
 	/**
