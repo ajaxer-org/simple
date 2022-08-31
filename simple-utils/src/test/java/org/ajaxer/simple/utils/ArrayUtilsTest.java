@@ -160,7 +160,7 @@ public class ArrayUtilsTest
 		{
 			boolean[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -168,7 +168,7 @@ public class ArrayUtilsTest
 		{
 			char[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -176,7 +176,7 @@ public class ArrayUtilsTest
 		{
 			byte[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -184,7 +184,7 @@ public class ArrayUtilsTest
 		{
 			short[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -192,7 +192,7 @@ public class ArrayUtilsTest
 		{
 			int[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -200,7 +200,7 @@ public class ArrayUtilsTest
 		{
 			long[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -208,7 +208,7 @@ public class ArrayUtilsTest
 		{
 			float[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -216,7 +216,7 @@ public class ArrayUtilsTest
 		{
 			double[] array = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
@@ -224,7 +224,7 @@ public class ArrayUtilsTest
 		{
 			final String[] array = null;
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array, new IllegalArgumentException()));
+			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
 
 			final String[] array1 = {};
 			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array1));
