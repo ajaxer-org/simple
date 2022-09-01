@@ -21,10 +21,14 @@ public class HashUtils
 {
 	public static final String MD5 = "MD5";
 	public static final String SHA_1 = "SHA-1";
+	public static final String SHA_224 = "SHA-224";
 	public static final String SHA_256 = "SHA-256";
+	public static final String SHA_384 = "SHA-384";
 	public static final String SHA_512 = "SHA-512";
 	public static final String HMAC_SHA1 = "HmacSHA1";
+	public static final String HMAC_SHA224 = "HmacSHA224";
 	public static final String HMAC_SHA256 = "HmacSHA256";
+	public static final String HMAC_SHA384 = "HmacSHA384";
 	public static final String HMAC_SHA512 = "HmacSHA512";
 
 	private static String toHexString(MessageDigest digest)
@@ -68,12 +72,16 @@ public class HashUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String getHash(String msg, String encodeType)
+	public static String getHash(String msg, String hashType)
 	{
-		log.debug("msg: {}, encodeType: {}", msg, encodeType);
+		log.debug("msg: {}, hashType: {}", msg, hashType);
+
+		StringUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
+		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+
 		try
 		{
-			MessageDigest digest = MessageDigest.getInstance(encodeType);
+			MessageDigest digest = MessageDigest.getInstance(hashType);
 
 			//Update msg string in message digest
 			digest.update(msg.getBytes(), 0, msg.length());
@@ -105,9 +113,25 @@ public class HashUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static String getSHA224Hash(String msg)
+	{
+		return getHash(msg, SHA_224);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static String getSHA256Hash(String msg)
 	{
 		return getHash(msg, SHA_256);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static String getSHA384Hash(String msg)
+	{
+		return getHash(msg, SHA_384);
 	}
 
 	/**
@@ -124,6 +148,11 @@ public class HashUtils
 	public static String getHash(String msg, String key, String hashType)
 	{
 		log.debug("msg: {}, key: {}, hashType: {}", msg, key, hashType);
+
+		StringUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
+		StringUtils.throwWhenBlank(key, "Unable to generate hash from blank key");
+		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+
 		try
 		{
 			SecretKeySpec signingKey = new SecretKeySpec(key.getBytes(), hashType);
@@ -148,9 +177,25 @@ public class HashUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static String getSHA224Hash(String msg, String key)
+	{
+		return getHash(msg, key, HMAC_SHA224);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static String getSHA256Hash(String msg, String key)
 	{
 		return getHash(msg, key, HMAC_SHA256);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static String getSHA384Hash(String msg, String key)
+	{
+		return getHash(msg, key, HMAC_SHA384);
 	}
 
 	/**
@@ -164,13 +209,16 @@ public class HashUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String getHash(String encodeType, File file)
+	public static String getHash(File file, String hashType)
 	{
-		log.debug("encodeType: {}, file: {}", encodeType, file);
+		log.debug("hashType: {}, file: {}", hashType, file);
+
+		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+		FileUtils.throwWhenInvalid(file, "Unable to generate hash of invalid file");
 
 		try (FileInputStream fileInputStream = new FileInputStream(file))
 		{
-			return getHash(encodeType, fileInputStream);
+			return getHash(hashType, fileInputStream);
 		} catch (Exception exception)
 		{
 			ExceptionUtils.rethrow(exception);
@@ -183,21 +231,31 @@ public class HashUtils
 	 */
 	public static String getMD5Hash(File file)
 	{
-		return getHash(MD5, file);
+		return getHash(file, MD5);
 	}
 
 	public static String getSHA1Hash(File file)
 	{
-		return getHash(SHA_1, file);
+		return getHash(file, SHA_1);
+	}
+
+	public static String getSHA224Hash(File file)
+	{
+		return getHash(file, SHA_224);
 	}
 
 	public static String getSHA256Hash(File file)
 	{
-		return getHash(SHA_256, file);
+		return getHash(file, SHA_256);
+	}
+
+	public static String getSHA384Hash(File file)
+	{
+		return getHash(file, SHA_384);
 	}
 
 	public static String getSHA512Hash(File file)
 	{
-		return getHash(SHA_512, file);
+		return getHash(file, SHA_512);
 	}
 }
