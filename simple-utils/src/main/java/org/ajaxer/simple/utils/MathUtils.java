@@ -174,7 +174,15 @@ public class MathUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static double getPercentage(double value, float percentage)
+	public static float getPercentage(float value, float percentage)
+	{
+		return value * percentage / 100;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double getPercentage(double value, double percentage)
 	{
 		return value * percentage / 100;
 	}
