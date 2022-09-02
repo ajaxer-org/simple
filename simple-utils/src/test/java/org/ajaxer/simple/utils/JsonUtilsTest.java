@@ -1,5 +1,7 @@
 package org.ajaxer.simple.utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.extern.log4j.Log4j2;
 import org.ajaxer.simple.utils.dtos.UserDto;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -123,26 +126,80 @@ public class JsonUtilsTest
 	}
 
 	@Nested
-	class GetElementAs
+	class Parse
 	{
 		@Test
-		void getElementAsJsonObject_when_args_null_blank()
+		void parse_when_jsonString_blank()
 		{
-			Assertions.assertNull(JsonUtils.parseAsJsonObject(null, null));
-			Assertions.assertNull(JsonUtils.parseAsJsonObject("", ""));
-			Assertions.assertNull(JsonUtils.parseAsJsonObject("", null));
-			Assertions.assertNull(JsonUtils.parseAsJsonObject(null, ""));
+			Assertions.assertNull(JsonUtils.parse(null));
+			Assertions.assertNull(JsonUtils.parse(""));
 		}
 
 		@Test
-		void getElementAsJsonArray_when_args_null_blank()
+		void parse_when_correct_args_t1()
 		{
-			Assertions.assertNull(JsonUtils.getElementAsJsonArray(null, null));
-			Assertions.assertNull(JsonUtils.getElementAsJsonArray("", ""));
-			Assertions.assertNull(JsonUtils.getElementAsJsonArray("", null));
-			Assertions.assertNull(JsonUtils.getElementAsJsonArray(null, ""));
+			JsonObject jsonObject = JsonUtils.parse(mUserDtoJson);
+			log.info("jsonObject: {}", jsonObject);
+
+			Assertions.assertEquals(jsonObject.getAsJsonPrimitive("name").getAsString(), "ajaxer");
 		}
 
+		@Test
+		void parse_when_correct_args_t2()
+		{
+			JsonObject jsonObject = JsonUtils.parse(mUserDtoJson);
+			log.info("jsonObject: {}", jsonObject);
+			String actual = "email@ajaxer.org";
+
+			Assertions.assertEquals(jsonObject.getAsJsonPrimitive("email").getAsString(), actual);
+		}
+	}
+
+	@Nested
+	class GetJsonArray
+	{
+		@Test
+		void getJsonArray_when_args_null_blank()
+		{
+			Assertions.assertNull(JsonUtils.getJsonArray(null, null));
+			Assertions.assertNull(JsonUtils.getJsonArray("", ""));
+			Assertions.assertNull(JsonUtils.getJsonArray("", null));
+			Assertions.assertNull(JsonUtils.getJsonArray(null, ""));
+		}
+
+		@Test
+		void getJsonArray_with_correct_data()
+		{
+			HashMap<String, Object> hashMap = new HashMap<>();
+
+			List<UserDto> userDtos = Arrays.asList(
+					new UserDto("name0", "email0", "uuid0"),
+					new UserDto("name1", "email1", "uuid1"),
+					new UserDto("name2", "email2", "uuid2")
+			);
+
+			hashMap.put("userDtos", userDtos);
+			hashMap.put("foo", "bar");
+
+			String json = JsonUtils.toJsonString(hashMap);
+			log.info("json: {}", json);
+
+			JsonArray array = JsonUtils.getJsonArray(json, "userDtos");
+			for (int i = 0; i < array.size(); i++)
+			{
+				log.info("jsonElement: {}", array.get(i));
+
+				String result = array.get(i).getAsJsonObject().getAsJsonPrimitive("email").getAsString();
+				String expected = userDtos.get(i).getEmail();
+
+				Assertions.assertEquals(result, expected);
+			}
+		}
+	}
+
+	@Nested
+	class GetElementAs
+	{
 		@Test
 		void getElementAsType_when_args_null_blank()
 		{
@@ -150,15 +207,6 @@ public class JsonUtilsTest
 			Assertions.assertNull(JsonUtils.getElementAsType("", null, ""));
 			Assertions.assertNull(JsonUtils.getElementAsType("", null, null));
 			Assertions.assertNull(JsonUtils.getElementAsType(null, null, ""));
-		}
-
-		@Test
-		void parseAsJsonObject_when_correct_args()
-		{
-			JsonObject jsonObject = JsonUtils.parseAsJsonObject(mUserDtoJson);
-			log.info("jsonObject: {}", jsonObject);
-
-			Assertions.assertEquals(jsonObject.getAsJsonPrimitive("name").getAsString(), "ajaxer");
 		}
 	}
 

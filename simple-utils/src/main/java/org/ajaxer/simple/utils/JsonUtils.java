@@ -105,25 +105,10 @@ public class JsonUtils
 		return tList;
 	}
 
-	public static JsonObject parseAsJsonObject(String jsonString, String key)
-	{
-		log.debug("key: {}, jsonString: {}", key, jsonString);
-		if (StringUtils.isBlank(jsonString)) return null;
-		if (StringUtils.isBlank(key)) return null;
-
-		JsonElement jsonElement = JsonParser.parseString(jsonString);
-		JsonObject jObject = jsonElement.getAsJsonObject();
-		try
-		{
-			return jObject.getAsJsonObject(key);
-		} catch (ClassCastException classCastException)
-		{
-			JsonElement jElement = jObject.get(key);
-			return jElement.getAsJsonObject();
-		}
-	}
-
-	public static JsonObject parseAsJsonObject(String jsonString)
+	/**
+	 * @since v0.0.1
+	 */
+	public static JsonObject parse(String jsonString)
 	{
 		log.debug("jsonString: {}", jsonString);
 		if (StringUtils.isBlank(jsonString)) return null;
@@ -135,9 +120,9 @@ public class JsonUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static JsonArray getElementAsJsonArray(String jsonString, String key)
+	public static JsonArray getJsonArray(String jsonString, String key)
 	{
-		JsonObject jsonObject = parseAsJsonObject(jsonString, key);
+		JsonObject jsonObject = parse(jsonString);
 		return jsonObject == null ? null : jsonObject.getAsJsonArray(key);
 	}
 
@@ -149,7 +134,7 @@ public class JsonUtils
 		log.debug("key: {}, clazz: {}, jsonString: {}", key, clazz, jsonString);
 		if (clazz == null) return null;
 
-		return getGson().fromJson(parseAsJsonObject(jsonString, key), clazz);
+		return getGson().fromJson(getElementAsString(jsonString, key), clazz);
 	}
 
 	/**
@@ -161,7 +146,7 @@ public class JsonUtils
 		if (StringUtils.isBlank(jsonString)) return null;
 		if (StringUtils.isBlank(key)) return null;
 
-		JsonObject jsonObject = parseAsJsonObject(jsonString);
+		JsonObject jsonObject = parse(jsonString);
 		return jsonObject == null ? null : jsonObject.getAsJsonPrimitive(key);
 	}
 
@@ -173,7 +158,7 @@ public class JsonUtils
 		JsonPrimitive jsonPrimitive = getJsonPrimitive(jsonString, key);
 		log.debug("jsonPrimitive: {}", jsonPrimitive);
 
-		return jsonString == null ? jsonPrimitive.getAsString();
+		return jsonPrimitive == null ? null : jsonPrimitive.getAsString();
 	}
 
 	/**
@@ -188,7 +173,7 @@ public class JsonUtils
 		ValidationUtils.throwWhenNull(clazz);
 
 		List<T> tList = new ArrayList<>();
-		for (final JsonElement json : getElementAsJsonArray(jsonString, key))
+		for (final JsonElement json : getJsonArray(jsonString, key))
 		{
 			tList.add(getGson().fromJson(json, clazz));
 		}
