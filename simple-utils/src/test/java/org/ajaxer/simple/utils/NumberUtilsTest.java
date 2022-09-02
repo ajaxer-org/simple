@@ -77,7 +77,9 @@ public class NumberUtilsTest
 			Assertions.assertEquals(0F, NumberUtils.toFloat(""));
 			Assertions.assertEquals(10F, NumberUtils.toFloat("", 10L));
 
+			Assertions.assertEquals(1.234F, NumberUtils.toFloat("1.234E+10"));
 			Assertions.assertEquals(123456789F, NumberUtils.toFloat("123456789"));
+
 			Assertions.assertEquals(-1009F, NumberUtils.toFloat("-1009", 10L));
 		}
 
