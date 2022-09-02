@@ -7,7 +7,6 @@ import lombok.extern.log4j.Log4j2;
  * @version 2022-08-22
  * @since v0.0.1
  */
-@SuppressWarnings("unused")
 @Log4j2
 public class RandomUtils
 {
@@ -235,5 +234,4 @@ public class RandomUtils
 	{
 		return array[getInt(0, array.length - 1)];
 	}
-
 }
