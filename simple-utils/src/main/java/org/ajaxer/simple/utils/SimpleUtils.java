@@ -28,16 +28,16 @@ public class SimpleUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void sleep(long mili)
+	public static void sleep(long milli)
 	{
-		if (mili <= 0)
+		if (milli <= 0)
 		{
 			return;
 		}
 
 		try
 		{
-			Thread.sleep(mili);
+			Thread.sleep(milli);
 		} catch (InterruptedException ignored)
 		{
 		}
@@ -56,7 +56,7 @@ public class SimpleUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition)
 	{
-		throwWhenTrue(trueCondition, new IllegalArgumentException());
+		throwWhenTrue(trueCondition, (String) null);
 	}
 
 	/**
