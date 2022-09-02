@@ -38,7 +38,7 @@
 
     <build>
         <plugins>
-            <!--flatten-maven-plugin-->
+            <!-- flatten-maven-plugin -->
             <plugin>
                 <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/flatten-maven-plugin -->
                 <groupId>org.codehaus.mojo</groupId>
@@ -66,6 +66,7 @@
                 </executions>
             </plugin>
 
+            <!-- maven-surefire-plugin -->
             <plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
                 <groupId>org.apache.maven.plugins</groupId>
