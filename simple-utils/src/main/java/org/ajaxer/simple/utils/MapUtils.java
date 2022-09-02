@@ -9,6 +9,8 @@ import java.util.Map;
  */
 public class MapUtils
 {
+	private MapUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -30,10 +32,7 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map)
 	{
-		if (MapUtils.isBlank(map))
-		{
-			throw new NullPointerException();
-		}
+		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map));
 	}
 
 	/**
@@ -41,10 +40,7 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
-		if (MapUtils.isBlank(map))
-		{
-			throw new NullPointerException(exceptionMessage);
-		}
+		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
 	}
 
 	/**
@@ -52,9 +48,6 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
 	{
-		if (MapUtils.isBlank(map))
-		{
-			ExceptionUtils.rethrow(throwable);
-		}
+		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map), throwable);
 	}
 }
