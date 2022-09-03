@@ -488,6 +488,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2)
 	{
+		if (o1 == null && o2 == null) throwWhenTrue(true);
+		if (o1 == null || o2 == null) return;
+
 		throwWhenTrue(o1.equals(o2));
 	}
 
@@ -496,6 +499,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
 	{
+		if (o1 == null && o2 == null) throwWhenTrue(true, exceptionMessage);
+		if (o1 == null || o2 == null) return;
+
 		throwWhenTrue(o1.equals(o2), exceptionMessage);
 	}
 
@@ -504,6 +510,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, Throwable throwable)
 	{
+		if (o1 == null && o2 == null) throwWhenTrue(true, throwable);
+		if (o1 == null || o2 == null) return;
+
 		throwWhenTrue(o1.equals(o2), throwable);
 	}
 
@@ -512,6 +521,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2)
 	{
+		if (o1 == null && o2 == null) return;
+		if (o1 == null || o2 == null) throwWhenFalse(false);
+
 		throwWhenFalse(o1.equals(o2));
 	}
 
@@ -520,6 +532,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
 	{
+		if (o1 == null && o2 == null) return;
+		if (o1 == null || o2 == null) throwWhenFalse(false, exceptionMessage);
+
 		throwWhenFalse(o1.equals(o2), exceptionMessage);
 	}
 
@@ -528,6 +543,9 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, Throwable throwable)
 	{
+		if (o1 == null && o2 == null) return;
+		if (o1 == null || o2 == null) throwWhenFalse(false, throwable);
+
 		throwWhenFalse(o1.equals(o2), throwable);
 	}
 
