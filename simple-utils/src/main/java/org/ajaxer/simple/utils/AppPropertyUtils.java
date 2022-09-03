@@ -35,7 +35,7 @@ public class AppPropertyUtils implements AutoCloseable
 	public String getKey(String key)
 	{
 		log.debug("key: {}", key);
-		StringUtils.throwWhenBlank(key, "Key could not be null/empty.");
+		ExceptionUtils.throwWhenBlank(key, "Key could not be null/empty.");
 
 		return this.properties.getProperty(key);
 	}
@@ -46,7 +46,7 @@ public class AppPropertyUtils implements AutoCloseable
 	public void setKey(String key, String value)
 	{
 		log.debug("key: {}, value: {}", key, value);
-		StringUtils.throwWhenBlank(key, "Key could not be null/empty.");
+		ExceptionUtils.throwWhenBlank(key, "Key could not be null/empty.");
 
 		this.properties.setProperty(key, value);
 	}
@@ -65,7 +65,7 @@ public class AppPropertyUtils implements AutoCloseable
 	public int getInt(String key, int defaultValue)
 	{
 		log.debug("key: {}, defaultValue: {}", key, defaultValue);
-		StringUtils.throwWhenBlank(key, "Key could not be null/empty.");
+		ExceptionUtils.throwWhenBlank(key, "Key could not be null/empty.");
 
 		return NumberUtils.toInt(properties.getProperty(key), defaultValue);
 	}
@@ -76,7 +76,7 @@ public class AppPropertyUtils implements AutoCloseable
 	public boolean containKey(String key)
 	{
 		log.debug("key: {}", key);
-		StringUtils.throwWhenBlank(key, "Key could not be null/empty.");
+		ExceptionUtils.throwWhenBlank(key, "Key could not be null/empty.");
 
 		return this.properties.containsKey(key);
 	}

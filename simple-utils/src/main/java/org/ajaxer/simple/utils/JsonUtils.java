@@ -168,8 +168,8 @@ public class JsonUtils
 	{
 		log.debug("key: {}, clazz: {}, jsonString: {}", key, clazz, jsonString);
 
-		StringUtils.throwWhenBlank(jsonString);
-		StringUtils.throwWhenBlank(key);
+		ExceptionUtils.throwWhenBlank(jsonString);
+		ExceptionUtils.throwWhenBlank(key);
 		ValidationUtils.throwWhenNull(clazz);
 
 		List<T> tList = new ArrayList<>();

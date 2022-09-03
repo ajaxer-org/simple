@@ -35,7 +35,7 @@ public class StringUtils
 	public static int charCount(String string, char ch)
 	{
 		log.debug("string: {}, ch: {}", string, ch);
-		throwWhenBlank(string);
+		ExceptionUtils.throwWhenBlank(string);
 
 		int count = 0;
 		for (char chatAt : string.toCharArray())
@@ -55,8 +55,8 @@ public class StringUtils
 	public static String removePrefix(String str, String prefix)
 	{
 		log.debug("str: {}, prefix: {}", str, prefix);
-		throwWhenBlank(str);
-		throwWhenBlank(prefix);
+		ExceptionUtils.throwWhenBlank(str);
+		ExceptionUtils.throwWhenBlank(prefix);
 
 		if (str.startsWith(prefix))
 		{
@@ -71,8 +71,8 @@ public class StringUtils
 	public static String removeSuffix(String str, String suffix)
 	{
 		log.debug("str: {}, suffix: {}", str, suffix);
-		throwWhenBlank(str);
-		throwWhenBlank(suffix);
+		ExceptionUtils.throwWhenBlank(str);
+		ExceptionUtils.throwWhenBlank(suffix);
 
 		if (str.endsWith(suffix))
 		{
@@ -95,36 +95,6 @@ public class StringUtils
 	public static String getUUID(String str)
 	{
 		return UUID.nameUUIDFromBytes(str.getBytes()).toString();
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string)
-	{
-		ExceptionUtils.throwWhenTrue(isBlank(string));
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string, String exceptionMessage)
-	{
-		ExceptionUtils.throwWhenTrue(isBlank(string), exceptionMessage);
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string, Throwable throwable)
-	{
-		ExceptionUtils.throwWhenTrue(isBlank(string), throwable);
 	}
 
 	/**

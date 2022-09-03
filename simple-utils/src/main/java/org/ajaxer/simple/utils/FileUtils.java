@@ -114,7 +114,7 @@ public class FileUtils
 	public static List<String> readLines(String path) throws IOException
 	{
 		log.debug("path: {}", path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		return readLines(new File(path));
 	}
@@ -125,7 +125,7 @@ public class FileUtils
 	public static String readFile(String path) throws IOException
 	{
 		log.debug("path: {}", path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		return readFile(new File(path));
 	}
@@ -164,7 +164,7 @@ public class FileUtils
 	public static void writeFile(String path, String msg, boolean append) throws IOException
 	{
 		log.debug("path: {}", path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		writeFile(new File(path), msg, append);
 	}
@@ -207,7 +207,7 @@ public class FileUtils
 	public static <T extends Serializable> T readSerializedObject(String path, Class<T> tClass)
 	{
 		log.debug("tClass: {}, path: {}", tClass, path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		return readSerializedObject(new File(path), tClass);
 	}
@@ -235,7 +235,7 @@ public class FileUtils
 	public static <T extends Serializable> void writeSerializedObject(String path, T t) throws IOException
 	{
 		log.debug("path: {}, t: {}", path, t);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		writeSerializedObject(new File(path), t);
 	}
@@ -261,7 +261,7 @@ public class FileUtils
 	public static <T> T readXmlObject(String path, Class<T> tClass) throws IOException
 	{
 		log.debug("tClass: {}, path: {}", tClass, path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 		ExceptionUtils.throwWhenNull(tClass);
 
 		return readXmlObject(new File(path), tClass);
@@ -290,7 +290,7 @@ public class FileUtils
 	public static <T> void writeXmlObject(String path, T t) throws IOException
 	{
 		log.debug("path: {}, t: {}", path, t);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		writeXmlObject(new File(path), t);
 	}
@@ -316,7 +316,7 @@ public class FileUtils
 	public static <T> T readJsonObject(String path, Class<T> tClass) throws IOException
 	{
 		log.debug("tClass: {}, path: {}", tClass, path);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 		ExceptionUtils.throwWhenNull(tClass);
 
 		return readJsonObject(new File(path), tClass);
@@ -341,7 +341,7 @@ public class FileUtils
 	public static <T> void writeJsonObject(String path, T t) throws IOException
 	{
 		log.debug("path: {}, t: {}", path, t);
-		StringUtils.throwWhenBlank(path);
+		ExceptionUtils.throwWhenBlank(path);
 
 		writeJsonObject(new File(path), t);
 	}
@@ -389,7 +389,7 @@ public class FileUtils
 	{
 		log.debug("prefix: {}, filename: {}, suffix: {}", prefix, filename, suffix);
 
-		StringUtils.throwWhenBlank(filename, "filename cannot be blank");
+		ExceptionUtils.throwWhenBlank(filename, "filename cannot be blank");
 
 		prefix = prefix == null ? "" : prefix.trim();
 		suffix = suffix == null ? "" : suffix.trim();
@@ -408,8 +408,8 @@ public class FileUtils
 	public static long copy(String source, String target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
-		StringUtils.throwWhenBlank(source);
-		StringUtils.throwWhenBlank(target);
+		ExceptionUtils.throwWhenBlank(source);
+		ExceptionUtils.throwWhenBlank(target);
 
 		return copy(new File(source), new File(target));
 	}

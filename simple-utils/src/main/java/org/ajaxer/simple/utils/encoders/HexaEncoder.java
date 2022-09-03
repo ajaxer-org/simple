@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.StringUtils;
 
 import java.util.Arrays;
@@ -51,7 +52,7 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		StringBuilder encoded = new StringBuilder();
 
@@ -67,7 +68,7 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		String messageLowerCase = message.toLowerCase();
 

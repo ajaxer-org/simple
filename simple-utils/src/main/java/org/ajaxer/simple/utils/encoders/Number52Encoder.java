@@ -1,7 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
-import org.ajaxer.simple.utils.StringUtils;
+import org.ajaxer.simple.utils.ExceptionUtils;
 
 /**
  * @author Shakir
@@ -82,7 +82,7 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		int ch;
 		int length = message.length();
@@ -103,7 +103,7 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		String pattern = "^[0-9a-zA-Z]*$";
 		if (!message.matches(pattern))

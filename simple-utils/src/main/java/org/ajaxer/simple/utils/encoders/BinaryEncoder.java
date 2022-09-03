@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.StringUtils;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		String encoded = "";
 
@@ -42,7 +43,7 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		String pattern = "^[0-3]*$";
 		if (!message.matches(pattern))

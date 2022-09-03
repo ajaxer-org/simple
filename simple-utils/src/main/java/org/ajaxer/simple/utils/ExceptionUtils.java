@@ -974,4 +974,34 @@ public class ExceptionUtils
 	{
 		throwWhenTrue(MapUtils.isBlank(map), throwable);
 	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string)
+	{
+		throwWhenTrue(StringUtils.isBlank(string));
+	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), exceptionMessage);
+	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), throwable);
+	}
 }

@@ -35,7 +35,7 @@ public class Base64Utils
 	 */
 	public static String encode(String text)
 	{
-		StringUtils.throwWhenBlank(text, "null String cannot be encoded");
+		ExceptionUtils.throwWhenBlank(text, "null String cannot be encoded");
 		return new String(encode(text.getBytes()));
 	}
 
@@ -44,7 +44,7 @@ public class Base64Utils
 	 */
 	public static String decode(String text)
 	{
-		StringUtils.throwWhenBlank(text, "null String cannot be decoded");
+		ExceptionUtils.throwWhenBlank(text, "null String cannot be decoded");
 		return new String(decode(text.getBytes()));
 	}
 
@@ -53,8 +53,8 @@ public class Base64Utils
 	 */
 	public static void encode(String sourceFile, String targetFile)
 	{
-		StringUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
-		StringUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
+		ExceptionUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
+		ExceptionUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
 
 		encode(new File(sourceFile), new File(targetFile));
 	}
@@ -64,8 +64,8 @@ public class Base64Utils
 	 */
 	public static void decode(String sourceFile, String targetFile)
 	{
-		StringUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
-		StringUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
+		ExceptionUtils.throwWhenBlank(sourceFile, "sourceFile cannot be blank");
+		ExceptionUtils.throwWhenBlank(targetFile, "targetFile cannot be blank");
 
 		decode(new File(sourceFile), new File(targetFile));
 	}

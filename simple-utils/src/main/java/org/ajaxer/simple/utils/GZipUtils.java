@@ -83,11 +83,11 @@ public class GZipUtils
 	public static String zip(String source) throws IOException
 	{
 		log.debug("source: {}", source);
-		StringUtils.throwWhenBlank(source);
+		ExceptionUtils.throwWhenBlank(source);
 
 		String target = getTargetFileName(source);
 		log.debug("target: {}", target);
-		StringUtils.throwWhenBlank(target);
+		ExceptionUtils.throwWhenBlank(target);
 
 		if (!new File(target).exists())
 		{
@@ -147,11 +147,11 @@ public class GZipUtils
 	public static String unzip(String source) throws IOException
 	{
 		log.debug("source: {}", source);
-		StringUtils.throwWhenBlank(source);
+		ExceptionUtils.throwWhenBlank(source);
 
 		String target = getSourceFileName(source);
 		log.debug("target: {}", target);
-		StringUtils.throwWhenBlank(target);
+		ExceptionUtils.throwWhenBlank(target);
 
 		if (!new File(target).exists())
 		{

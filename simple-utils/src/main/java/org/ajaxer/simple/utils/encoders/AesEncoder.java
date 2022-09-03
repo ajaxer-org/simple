@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils.encoders;
 
 import org.ajaxer.simple.utils.ExceptionUtils;
-import org.ajaxer.simple.utils.StringUtils;
 import org.ajaxer.simple.utils.ValidationUtils;
 
 import javax.crypto.Cipher;
@@ -25,7 +24,7 @@ public class AesEncoder implements Encoder
 
 	private static byte[] getKeyBytes(String key)
 	{
-		StringUtils.throwWhenBlank(key, "Key cannot be null");
+		ExceptionUtils.throwWhenBlank(key, "Key cannot be null");
 
 		StringBuilder keyBuilder = new StringBuilder(key);
 		while (keyBuilder.length() < 16)
@@ -58,7 +57,7 @@ public class AesEncoder implements Encoder
 	@Override
 	public String encode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		try
 		{
@@ -86,7 +85,7 @@ public class AesEncoder implements Encoder
 	@Override
 	public String decode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		try
 		{

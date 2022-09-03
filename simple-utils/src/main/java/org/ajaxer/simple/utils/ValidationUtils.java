@@ -381,7 +381,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenBlank(String string)
 	{
-		StringUtils.throwWhenBlank(string);
+		ExceptionUtils.throwWhenBlank(string);
 	}
 
 	/**
@@ -389,7 +389,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenBlank(String string, String exceptionMessage)
 	{
-		StringUtils.throwWhenBlank(string, exceptionMessage);
+		ExceptionUtils.throwWhenBlank(string, exceptionMessage);
 	}
 
 	/**
@@ -397,7 +397,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenBlank(String string, Throwable throwable)
 	{
-		StringUtils.throwWhenBlank(string, throwable);
+		ExceptionUtils.throwWhenBlank(string, throwable);
 	}
 
 	/**

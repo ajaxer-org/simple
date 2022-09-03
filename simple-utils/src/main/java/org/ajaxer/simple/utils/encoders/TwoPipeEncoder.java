@@ -1,5 +1,6 @@
 package org.ajaxer.simple.utils.encoders;
 
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.StringUtils;
 
 /**
@@ -14,7 +15,7 @@ public class TwoPipeEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 
 		StringBuilder firstHalf = new StringBuilder();
 		StringBuilder secondHalf = new StringBuilder();
@@ -36,7 +37,7 @@ public class TwoPipeEncoder implements Encoder
 	@Override
 	public String decode(String msg)
 	{
-		StringUtils.throwWhenBlank(msg);
+		ExceptionUtils.throwWhenBlank(msg);
 
 		if (!msg.endsWith(EXTENSION))
 		{

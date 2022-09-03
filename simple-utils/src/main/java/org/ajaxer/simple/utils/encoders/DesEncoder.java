@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils.encoders;
 
 import org.ajaxer.simple.utils.ExceptionUtils;
-import org.ajaxer.simple.utils.StringUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -42,7 +41,7 @@ public class DesEncoder implements Encoder
 	@Override
 	public String encode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 		try
 		{
 			init();
@@ -63,7 +62,7 @@ public class DesEncoder implements Encoder
 	@Override
 	public String decode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		ExceptionUtils.throwWhenBlank(message);
 		try
 		{
 			init();

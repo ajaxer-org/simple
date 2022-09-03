@@ -76,8 +76,8 @@ public class HashUtils
 	{
 		log.debug("msg: {}, hashType: {}", msg, hashType);
 
-		StringUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
-		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+		ExceptionUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
+		ExceptionUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
 
 		try
 		{
@@ -149,9 +149,9 @@ public class HashUtils
 	{
 		log.debug("msg: {}, key: {}, hashType: {}", msg, key, hashType);
 
-		StringUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
-		StringUtils.throwWhenBlank(key, "Unable to generate hash from blank key");
-		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+		ExceptionUtils.throwWhenBlank(msg, "Unable to generate hash of blank message");
+		ExceptionUtils.throwWhenBlank(key, "Unable to generate hash from blank key");
+		ExceptionUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
 
 		try
 		{
@@ -213,7 +213,7 @@ public class HashUtils
 	{
 		log.debug("hashType: {}, file: {}", hashType, file);
 
-		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
+		ExceptionUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
 		ExceptionUtils.throwWhenInvalid(file, "Unable to generate hash of invalid file");
 
 		try (FileInputStream fileInputStream = new FileInputStream(file))
