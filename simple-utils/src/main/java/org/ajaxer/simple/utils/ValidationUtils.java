@@ -405,7 +405,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection)
 	{
-		CollectionUtils.throwWhenBlank(collection);
+		ExceptionUtils.throwWhenBlank(collection);
 	}
 
 	/**
@@ -413,7 +413,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
 	{
-		CollectionUtils.throwWhenBlank(collection, exceptionMessage);
+		ExceptionUtils.throwWhenBlank(collection, exceptionMessage);
 	}
 
 	/**
@@ -421,7 +421,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
 	{
-		CollectionUtils.throwWhenBlank(collection, throwable);
+		ExceptionUtils.throwWhenBlank(collection, throwable);
 	}
 
 	/**

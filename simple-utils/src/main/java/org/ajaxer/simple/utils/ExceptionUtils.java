@@ -3,6 +3,7 @@ package org.ajaxer.simple.utils;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -826,5 +827,65 @@ public class ExceptionUtils
 	public static <T> void throwWhenBlank(T[] array, Throwable throwable)
 	{
 		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection)
+	{
+		throwWhenTrue(CollectionUtils.isBlank(collection));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(CollectionUtils.isBlank(collection), exceptionMessage);
+	}
+
+	/**
+	 * throws provided Throwable, if given {@link Collection} is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(CollectionUtils.isBlank(collection), throwable);
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection)
+	{
+		throwWhenTrue(CollectionUtils.isNotBlank(collection));
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(CollectionUtils.isNotBlank(collection), exceptionMessage);
+	}
+
+	/**
+	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(CollectionUtils.isNotBlank(collection), throwable);
 	}
 }

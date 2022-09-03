@@ -48,8 +48,8 @@ public class CollectionUtilsTest
 	@Test
 	void throwWhenBlank_null()
 	{
-		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(null));
-		Assertions.assertThrows(NullPointerException.class, () -> CollectionUtils.throwWhenBlank(null, new NullPointerException()));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(null));
+		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(null, new NullPointerException()));
 	}
 
 	@Test
@@ -57,8 +57,8 @@ public class CollectionUtilsTest
 	{
 		List<String> list = new ArrayList<>();
 
-		Assertions.assertThrows(IllegalArgumentException.class, () -> CollectionUtils.throwWhenBlank(list));
-		Assertions.assertThrows(NullPointerException.class, () -> CollectionUtils.throwWhenBlank(list, new NullPointerException()));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(list));
+		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(list, new NullPointerException()));
 	}
 
 	@Nested
