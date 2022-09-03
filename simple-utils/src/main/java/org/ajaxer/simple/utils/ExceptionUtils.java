@@ -39,10 +39,10 @@ public class ExceptionUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static <T> T rethrow(Throwable throwable, T t)
+	public static <T> T rethrow(Throwable throwable, Class<T> tClass)
 	{
 		rethrow(throwable);
-		return t;
+		return null;
 	}
 
 	/**
@@ -92,4 +92,5 @@ public class ExceptionUtils
 	{
 		return getStackTraces(throwable, null);
 	}
+
 }
