@@ -189,6 +189,9 @@ public class ValidationUtils
 		return ArrayUtils.isNotBlank(array);
 	}
 
+	/**
+	 * @since v0.0.1
+	 */
 	public static <T> boolean isBlank(T[] array)
 	{
 		return ArrayUtils.isBlank(array);
