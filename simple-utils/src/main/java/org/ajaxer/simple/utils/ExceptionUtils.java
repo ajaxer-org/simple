@@ -557,4 +557,274 @@ public class ExceptionUtils
 	{
 		throwWhenTrue(t == null, throwable);
 	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(boolean[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(char[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(byte[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(short[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(int[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(long[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(float[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(double[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array)
+	{
+		throwWhenTrue(ArrayUtils.isBlank(array));
+	}
+
+	/**
+	 * throws IllegalArgumentException, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), exceptionMessage);
+	}
+
+	/**
+	 * throws throwable, if given array is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static <T> void throwWhenBlank(T[] array, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(ArrayUtils.isBlank(array), throwable);
+	}
 }

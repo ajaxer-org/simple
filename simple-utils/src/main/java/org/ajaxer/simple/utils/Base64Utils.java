@@ -17,7 +17,7 @@ public class Base64Utils
 	 */
 	public static byte[] encode(byte[] bytes)
 	{
-		ArrayUtils.throwWhenBlank(bytes, "blank bytes cannot be encoded");
+		ExceptionUtils.throwWhenBlank(bytes, "blank bytes cannot be encoded");
 		return Base64.getEncoder().encode(bytes);
 	}
 
@@ -26,7 +26,7 @@ public class Base64Utils
 	 */
 	public static byte[] decode(byte[] bytes)
 	{
-		ArrayUtils.throwWhenBlank(bytes, "blank bytes cannot be decoded");
+		ExceptionUtils.throwWhenBlank(bytes, "blank bytes cannot be decoded");
 		return Base64.getDecoder().decode(bytes);
 	}
 

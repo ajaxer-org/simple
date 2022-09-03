@@ -886,76 +886,76 @@ public class ArrayUtilsTest
 		void booleanArray()
 		{
 			boolean[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void charArray()
 		{
 			char[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void byteArray()
 		{
 			byte[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void shortArray()
 		{
 			short[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void intArray()
 		{
 			int[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void longArray()
 		{
 			long[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void floatArray()
 		{
 			float[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void doubleArray()
 		{
 			double[] array = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 		}
 
 		@Test
 		void StringArray()
 		{
 			final String[] array = null;
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array));
-			Assertions.assertThrows(NullPointerException.class, () -> ArrayUtils.throwWhenBlank(array, new NullPointerException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array));
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(array, new NullPointerException()));
 
 			final String[] array1 = {};
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array1));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ArrayUtils.throwWhenBlank(array1, new IllegalArgumentException()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array1));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(array1, new IllegalArgumentException()));
 		}
 	}
 }
