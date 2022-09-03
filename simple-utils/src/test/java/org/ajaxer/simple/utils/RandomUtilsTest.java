@@ -3,8 +3,11 @@ package org.ajaxer.simple.utils;
 import lombok.extern.log4j.Log4j2;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
+
+import java.util.Arrays;
 
 /**
  * @author Shakir
@@ -14,10 +17,13 @@ import org.junit.jupiter.api.RepeatedTest;
 @Log4j2
 public class RandomUtilsTest
 {
+	private final int RANDOM_ARRAY_LENGTH = 25;
+	private final int REPEATED_TEST_COUNT = 10;
+
 	@Nested
 	public class RandomByte
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getByte()
 		{
 			byte rand = RandomUtils.getByte();
@@ -29,7 +35,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getByte_within_range()
 		{
 			byte min = RandomUtils.getByte();
@@ -49,7 +55,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getByteLessThanOrEqualTo()
 		{
 			byte limit = 28;
@@ -59,7 +65,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getByteGreaterThanOrEqualTo()
 		{
 			byte limit = 28;
@@ -73,7 +79,7 @@ public class RandomUtilsTest
 	@Nested
 	public class RandomShort
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getShort()
 		{
 			short rand = RandomUtils.getShort();
@@ -85,7 +91,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getShort_within_range()
 		{
 			short min = RandomUtils.getShort();
@@ -105,7 +111,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getShortLessThanOrEqualTo()
 		{
 			short limit = 2877;
@@ -115,7 +121,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getShortGreaterThanOrEqualTo()
 		{
 			short limit = 2877;
@@ -129,7 +135,7 @@ public class RandomUtilsTest
 	@Nested
 	public class RandomInt
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getInt()
 		{
 			int rand = RandomUtils.getInt();
@@ -141,7 +147,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getInt_within_range()
 		{
 			int min = RandomUtils.getInt();
@@ -161,7 +167,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getIntLessThanOrEqualTo()
 		{
 			int limit = 1992877;
@@ -171,7 +177,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getIntGreaterThanOrEqualTo()
 		{
 			int limit = 1992877;
@@ -185,7 +191,7 @@ public class RandomUtilsTest
 	@Nested
 	public class RandomLong
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getLong()
 		{
 			long rand = RandomUtils.getLong();
@@ -197,7 +203,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getLong_within_range()
 		{
 			long min = RandomUtils.getLong();
@@ -217,7 +223,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getLongLessThanOrEqualTo()
 		{
 			long limit = 34341992877L;
@@ -227,7 +233,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getLongGreaterThanOrEqualTo()
 		{
 			long limit = -34341992877L;
@@ -241,7 +247,7 @@ public class RandomUtilsTest
 	@Nested
 	public class RandomFloat
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getFloat()
 		{
 			float rand = RandomUtils.getFloat();
@@ -253,7 +259,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getFloat_within_range()
 		{
 			float min = RandomUtils.getFloat();
@@ -273,7 +279,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getFloatLessThanOrEqualTo()
 		{
 			float limit = 34341992877.89F;
@@ -283,7 +289,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getFloatGreaterThanOrEqualTo()
 		{
 			float limit = -34341992877.89F;
@@ -297,7 +303,7 @@ public class RandomUtilsTest
 	@Nested
 	public class RandomDouble
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getDouble()
 		{
 			double rand = RandomUtils.getDouble();
@@ -309,7 +315,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getDouble_within_range()
 		{
 			double min = RandomUtils.getDouble();
@@ -329,7 +335,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getDoubleLessThanOrEqualTo()
 		{
 			double limit = 34341992877.89D;
@@ -339,7 +345,7 @@ public class RandomUtilsTest
 			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		public void getDoubleGreaterThanOrEqualTo()
 		{
 			double limit = -34341992877.89D;
@@ -347,6 +353,201 @@ public class RandomUtilsTest
 			log.info("limit: {}, rand: {}", limit, rand);
 
 			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+		}
+	}
+
+	@Nested
+	public class RandomChar
+	{
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void getChar()
+		{
+			char rand = RandomUtils.getChar();
+			char min = 'a';
+			char max = 'z';
+			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+
+			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void getChar_within_range_lowercase()
+		{
+			char min = RandomUtils.getChar();
+			char max = RandomUtils.getChar();
+
+			if (min > max)
+			{
+				char t = min;
+				min = max;
+				max = t;
+			}
+
+			char rand = RandomUtils.getChar(min, max);
+			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+
+			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void getChar_within_range_uppercase()
+		{
+			char min = RandomUtils.getCharUppercase();
+			char max = RandomUtils.getCharUppercase();
+
+			if (min > max)
+			{
+				char t = min;
+				min = max;
+				max = t;
+			}
+
+			char rand = RandomUtils.getChar(min, max);
+			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+
+			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void getCharUppercase()
+		{
+			char rand = RandomUtils.getCharUppercase();
+			char min = 'A';
+			char max = 'Z';
+			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+
+			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+		}
+	}
+
+	@Nested
+	public class RandomArray
+	{
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfBoolean()
+		{
+			boolean[] array = RandomUtils.arrayOfBoolean(RANDOM_ARRAY_LENGTH);
+			log.info("random array: {}", Arrays.toString(array));
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				Assertions.assertTrue(array[i] || !array[i]);
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfChar()
+		{
+			char[] array = RandomUtils.arrayOfChar(RANDOM_ARRAY_LENGTH);
+			char min = 'a';
+			char max = 'z';
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				char rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfBytes()
+		{
+			byte[] array = RandomUtils.arrayOfBytes(RANDOM_ARRAY_LENGTH);
+			byte min = Byte.MIN_VALUE;
+			byte max = Byte.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				byte rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfShort()
+		{
+			short[] array = RandomUtils.arrayOfShort(RANDOM_ARRAY_LENGTH);
+			short min = Short.MIN_VALUE;
+			short max = Short.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				short rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfInt()
+		{
+			int[] array = RandomUtils.arrayOfInt(RANDOM_ARRAY_LENGTH);
+			int min = Integer.MIN_VALUE;
+			int max = Integer.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				int rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfLong()
+		{
+			long[] array = RandomUtils.arrayOfLong(RANDOM_ARRAY_LENGTH);
+			long min = Long.MIN_VALUE;
+			long max = Long.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				long rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfFloat()
+		{
+			float[] array = RandomUtils.arrayOfFloat(RANDOM_ARRAY_LENGTH);
+			float min = Float.MIN_VALUE;
+			float max = Float.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				float rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
+		}
+
+		@RepeatedTest(REPEATED_TEST_COUNT)
+		public void arrayOfDouble()
+		{
+			double[] array = RandomUtils.arrayOfDouble(RANDOM_ARRAY_LENGTH);
+			double min = Double.MIN_VALUE;
+			double max = Double.MAX_VALUE;
+			log.info("min: {}, max: {}, random array: {}", min, max, Arrays.toString(array));
+
+			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
+			{
+				double rand = array[i];
+				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
+				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			}
 		}
 	}
 }
