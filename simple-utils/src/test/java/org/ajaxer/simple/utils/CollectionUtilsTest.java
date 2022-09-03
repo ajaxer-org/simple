@@ -48,8 +48,8 @@ public class CollectionUtilsTest
 	@Test
 	void throwWhenBlank_null()
 	{
-		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(null));
-		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(null, new NullPointerException()));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank((Collection) null));
+		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank((Collection) null, new NullPointerException()));
 	}
 
 	@Test
