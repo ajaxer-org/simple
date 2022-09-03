@@ -13,6 +13,14 @@ public class RandomUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static boolean getBoolean()
+	{
+		return getByte() % 2 == 0;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static byte getByte()
 	{
 		return getByte(Byte.MIN_VALUE, Byte.MAX_VALUE);
@@ -183,7 +191,7 @@ public class RandomUtils
 	 */
 	public static double getDouble(double min, double max)
 	{
-		return min + (Math.random() * Math.abs(max - min));
+		return min + (Math.random() * Math.abs(max - min + 1));
 	}
 
 	/**
@@ -215,7 +223,7 @@ public class RandomUtils
 	 */
 	public static char getCharUppercase()
 	{
-		return getChar('A', 'Z');
+		return (char) getInt('A', 'Z');
 	}
 
 	/**
@@ -229,9 +237,104 @@ public class RandomUtils
 	/**
 	 * @since v0.0.1
 	 */
-	//TODO
-	public static char getChar(char[] array)
+	public static boolean[] arrayOfBoolean(int length)
 	{
-		return array[getInt(0, array.length - 1)];
+		boolean[] array = new boolean[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getBoolean();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static char[] arrayOfChar(int length)
+	{
+		char[] array = new char[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getChar();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static byte[] arrayOfBytes(int length)
+	{
+		byte[] array = new byte[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getByte();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static short[] arrayOfShort(int length)
+	{
+		short[] array = new short[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getShort();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static int[] arrayOfInt(int length)
+	{
+		int[] array = new int[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getInt();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static long[] arrayOfLong(int length)
+	{
+		long[] array = new long[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getLong();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static float[] arrayOfFloat(int length)
+	{
+		float[] array = new float[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getFloat();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double[] arrayOfDouble(int length)
+	{
+		double[] array = new double[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getDouble();
+		}
+		return array;
 	}
 }
