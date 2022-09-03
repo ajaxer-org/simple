@@ -90,10 +90,11 @@ public class CollectionUtils
 	{
 		if (list1 == null && list2 == null)
 		{
-			log.warn("list1: {}, list2: {}", list1, list2);
+			log.warn("list1, list2, both are null");
 			return null;
 		}
 
+		//noinspection ConstantConditions
 		if (list1.isEmpty())
 		{
 			return list2;
