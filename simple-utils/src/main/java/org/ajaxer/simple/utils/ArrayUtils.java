@@ -1169,7 +1169,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			boolean temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1183,7 +1183,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			char temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1197,7 +1197,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			byte temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1208,7 +1208,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			short temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1219,7 +1219,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			int temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1233,7 +1233,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			long temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1247,7 +1247,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			float temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1261,7 +1261,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			int index = RandomUtils.getInt(0, i + 1);
+			int index = RandomUtils.getInt(0, array.length - 1);
 			double temp = array[index];
 			array[index] = array[i];
 			array[i] = temp;
@@ -1275,7 +1275,7 @@ public class ArrayUtils
 	{
 		for (int i = array.length - 1; i > 0; i--)
 		{
-			swap(array, i, RandomUtils.getInt(0, i + 1));
+			swap(array, i, RandomUtils.getInt(0, array.length - 1));
 		}
 	}
 
