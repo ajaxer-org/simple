@@ -170,7 +170,7 @@ public class JsonUtils
 
 		ExceptionUtils.throwWhenBlank(jsonString);
 		ExceptionUtils.throwWhenBlank(key);
-		ValidationUtils.throwWhenNull(clazz);
+		ExceptionUtils.throwWhenNull(clazz);
 
 		List<T> tList = new ArrayList<>();
 		for (final JsonElement json : getJsonArray(jsonString, key))

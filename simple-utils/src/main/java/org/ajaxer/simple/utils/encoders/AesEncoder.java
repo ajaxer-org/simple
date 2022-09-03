@@ -33,7 +33,7 @@ public class AesEncoder implements Encoder
 		}
 		key = keyBuilder.toString();
 
-		ValidationUtils.throwWhenTrue(key.length() != 16, "Secret key should must be 16 char long only");
+		ExceptionUtils.throwWhenTrue(key.length() != 16, "Secret key should must be 16 char long only");
 
 //		if (key.length() > 16)
 //		{

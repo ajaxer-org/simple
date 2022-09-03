@@ -452,7 +452,7 @@ public class FileUtils
 	{
 		log.debug("bufferSize: {}, inputStream: {}, outputStream: {}", bufferSize, inputStream, outputStream);
 
-		ValidationUtils.throwWhenTrue(bufferSize <= 0, "bufferSize cannot be less or equals to zero");
+		ExceptionUtils.throwWhenTrue(bufferSize <= 0, "bufferSize cannot be less or equals to zero");
 		ExceptionUtils.throwWhenNull(inputStream);
 		ExceptionUtils.throwWhenNull(outputStream);
 
