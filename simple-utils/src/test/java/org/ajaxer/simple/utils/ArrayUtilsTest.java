@@ -17,6 +17,8 @@ import java.util.Arrays;
 @Log4j2
 public class ArrayUtilsTest
 {
+	private final int REPEATED_TEST_COUNT = 10;
+
 	private boolean[] booleanArray;
 	private char[] charArray;
 	private byte[] byteArray;
@@ -27,6 +29,7 @@ public class ArrayUtilsTest
 	private double[] doubleArray;
 	private String[] stringArray;
 
+	private final boolean[] sortedBooleanArray = {false, false, false, false, true, true, true, true};
 	private final char[] sortedCharArray = {'a', 'a', 'd', 'j', 's'};
 	private final byte[] sortedByteArray = {-9, 1, 23, 89, 127};
 	private final short[] sortedShortArray = {-9, 1, 23, 89, 127, 3456, Short.MAX_VALUE};
@@ -181,18 +184,18 @@ public class ArrayUtilsTest
 	@Nested
 	class Shuffle
 	{
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_booleanArray()
 		{
 			ArrayUtils.shuffle(booleanArray);
 			log.info("shuffled array: {}", Arrays.toString(booleanArray));
 
-			for (int i = 0; i < booleanArray.length; i++)
+			for (int i = 0; i < sortedBooleanArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < booleanArray.length; j++)
 				{
-					if (booleanArray[j] == booleanArray[i])
+					if (sortedBooleanArray[i] == booleanArray[j])
 					{
 						flag = true;
 						break;
@@ -202,18 +205,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_charArray()
 		{
 			ArrayUtils.shuffle(charArray);
 			log.info("shuffled array: {}", Arrays.toString(charArray));
 
-			for (int i = 0; i < charArray.length; i++)
+			for (int i = 0; i < sortedCharArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < charArray.length; j++)
 				{
-					if (charArray[j] == charArray[i])
+					if (charArray[j] == sortedCharArray[i])
 					{
 						flag = true;
 						break;
@@ -223,18 +226,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_byteArray()
 		{
 			ArrayUtils.shuffle(byteArray);
 			log.info("shuffled array: {}", Arrays.toString(byteArray));
 
-			for (int i = 0; i < byteArray.length; i++)
+			for (int i = 0; i < sortedByteArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < byteArray.length; j++)
 				{
-					if (byteArray[j] == byteArray[i])
+					if (byteArray[j] == sortedByteArray[i])
 					{
 						flag = true;
 						break;
@@ -244,18 +247,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_shortArray()
 		{
 			ArrayUtils.shuffle(shortArray);
 			log.info("shuffled array: {}", Arrays.toString(shortArray));
 
-			for (int i = 0; i < shortArray.length; i++)
+			for (int i = 0; i < sortedShortArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < shortArray.length; j++)
 				{
-					if (shortArray[j] == shortArray[i])
+					if (shortArray[j] == sortedShortArray[i])
 					{
 						flag = true;
 						break;
@@ -265,18 +268,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_intArray()
 		{
 			ArrayUtils.shuffle(intArray);
 			log.info("shuffled array: {}", Arrays.toString(intArray));
 
-			for (int i = 0; i < intArray.length; i++)
+			for (int i = 0; i < sortedIntArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < intArray.length; j++)
 				{
-					if (intArray[j] == intArray[i])
+					if (intArray[j] == sortedIntArray[i])
 					{
 						flag = true;
 						break;
@@ -286,18 +289,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_longArray()
 		{
 			ArrayUtils.shuffle(longArray);
 			log.info("shuffled array: {}", Arrays.toString(longArray));
 
-			for (int i = 0; i < longArray.length; i++)
+			for (int i = 0; i < sortedLongArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < longArray.length; j++)
 				{
-					if (longArray[j] == longArray[i])
+					if (longArray[j] == sortedLongArray[i])
 					{
 						flag = true;
 						break;
@@ -307,18 +310,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_floatArray()
 		{
 			ArrayUtils.shuffle(floatArray);
 			log.info("shuffled array: {}", Arrays.toString(floatArray));
 
-			for (int i = 0; i < floatArray.length; i++)
+			for (int i = 0; i < sortedFloatArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < floatArray.length; j++)
 				{
-					if (floatArray[j] == floatArray[i])
+					if (floatArray[j] == sortedFloatArray[i])
 					{
 						flag = true;
 						break;
@@ -328,18 +331,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_doubleArray()
 		{
 			ArrayUtils.shuffle(doubleArray);
 			log.info("shuffled array: {}", Arrays.toString(doubleArray));
 
-			for (int i = 0; i < doubleArray.length; i++)
+			for (int i = 0; i < sortedDoubleArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < doubleArray.length; j++)
 				{
-					if (doubleArray[j] == doubleArray[i])
+					if (doubleArray[j] == sortedDoubleArray[i])
 					{
 						flag = true;
 						break;
@@ -349,18 +352,18 @@ public class ArrayUtilsTest
 			}
 		}
 
-		@RepeatedTest(10)
+		@RepeatedTest(REPEATED_TEST_COUNT)
 		void shuffle_stringArray()
 		{
 			ArrayUtils.shuffle(stringArray);
 			log.info("shuffled array: {}", Arrays.toString(stringArray));
 
-			for (int i = 0; i < stringArray.length; i++)
+			for (int i = 0; i < sortedStringArray.length; i++)
 			{
 				boolean flag = false;
 				for (int j = 0; j < stringArray.length; j++)
 				{
-					if (stringArray[j] == stringArray[i])
+					if (stringArray[j] == sortedStringArray[i])
 					{
 						flag = true;
 						break;
