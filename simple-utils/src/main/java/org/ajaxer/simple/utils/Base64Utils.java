@@ -75,8 +75,8 @@ public class Base64Utils
 	 */
 	public static void encode(File sourceFile, File targetFile)
 	{
-		SimpleUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
-		SimpleUtils.throwWhenNull(targetFile, "targetFile cannot be null");
+		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
+		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
@@ -96,8 +96,8 @@ public class Base64Utils
 	 */
 	public static void decode(File sourceFile, File targetFile)
 	{
-		SimpleUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
-		SimpleUtils.throwWhenNull(targetFile, "targetFile cannot be null");
+		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
+		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))

@@ -91,7 +91,7 @@ public class FileUtils
 	public static List<String> readLines(File file) throws IOException
 	{
 		log.debug("file: {}", file);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		List<String> lines = new ArrayList<>();
 
@@ -175,7 +175,7 @@ public class FileUtils
 	public static void writeFile(File file, String msg, boolean append) throws IOException
 	{
 		log.debug("file: {}, append: {}, msg: {}", file, append, msg);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file, append))
 		{
@@ -220,7 +220,7 @@ public class FileUtils
 	public static <T extends Serializable> T readSerializedObject(File file, Class<T> tClass)
 	{
 		log.debug("tClass:{}, file: {}", tClass, file);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
 			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
@@ -246,7 +246,7 @@ public class FileUtils
 	public static <T extends Serializable> void writeSerializedObject(File file, T t) throws IOException
 	{
 		log.debug("file: {}, t: {}", file, t);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
 			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
@@ -262,7 +262,7 @@ public class FileUtils
 	{
 		log.debug("tClass: {}, path: {}", tClass, path);
 		StringUtils.throwWhenBlank(path);
-		SimpleUtils.throwWhenNull(tClass);
+		ExceptionUtils.throwWhenNull(tClass);
 
 		return readXmlObject(new File(path), tClass);
 	}
@@ -274,8 +274,8 @@ public class FileUtils
 	public static <T> T readXmlObject(File file, Class<T> tClass) throws IOException
 	{
 		log.debug("tClass: {}, file: {}", tClass, file);
-		SimpleUtils.throwWhenNull(file);
-		SimpleUtils.throwWhenNull(tClass);
+		ExceptionUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(tClass);
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
 			 XMLDecoder xMLDecoder = new XMLDecoder(fileInputStream))
@@ -301,7 +301,7 @@ public class FileUtils
 	public static <T> void writeXmlObject(File file, T t) throws IOException
 	{
 		log.debug("file: {}, t: {}", file, t);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
 			 XMLEncoder xMLEncoder = new XMLEncoder(fileOutputStream))
@@ -317,7 +317,7 @@ public class FileUtils
 	{
 		log.debug("tClass: {}, path: {}", tClass, path);
 		StringUtils.throwWhenBlank(path);
-		SimpleUtils.throwWhenNull(tClass);
+		ExceptionUtils.throwWhenNull(tClass);
 
 		return readJsonObject(new File(path), tClass);
 	}
@@ -328,8 +328,8 @@ public class FileUtils
 	public static <T> T readJsonObject(File file, Class<T> tClass) throws IOException
 	{
 		log.debug("tClass: {}, file: {}", tClass, file);
-		SimpleUtils.throwWhenNull(file);
-		SimpleUtils.throwWhenNull(tClass);
+		ExceptionUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(tClass);
 
 		String fileData = readFile(file);
 		return JsonUtils.getGson().fromJson(fileData, tClass);
@@ -352,7 +352,7 @@ public class FileUtils
 	public static <T> void writeJsonObject(File file, T t) throws IOException
 	{
 		log.debug("file: {}, t: {}", file, t);
-		SimpleUtils.throwWhenNull(file);
+		ExceptionUtils.throwWhenNull(file);
 
 		String jsonString = JsonUtils.getGson().toJson(t);
 		writeFile(file, jsonString, false);
@@ -420,11 +420,11 @@ public class FileUtils
 	public static long copy(File source, File target) throws IOException
 	{
 		log.debug("source: {}, target: {}", source, target);
-		SimpleUtils.throwWhenNull(source);
-		SimpleUtils.throwWhenNull(target);
+		ExceptionUtils.throwWhenNull(source);
+		ExceptionUtils.throwWhenNull(target);
 
-		SimpleUtils.throwWhenFalse(source.exists(), new FileNotFoundException());
-		SimpleUtils.throwWhenFalse(target.exists(), new FileNotFoundException());
+		ExceptionUtils.throwWhenFalse(source.exists(), new FileNotFoundException());
+		ExceptionUtils.throwWhenFalse(target.exists(), new FileNotFoundException());
 
 		try (FileInputStream fileInputStream = new FileInputStream(source);
 			 FileOutputStream fileOutputStream = new FileOutputStream(target))
@@ -439,8 +439,8 @@ public class FileUtils
 	public static long copy(InputStream inputStream, OutputStream outputStream) throws IOException
 	{
 		log.debug("inputStream: {}, outputStream: {}", inputStream, outputStream);
-		SimpleUtils.throwWhenNull(inputStream);
-		SimpleUtils.throwWhenNull(outputStream);
+		ExceptionUtils.throwWhenNull(inputStream);
+		ExceptionUtils.throwWhenNull(outputStream);
 
 		return copy(FileUtils.ONE_BYTE, inputStream, outputStream);
 	}
@@ -453,8 +453,8 @@ public class FileUtils
 		log.debug("bufferSize: {}, inputStream: {}, outputStream: {}", bufferSize, inputStream, outputStream);
 
 		ValidationUtils.throwWhenTrue(bufferSize <= 0, "bufferSize cannot be less or equals to zero");
-		SimpleUtils.throwWhenNull(inputStream);
-		SimpleUtils.throwWhenNull(outputStream);
+		ExceptionUtils.throwWhenNull(inputStream);
+		ExceptionUtils.throwWhenNull(outputStream);
 
 		int i;
 		byte[] buffer = new byte[bufferSize];
@@ -549,7 +549,7 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(File file)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(file));
+		ExceptionUtils.throwWhenTrue(isNotValid(file));
 	}
 
 	/**
@@ -559,7 +559,7 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(File file, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(file), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isNotValid(file), exceptionMessage);
 	}
 
 	/**
@@ -569,7 +569,7 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(File file, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(file), throwable);
+		ExceptionUtils.throwWhenTrue(isNotValid(file), throwable);
 	}
 
 	/**
@@ -579,7 +579,7 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(String path)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(path));
+		ExceptionUtils.throwWhenTrue(isNotValid(path));
 	}
 
 	/**
@@ -589,7 +589,7 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(String path, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(path), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isNotValid(path), exceptionMessage);
 	}
 
 	/**
@@ -599,6 +599,6 @@ public class FileUtils
 	 */
 	public static void throwWhenInvalid(String path, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isNotValid(path), throwable);
+		ExceptionUtils.throwWhenTrue(isNotValid(path), throwable);
 	}
 }

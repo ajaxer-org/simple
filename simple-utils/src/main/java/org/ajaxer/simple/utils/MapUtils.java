@@ -32,7 +32,7 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map)
 	{
-		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map));
+		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map));
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
 	}
 
 	/**
@@ -48,6 +48,6 @@ public class MapUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(MapUtils.isBlank(map), throwable);
+		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map), throwable);
 	}
 }

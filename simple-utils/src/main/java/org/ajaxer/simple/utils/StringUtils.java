@@ -104,7 +104,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(string));
+		ExceptionUtils.throwWhenTrue(isBlank(string));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(string), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(string), exceptionMessage);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class StringUtils
 	 */
 	public static void throwWhenBlank(String string, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(string), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(string), throwable);
 	}
 
 	/**

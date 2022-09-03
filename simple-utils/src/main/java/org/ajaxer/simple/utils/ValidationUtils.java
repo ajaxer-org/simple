@@ -207,7 +207,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition)
 	{
-		SimpleUtils.throwWhenTrue(true);
+		ExceptionUtils.throwWhenTrue(true);
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(trueCondition, exceptionMessage);
+		ExceptionUtils.throwWhenTrue(trueCondition, exceptionMessage);
 	}
 
 	/**
@@ -223,7 +223,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenTrue(boolean trueCondition, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(trueCondition, throwable);
+		ExceptionUtils.throwWhenTrue(trueCondition, throwable);
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenFalse(boolean falseCondition)
 	{
-		SimpleUtils.throwWhenFalse(falseCondition);
+		ExceptionUtils.throwWhenFalse(falseCondition);
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenFalse(boolean falseCondition, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenFalse(falseCondition, exceptionMessage);
+		ExceptionUtils.throwWhenFalse(falseCondition, exceptionMessage);
 	}
 
 	/**
@@ -247,7 +247,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenFalse(boolean falseCondition, Throwable throwable)
 	{
-		SimpleUtils.throwWhenFalse(falseCondition, throwable);
+		ExceptionUtils.throwWhenFalse(falseCondition, throwable);
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2)
 	{
-		SimpleUtils.throwWhenEquals(i1, i2);
+		ExceptionUtils.throwWhenEquals(i1, i2);
 	}
 
 	/**
@@ -263,7 +263,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenEquals(i1, i2, exceptionMessage);
+		ExceptionUtils.throwWhenEquals(i1, i2, exceptionMessage);
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(int i1, int i2, Throwable throwable)
 	{
-		SimpleUtils.throwWhenEquals(i1, i2, throwable);
+		ExceptionUtils.throwWhenEquals(i1, i2, throwable);
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2)
 	{
-		SimpleUtils.throwWhenNotEquals(i1, i2);
+		ExceptionUtils.throwWhenNotEquals(i1, i2);
 	}
 
 	/**
@@ -287,7 +287,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenNotEquals(i1, i2, exceptionMessage);
+		ExceptionUtils.throwWhenNotEquals(i1, i2, exceptionMessage);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(int i1, int i2, Throwable throwable)
 	{
-		SimpleUtils.throwWhenNotEquals(i1, i2, throwable);
+		ExceptionUtils.throwWhenNotEquals(i1, i2, throwable);
 	}
 
 	/**
@@ -303,7 +303,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2)
 	{
-		SimpleUtils.throwWhenEquals(o1, o2);
+		ExceptionUtils.throwWhenEquals(o1, o2);
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenEquals(o1, o2, exceptionMessage);
+		ExceptionUtils.throwWhenEquals(o1, o2, exceptionMessage);
 	}
 
 	/**
@@ -319,7 +319,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, Throwable throwable)
 	{
-		SimpleUtils.throwWhenEquals(o1, o2, throwable);
+		ExceptionUtils.throwWhenEquals(o1, o2, throwable);
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2)
 	{
-		SimpleUtils.throwWhenNotEquals(o1, o2);
+		ExceptionUtils.throwWhenNotEquals(o1, o2);
 	}
 
 	/**
@@ -335,7 +335,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenNotEquals(o1, o2, exceptionMessage);
+		ExceptionUtils.throwWhenNotEquals(o1, o2, exceptionMessage);
 	}
 
 	/**
@@ -343,7 +343,7 @@ public class ValidationUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, Throwable throwable)
 	{
-		SimpleUtils.throwWhenNotEquals(o1, o2, throwable);
+		ExceptionUtils.throwWhenNotEquals(o1, o2, throwable);
 	}
 
 	/**
@@ -353,7 +353,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenNull(T t)
 	{
-		SimpleUtils.throwWhenNull(t);
+		ExceptionUtils.throwWhenNull(t);
 	}
 
 	/**
@@ -363,7 +363,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenNull(T t, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenNull(t, exceptionMessage);
+		ExceptionUtils.throwWhenNull(t, exceptionMessage);
 	}
 
 	/**
@@ -373,7 +373,7 @@ public class ValidationUtils
 	 */
 	public static <T> void throwWhenNull(T t, Throwable throwable)
 	{
-		SimpleUtils.throwWhenNull(t, throwable);
+		ExceptionUtils.throwWhenNull(t, throwable);
 	}
 
 	/**

@@ -246,7 +246,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(collection));
+		ExceptionUtils.throwWhenTrue(isBlank(collection));
 	}
 
 	/**
@@ -256,7 +256,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(collection), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(collection), exceptionMessage);
 	}
 
 	/**
@@ -266,7 +266,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenBlank(Collection<T> collection, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(collection), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(collection), throwable);
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection)
 	{
-		SimpleUtils.throwWhenTrue(isNotBlank(collection));
+		ExceptionUtils.throwWhenTrue(isNotBlank(collection));
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isNotBlank(collection), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isNotBlank(collection), exceptionMessage);
 	}
 
 	/**
@@ -296,6 +296,6 @@ public class CollectionUtils
 	 */
 	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isNotBlank(collection), throwable);
+		ExceptionUtils.throwWhenTrue(isNotBlank(collection), throwable);
 	}
 }

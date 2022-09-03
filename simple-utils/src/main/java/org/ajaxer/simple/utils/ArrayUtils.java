@@ -1286,7 +1286,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1296,7 +1296,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1306,7 +1306,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(boolean[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1316,7 +1316,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1326,7 +1326,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1336,7 +1336,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(char[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1346,7 +1346,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1356,7 +1356,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1366,7 +1366,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(byte[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1376,7 +1376,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1386,7 +1386,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1396,7 +1396,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(short[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1406,7 +1406,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1416,7 +1416,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1426,7 +1426,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(int[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1436,7 +1436,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1446,7 +1446,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1456,7 +1456,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(long[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1466,7 +1466,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1476,7 +1476,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1486,7 +1486,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(float[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1496,7 +1496,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1506,7 +1506,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1516,7 +1516,7 @@ public class ArrayUtils
 	 */
 	public static void throwWhenBlank(double[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 
 	/**
@@ -1526,7 +1526,7 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array));
+		ExceptionUtils.throwWhenTrue(isBlank(array));
 	}
 
 	/**
@@ -1536,7 +1536,7 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array, String exceptionMessage)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), exceptionMessage);
+		ExceptionUtils.throwWhenTrue(isBlank(array), exceptionMessage);
 	}
 
 	/**
@@ -1546,6 +1546,6 @@ public class ArrayUtils
 	 */
 	public static <T> void throwWhenBlank(T[] array, Throwable throwable)
 	{
-		SimpleUtils.throwWhenTrue(isBlank(array), throwable);
+		ExceptionUtils.throwWhenTrue(isBlank(array), throwable);
 	}
 }
