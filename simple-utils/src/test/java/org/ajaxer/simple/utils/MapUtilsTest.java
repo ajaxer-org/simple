@@ -52,14 +52,14 @@ public class MapUtilsTest
 		HashMap<String, String> nullMap = null;
 		HashMap<String, String> emptyMap = new HashMap<>();
 
-		Assertions.assertThrows(IllegalArgumentException.class, () -> MapUtils.throwWhenBlank(nullMap));
-		Assertions.assertThrows(IllegalArgumentException.class, () -> MapUtils.throwWhenBlank(emptyMap));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(nullMap));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(emptyMap));
 
-		Assertions.assertThrows(FileNotFoundException.class, () -> MapUtils.throwWhenBlank(nullMap, new FileNotFoundException()));
-		Assertions.assertThrows(FileNotFoundException.class, () -> MapUtils.throwWhenBlank(emptyMap, new FileNotFoundException()));
+		Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenBlank(nullMap, new FileNotFoundException()));
+		Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenBlank(emptyMap, new FileNotFoundException()));
 
-		Assertions.assertThrows(Exception.class, () -> MapUtils.throwWhenBlank(nullMap, new Exception()));
-		Assertions.assertThrows(Exception.class, () -> MapUtils.throwWhenBlank(emptyMap, new Exception()));
+		Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenBlank(nullMap, new Exception()));
+		Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenBlank(emptyMap, new Exception()));
 	}
 
 	@Test
@@ -68,8 +68,8 @@ public class MapUtilsTest
 		HashMap<String, String> nullMap = null;
 		HashMap<String, String> emptyMap = new HashMap<>();
 
-		IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> MapUtils.throwWhenBlank(nullMap, SOMETHING_WENT_WRONG));
-		IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class, () -> MapUtils.throwWhenBlank(emptyMap, SOMETHING_WENT_WRONG));
+		IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(nullMap, SOMETHING_WENT_WRONG));
+		IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(emptyMap, SOMETHING_WENT_WRONG));
 
 		Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
 		Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
@@ -82,16 +82,16 @@ public class MapUtilsTest
 		HashMap<String, String> emptyMap = new HashMap<>();
 
 		FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-			MapUtils.throwWhenBlank(nullMap, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			ExceptionUtils.throwWhenBlank(nullMap, new FileNotFoundException(SOMETHING_WENT_WRONG));
 		});
 		FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-			MapUtils.throwWhenBlank(emptyMap, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			ExceptionUtils.throwWhenBlank(emptyMap, new FileNotFoundException(SOMETHING_WENT_WRONG));
 		});
 		Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
 		Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
 
-		Exception exception1 = Assertions.assertThrows(Exception.class, () -> MapUtils.throwWhenBlank(nullMap, new Exception()));
-		Exception exception2 = Assertions.assertThrows(Exception.class, () -> MapUtils.throwWhenBlank(emptyMap, new Exception()));
+		Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenBlank(nullMap, new Exception()));
+		Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenBlank(emptyMap, new Exception()));
 
 		Assertions.assertNull(exception1.getMessage());
 		Assertions.assertNull(exception2.getMessage());

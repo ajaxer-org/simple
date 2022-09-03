@@ -429,7 +429,7 @@ public class ValidationUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map)
 	{
-		MapUtils.throwWhenBlank(map);
+		ExceptionUtils.throwWhenBlank(map);
 	}
 
 	/**
@@ -437,7 +437,7 @@ public class ValidationUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
-		MapUtils.throwWhenBlank(map, exceptionMessage);
+		ExceptionUtils.throwWhenBlank(map, exceptionMessage);
 	}
 
 	/**
@@ -445,6 +445,6 @@ public class ValidationUtils
 	 */
 	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
 	{
-		MapUtils.throwWhenBlank(map, throwable);
+		ExceptionUtils.throwWhenBlank(map, throwable);
 	}
 }

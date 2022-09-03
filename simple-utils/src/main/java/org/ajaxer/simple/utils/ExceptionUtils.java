@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Shakir
@@ -948,5 +949,29 @@ public class ExceptionUtils
 	public static void throwWhenInvalid(String path, Throwable throwable)
 	{
 		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(path), throwable);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map)
+	{
+		throwWhenTrue(MapUtils.isBlank(map));
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
+	{
+		throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
+	{
+		throwWhenTrue(MapUtils.isBlank(map), throwable);
 	}
 }

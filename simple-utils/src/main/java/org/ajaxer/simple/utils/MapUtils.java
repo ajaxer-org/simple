@@ -26,28 +26,4 @@ public class MapUtils
 	{
 		return !isBlank(map);
 	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map)
-	{
-		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map));
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
-	{
-		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
-	{
-		ExceptionUtils.throwWhenTrue(MapUtils.isBlank(map), throwable);
-	}
 }
