@@ -35,7 +35,7 @@ public class StringUtils
 	public static int charCount(String string, char ch)
 	{
 		log.debug("string: {}, ch: {}", string, ch);
-		ExceptionUtils.throwWhenBlank(string);
+		if (isBlank(string)) return -1;
 
 		int count = 0;
 		for (char chatAt : string.toCharArray())
