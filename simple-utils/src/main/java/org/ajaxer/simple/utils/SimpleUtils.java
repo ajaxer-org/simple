@@ -227,5 +227,4 @@ public class SimpleUtils
 	{
 		throwWhenTrue(t == null, throwable);
 	}
-
 }
