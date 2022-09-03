@@ -43,8 +43,8 @@ public class GZipUtils
 	{
 		log.debug("source: {}, target: {}", source, target);
 
-		FileUtils.throwWhenInvalid(source, "invalid source file");
-		FileUtils.throwWhenInvalid(target, "invalid target file");
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
 
 		try (FileInputStream fileInputStream = new FileInputStream(source);
 			 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(Files.newOutputStream(target.toPath())))
@@ -60,8 +60,8 @@ public class GZipUtils
 	{
 		log.debug("source: {}, target: {}", source, target);
 
-		FileUtils.throwWhenInvalid(source, "invalid source file");
-		FileUtils.throwWhenInvalid(target, "invalid target file");
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
 
 		return zip(new File(source), new File(target));
 	}
@@ -72,7 +72,7 @@ public class GZipUtils
 	public static File zip(File source) throws IOException
 	{
 		log.debug("source: {}", source);
-		FileUtils.throwWhenInvalid(source);
+		ExceptionUtils.throwWhenInvalid(source);
 
 		return new File(zip(source.getAbsolutePath()));
 	}
@@ -107,8 +107,8 @@ public class GZipUtils
 	{
 		log.debug("source: {}, target: {}", source, target);
 
-		FileUtils.throwWhenInvalid(source, "invalid source file");
-		FileUtils.throwWhenInvalid(target, "invalid target file");
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
 
 		try (GZIPInputStream gZIPInputStream = new GZIPInputStream(Files.newInputStream(source.toPath()));
 			 FileOutputStream fileOutputStream = new FileOutputStream(target))
@@ -124,8 +124,8 @@ public class GZipUtils
 	{
 		log.debug("source: {}, target: {}", source, target);
 
-		FileUtils.throwWhenInvalid(source, "invalid source file");
-		FileUtils.throwWhenInvalid(target, "invalid target file");
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
 
 		return unzip(new File(source), new File(target));
 	}
@@ -136,7 +136,7 @@ public class GZipUtils
 	public static File unzip(File source) throws IOException
 	{
 		log.debug("source: {}", source);
-		FileUtils.throwWhenInvalid(source);
+		ExceptionUtils.throwWhenInvalid(source);
 
 		return new File(unzip(source.getAbsolutePath()));
 	}

@@ -214,7 +214,7 @@ public class HashUtils
 		log.debug("hashType: {}, file: {}", hashType, file);
 
 		StringUtils.throwWhenBlank(hashType, "Unable to generate hash from blank hash type");
-		FileUtils.throwWhenInvalid(file, "Unable to generate hash of invalid file");
+		ExceptionUtils.throwWhenInvalid(file, "Unable to generate hash of invalid file");
 
 		try (FileInputStream fileInputStream = new FileInputStream(file))
 		{

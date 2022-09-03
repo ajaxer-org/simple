@@ -2,6 +2,7 @@ package org.ajaxer.simple.utils;
 
 import lombok.SneakyThrows;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -887,5 +888,65 @@ public class ExceptionUtils
 	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
 	{
 		ExceptionUtils.throwWhenTrue(CollectionUtils.isNotBlank(collection), throwable);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file)
+	{
+		throwWhenTrue(FileUtils.isNotValid(file));
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(file), exceptionMessage);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(File)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(File file, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(file), throwable);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path)
+	{
+		throwWhenTrue(FileUtils.isNotValid(path));
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(path), exceptionMessage);
+	}
+
+	/**
+	 * <p> throws {@link IllegalArgumentException} when {@link FileUtils#isNotValid(String)}</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenInvalid(String path, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(path), throwable);
 	}
 }
