@@ -73,11 +73,13 @@ public class Base64Utils
 	/**
 	 * @since v0.0.1
 	 */
+	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void encode(File sourceFile, File targetFile)
 	{
 		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
 		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
+		//noinspection CatchMayIgnoreException
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{
@@ -94,11 +96,13 @@ public class Base64Utils
 	/**
 	 * @since v0.0.1
 	 */
+	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void decode(File sourceFile, File targetFile)
 	{
 		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
 		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
+		//noinspection CatchMayIgnoreException
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
 			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{
