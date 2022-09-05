@@ -45,6 +45,8 @@ public class DateTimeUtils
 	 */
 	public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
+	private DateTimeUtils() {}
+
 	/**
 	 * minus number would decrement
 	 *

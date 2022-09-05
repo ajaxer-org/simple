@@ -7,6 +7,8 @@ package org.ajaxer.simple.utils;
  */
 public class MathUtils
 {
+	private MathUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

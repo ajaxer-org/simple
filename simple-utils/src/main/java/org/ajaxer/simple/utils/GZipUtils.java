@@ -20,6 +20,8 @@ public class GZipUtils
 {
 	private final static String EXTENSION = ".gz";
 
+	private GZipUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

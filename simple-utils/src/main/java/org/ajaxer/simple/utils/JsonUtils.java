@@ -21,8 +21,9 @@ import java.util.List;
 public class JsonUtils
 {
 	private static Gson gsonPretty;
-
 	private static Gson gson;
+
+	private JsonUtils() {}
 
 	/**
 	 * @since v0.0.1

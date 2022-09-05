@@ -13,6 +13,8 @@ import java.util.Map;
 @Log4j2
 public class ValidationUtils
 {
+	private ValidationUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

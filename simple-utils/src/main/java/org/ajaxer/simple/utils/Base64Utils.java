@@ -12,6 +12,8 @@ import java.util.Base64;
  */
 public class Base64Utils
 {
+	private Base64Utils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

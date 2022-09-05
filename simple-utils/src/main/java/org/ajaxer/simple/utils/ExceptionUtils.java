@@ -15,6 +15,8 @@ import java.util.Map;
  */
 public class ExceptionUtils
 {
+	private ExceptionUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -55,27 +57,21 @@ public class ExceptionUtils
 	 */
 	public static List<String> getStackTraces(Throwable throwable, String packageFilter)
 	{
-		if (throwable == null)
-		{
-			return null;
-		}
+		if (throwable == null) return null;
 
 		List<String> traces = new ArrayList<>();
-
 		if (StringUtils.isNotBlank(throwable.getMessage()))
 		{
 			traces.add(throwable.getMessage());
 		}
 
 		StackTraceElement[] stackTraceElements = throwable.getStackTrace();
-		if (ArrayUtils.isBlank(stackTraceElements))
-		{
-			return traces;
-		}
+
+		if (ArrayUtils.isBlank(stackTraceElements)) return traces;
 
 		for (StackTraceElement stackTraceElement : stackTraceElements)
 		{
-			if (ValidationUtils.isBlank(packageFilter))
+			if (StringUtils.isBlank(packageFilter))
 			{
 				traces.add(stackTraceElement.toString());
 			} else

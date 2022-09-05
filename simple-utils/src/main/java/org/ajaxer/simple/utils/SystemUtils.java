@@ -12,6 +12,8 @@ import java.util.Properties;
 @Log4j2
 public class SystemUtils
 {
+	private SystemUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -114,9 +116,9 @@ public class SystemUtils
 	 *
 	 * @since v0.0.1
 	 */
-	public static float javaClassVersion()
+	public static int javaClassVersion()
 	{
-		return NumberUtils.toFloat(System.getProperty("java.class.version"));
+		return NumberUtils.toInt(System.getProperty("java.class.version"));
 	}
 
 	/**

@@ -9,6 +9,8 @@ import java.text.NumberFormat;
  */
 public class NumberUtils
 {
+	private NumberUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

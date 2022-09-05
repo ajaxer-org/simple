@@ -17,6 +17,8 @@ public class ClipboardUtils
 {
 	private static final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
+	private ClipboardUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils.encoders;
 
 import org.ajaxer.simple.utils.ExceptionUtils;
-import org.ajaxer.simple.utils.ValidationUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

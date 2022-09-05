@@ -13,6 +13,8 @@ import java.util.UUID;
 @Log4j2
 public class StringUtils
 {
+	private StringUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

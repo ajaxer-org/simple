@@ -12,6 +12,8 @@ import java.util.Arrays;
 @Log4j2
 public class ArrayUtils
 {
+	private ArrayUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

@@ -31,6 +31,8 @@ public class HashUtils
 	public static final String HMAC_SHA384 = "HmacSHA384";
 	public static final String HMAC_SHA512 = "HmacSHA512";
 
+	private HashUtils() {}
+
 	private static String toHexString(MessageDigest digest)
 	{
 		return new BigInteger(1, digest.digest()).toString(16);

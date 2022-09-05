@@ -18,6 +18,8 @@ import java.util.List;
 @Log4j2
 public class FileUtils
 {
+	private FileUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */

@@ -14,6 +14,8 @@ import java.util.List;
 @Log4j2
 public class CollectionUtils
 {
+	private CollectionUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
