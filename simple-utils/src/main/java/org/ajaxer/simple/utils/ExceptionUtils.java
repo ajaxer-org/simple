@@ -40,6 +40,8 @@ public class ExceptionUtils
 	}
 
 	/**
+	 * @return This method will always return null of given type.
+	 *
 	 * @since v0.0.1
 	 */
 	public static <T> T rethrow(Throwable throwable, @SuppressWarnings("unused") Class<T> tClass)
@@ -524,6 +526,7 @@ public class ExceptionUtils
 		if (o1 == null && o2 == null) return;
 		if (o1 == null || o2 == null) throwWhenFalse(false);
 
+		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2));
 	}
 
@@ -535,6 +538,7 @@ public class ExceptionUtils
 		if (o1 == null && o2 == null) return;
 		if (o1 == null || o2 == null) throwWhenFalse(false, exceptionMessage);
 
+		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2), exceptionMessage);
 	}
 
@@ -546,6 +550,7 @@ public class ExceptionUtils
 		if (o1 == null && o2 == null) return;
 		if (o1 == null || o2 == null) throwWhenFalse(false, throwable);
 
+		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2), throwable);
 	}
 
@@ -880,33 +885,57 @@ public class ExceptionUtils
 	}
 
 	/**
-	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
-	 *
 	 * @since v0.0.1
 	 */
-	public static <T> void throwWhenNotBlank(Collection<T> collection)
+	public static <K, V> void throwWhenBlank(Map<K, V> map)
 	{
-		throwWhenTrue(CollectionUtils.isNotBlank(collection));
+		throwWhenTrue(MapUtils.isBlank(map));
 	}
 
 	/**
-	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
-	 *
 	 * @since v0.0.1
 	 */
-	public static <T> void throwWhenNotBlank(Collection<T> collection, String exceptionMessage)
+	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
 	{
-		ExceptionUtils.throwWhenTrue(CollectionUtils.isNotBlank(collection), exceptionMessage);
+		throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
 	}
 
 	/**
-	 * throws {@link IllegalArgumentException}, if given {@link Collection} is not blank
+	 * @since v0.0.1
+	 */
+	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
+	{
+		throwWhenTrue(MapUtils.isBlank(map), throwable);
+	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
 	 *
 	 * @since v0.0.1
 	 */
-	public static <T> void throwWhenNotBlank(Collection<T> collection, Throwable throwable)
+	public static void throwWhenBlank(String string)
 	{
-		ExceptionUtils.throwWhenTrue(CollectionUtils.isNotBlank(collection), throwable);
+		throwWhenTrue(StringUtils.isBlank(string));
+	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, String exceptionMessage)
+	{
+		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), exceptionMessage);
+	}
+
+	/**
+	 * throws IllegalArgumentException when given string is either null or empty
+	 *
+	 * @since v0.0.1
+	 */
+	public static void throwWhenBlank(String string, Throwable throwable)
+	{
+		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), throwable);
 	}
 
 	/**
@@ -967,59 +996,5 @@ public class ExceptionUtils
 	public static void throwWhenInvalid(String path, Throwable throwable)
 	{
 		ExceptionUtils.throwWhenTrue(FileUtils.isNotValid(path), throwable);
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map)
-	{
-		throwWhenTrue(MapUtils.isBlank(map));
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, String exceptionMessage)
-	{
-		throwWhenTrue(MapUtils.isBlank(map), exceptionMessage);
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static <K, V> void throwWhenBlank(Map<K, V> map, Throwable throwable)
-	{
-		throwWhenTrue(MapUtils.isBlank(map), throwable);
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string)
-	{
-		throwWhenTrue(StringUtils.isBlank(string));
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string, String exceptionMessage)
-	{
-		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), exceptionMessage);
-	}
-
-	/**
-	 * throws IllegalArgumentException when given string is either null or empty
-	 *
-	 * @since v0.0.1
-	 */
-	public static void throwWhenBlank(String string, Throwable throwable)
-	{
-		ExceptionUtils.throwWhenTrue(StringUtils.isBlank(string), throwable);
 	}
 }
