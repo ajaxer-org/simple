@@ -13,15 +13,17 @@ public class SimpleUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static void close(AutoCloseable autoCloseable)
+	public static boolean close(AutoCloseable autoCloseable)
 	{
 		try
 		{
 			autoCloseable.close();
-			log.debug("autoCloseable.close() executed successfully: {}", autoCloseable.toString());
+			log.debug("autoCloseable.close() executed successfully: {}", autoCloseable);
+			return true;
 		} catch (Exception exception)
 		{
-			log.warn("autoCloseable.close() executed unsuccessfully: {}", autoCloseable.toString());
+			log.debug("autoCloseable.close() executed unsuccessfully: {}", autoCloseable);
+			return false;
 		}
 	}
 
