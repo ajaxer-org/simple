@@ -80,98 +80,102 @@ public class ExceptionUtilsTest
 	@Nested
 	class ThrowWhenTrue
 	{
-		boolean p1 = true;
-		boolean p2 = 1 == 1;
+		boolean condition = true;
 
 		@Test
 		void throwWhenTrue_default()
 		{
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenTrue(p1));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenTrue(p2));
-
-			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenTrue(p1, new FileNotFoundException()));
-			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenTrue(p2, new FileNotFoundException()));
-
-			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(p1, new Exception()));
-			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(p2, new Exception()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenTrue(condition));
+			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenTrue(condition, new FileNotFoundException()));
+			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(condition, new Exception()));
 		}
 
 		@Test
 		void throwWhenTrue_with_exceptionMessage()
 		{
-			IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenTrue(p1, SOMETHING_WENT_WRONG));
-			IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenTrue(p2, SOMETHING_WENT_WRONG));
-
+			IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				ExceptionUtils.throwWhenTrue(condition, SOMETHING_WENT_WRONG);
+			});
 			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 		}
 
 		@Test
 		void throwWhenTrue_with_throwable()
 		{
-			FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-				ExceptionUtils.throwWhenTrue(p1, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			//without error message
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenTrue(condition, new NullPointerException()));
+			//with error message
+			NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+				ExceptionUtils.throwWhenTrue(condition, new NullPointerException(SOMETHING_WENT_WRONG));
 			});
-			FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-				ExceptionUtils.throwWhenTrue(p2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+			//without error message
+			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(condition, new Exception()));
+			//with error message
+			Exception exception2 = Assertions.assertThrows(Exception.class, () -> {
+				ExceptionUtils.throwWhenTrue(condition, new Exception(SOMETHING_WENT_WRONG));
 			});
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-			Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(p1, new Exception()));
-			Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenTrue(p2, new Exception()));
-
-			Assertions.assertNull(exception1.getMessage());
-			Assertions.assertNull(exception2.getMessage());
+			//without error message
+			Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenTrue(condition, new Error()));
+			//with error message
+			Error exception3 = Assertions.assertThrows(Error.class, () -> {
+				ExceptionUtils.throwWhenTrue(condition, new Error(SOMETHING_WENT_WRONG));
+			});
+			Assertions.assertEquals(exception3.getMessage(),SOMETHING_WENT_WRONG);
 		}
 	}
 
 	@Nested
 	class ThrowWhenFalse
 	{
-		boolean p1 = false;
-		boolean p2 = 1 == 2;
+		boolean condition = false;
 
 		@Test
 		void throwWhenFalse_default()
 		{
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenFalse(p1));
-			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenFalse(p2));
-
-			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenFalse(p1, new FileNotFoundException()));
-			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenFalse(p2, new FileNotFoundException()));
-
-			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(p1, new Exception()));
-			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(p2, new Exception()));
+			Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenFalse(condition));
+			Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenFalse(condition, new FileNotFoundException()));
+			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(condition, new Exception()));
 		}
 
 		@Test
 		void throwWhenFalse_with_exceptionMessage()
 		{
-			IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenFalse(p1, SOMETHING_WENT_WRONG));
-			IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenFalse(p2, SOMETHING_WENT_WRONG));
-
+			IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				ExceptionUtils.throwWhenFalse(condition, SOMETHING_WENT_WRONG);
+			});
 			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 		}
 
 		@Test
 		void throwWhenFalse_with_throwable()
 		{
-			FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-				ExceptionUtils.throwWhenFalse(p1, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			//without error message
+			Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenFalse(condition, new NullPointerException()));
+			//with error message
+			NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+				ExceptionUtils.throwWhenFalse(condition, new NullPointerException(SOMETHING_WENT_WRONG));
 			});
-			FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-				ExceptionUtils.throwWhenFalse(p2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+			//without error message
+			Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(condition, new Exception()));
+			//with error message
+			Exception exception2 = Assertions.assertThrows(Exception.class, () -> {
+				ExceptionUtils.throwWhenFalse(condition, new Exception(SOMETHING_WENT_WRONG));
 			});
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-			Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+			Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-			Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(p1, new Exception()));
-			Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenFalse(p2, new Exception()));
-
-			Assertions.assertNull(exception1.getMessage());
-			Assertions.assertNull(exception2.getMessage());
+			//without error message
+			Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenFalse(condition, new Error()));
+			//with error message
+			Error exception3 = Assertions.assertThrows(Error.class, () -> {
+				ExceptionUtils.throwWhenFalse(condition, new Error(SOMETHING_WENT_WRONG));
+			});
+			Assertions.assertEquals(exception3.getMessage(), SOMETHING_WENT_WRONG);
 		}
 	}
 
@@ -188,25 +192,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -239,25 +236,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -290,25 +280,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -341,25 +324,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -392,25 +368,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -443,25 +412,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -494,25 +456,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -545,25 +500,18 @@ public class ExceptionUtilsTest
 			void throwWhenEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2));
-
 				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
+				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () ->
+				{
+					ExceptionUtils.throwWhenEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
 				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 			}
 
 			@Test
@@ -584,6 +532,66 @@ public class ExceptionUtilsTest
 				Assertions.assertNull(exception1.getMessage());
 				Assertions.assertNull(exception2.getMessage());
 			}
+
+			@Test
+			void throwWhenEquals_default_when_args_null()
+			{
+				//default
+				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(null, null));
+
+				//exception message
+				IllegalArgumentException ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenEquals(null, null, SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(ex1.getMessage(), SOMETHING_WENT_WRONG);
+
+				//throwable of Exception
+				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(null, null, new Exception()));
+				Exception ex2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenEquals(null, null, new Exception(SOMETHING_WENT_WRONG)));
+				Assertions.assertEquals(ex2.getMessage(), SOMETHING_WENT_WRONG);
+
+				//throwable of RuntimeException
+				Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenEquals(null, null, new NullPointerException()));
+				NullPointerException ex3 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenEquals(null, null, new NullPointerException(SOMETHING_WENT_WRONG));
+				});
+				Assertions.assertEquals(ex3.getMessage(), SOMETHING_WENT_WRONG);
+				//throwable of Error
+				Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenEquals(null, null, new Error()));
+				Error ex4 = Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenEquals(null, null, new Error(SOMETHING_WENT_WRONG)));
+				Assertions.assertEquals(ex4.getMessage(), SOMETHING_WENT_WRONG);
+			}
+
+			@Test
+			void throwWhenEquals_exceptionMessage_when_one_object_null()
+			{
+				//no exception will be thrown
+				ExceptionUtils.throwWhenEquals(null, arg2, SOMETHING_WENT_WRONG);
+				ExceptionUtils.throwWhenEquals(arg1, null, SOMETHING_WENT_WRONG);
+			}
+
+			@Test
+			void throwWhenEquals_throwable_when_one_object_null()
+			{
+				//no exception will be thrown
+
+				//throwable of Exception
+				ExceptionUtils.throwWhenEquals(null, arg2, new Exception());
+				ExceptionUtils.throwWhenEquals(arg1, null, new Exception());
+				ExceptionUtils.throwWhenEquals(null, arg2, new Exception(SOMETHING_WENT_WRONG));
+				ExceptionUtils.throwWhenEquals(arg1, null, new Exception(SOMETHING_WENT_WRONG));
+
+				//throwable of RuntimeException
+				ExceptionUtils.throwWhenEquals(null, arg2, new NullPointerException());
+				ExceptionUtils.throwWhenEquals(arg1, null, new NullPointerException());
+				ExceptionUtils.throwWhenEquals(null, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
+				ExceptionUtils.throwWhenEquals(arg1, null, new NullPointerException(SOMETHING_WENT_WRONG));
+
+				//throwable of Error
+				ExceptionUtils.throwWhenEquals(null, arg2, new Error());
+				ExceptionUtils.throwWhenEquals(arg1, null, new Error());
+				ExceptionUtils.throwWhenEquals(null, arg2, new Error(SOMETHING_WENT_WRONG));
+				ExceptionUtils.throwWhenEquals(arg1, null, new Error(SOMETHING_WENT_WRONG));
+			}
+
 		}
 	}
 
@@ -600,44 +608,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -651,44 +647,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -702,44 +686,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -753,44 +725,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -804,44 +764,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -855,44 +803,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -906,44 +842,32 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class,
-																			  () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG));
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
+				});
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 		}
 
@@ -957,97 +881,85 @@ public class ExceptionUtilsTest
 			void throwWhenNotEquals_default()
 			{
 				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2));
-
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException()));
-
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
 			}
 
 			@Test
 			void throwWhenNotEquals_with_exceptionMessage()
 			{
-				IllegalArgumentException exception1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
 					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
 				});
-				IllegalArgumentException exception2 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, SOMETHING_WENT_WRONG);
-				});
-
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
 			}
 
 			@Test
 			void throwWhenNotEquals_with_throwable()
 			{
-				FileNotFoundException fileNotFoundException1 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				NullPointerException exception1 = Assertions.assertThrows(NullPointerException.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new NullPointerException(SOMETHING_WENT_WRONG));
 				});
-				FileNotFoundException fileNotFoundException2 = Assertions.assertThrows(FileNotFoundException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new FileNotFoundException(SOMETHING_WENT_WRONG));
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception1.getMessage());
+
+				Error exception2 = Assertions.assertThrows(Error.class, () -> {
+					ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Error(SOMETHING_WENT_WRONG));
 				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException1.getMessage());
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, fileNotFoundException2.getMessage());
+				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception2.getMessage());
 
-				Exception exception1 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-				Exception exception2 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
-
-				Assertions.assertNull(exception1.getMessage());
-				Assertions.assertNull(exception2.getMessage());
+				Exception exception3 = Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, arg2, new Exception()));
+				Assertions.assertNull(exception3.getMessage());
 			}
 
 			@Test
-			void throwWhenNotEquals_default_both_object_null()
+			void throwWhenNotEquals_default_when_args_null()
 			{
 				//no exception will be thrown, because both args are same (null)
+				//default
 				ExceptionUtils.throwWhenNotEquals(null, null);
-				ExceptionUtils.throwWhenNotEquals(null, null, new FileNotFoundException());
-				ExceptionUtils.throwWhenNotEquals(null, null, new Exception());
-			}
-
-			@Test
-			void throwWhenNotEquals_default_first_object_null()
-			{
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new FileNotFoundException()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new Exception()));
-			}
-
-			@Test
-			void throwWhenNotEquals_default_second_object_null()
-			{
-				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null));
-				Assertions.assertThrows(FileNotFoundException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new FileNotFoundException()));
-				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new Exception()));
-			}
-
-			@Test
-			void throwWhenNotEquals_with_exceptionMessage_both_object_null()
-			{
+				//exception message
 				ExceptionUtils.throwWhenNotEquals(null, null, SOMETHING_WENT_WRONG);
+
+				//throwable of Exception
+				ExceptionUtils.throwWhenNotEquals(null, null, new Exception());
+				ExceptionUtils.throwWhenNotEquals(null, null, new Exception(SOMETHING_WENT_WRONG));
+				//throwable of RuntimeException
+				ExceptionUtils.throwWhenNotEquals(null, null, new NullPointerException());
+				ExceptionUtils.throwWhenNotEquals(null, null, new NullPointerException(SOMETHING_WENT_WRONG));
+				//throwable of Error
+				ExceptionUtils.throwWhenNotEquals(null, null, new Error());
+				ExceptionUtils.throwWhenNotEquals(null, null, new Error(SOMETHING_WENT_WRONG));
 			}
 
 			@Test
-			void throwWhenNotEquals_with_exceptionMessage_first_object_null()
+			void throwWhenNotEquals_exceptionMessage_when_one_object_null()
 			{
-				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(null, arg2, SOMETHING_WENT_WRONG);
-				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
+				//exception message
+				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, SOMETHING_WENT_WRONG));
+				Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, SOMETHING_WENT_WRONG));
 			}
 
 			@Test
-			void throwWhenNotEquals_with_exceptionMessage_second_object_null()
+			void throwWhenNotEquals_throwable_when_one_object_null()
 			{
-				IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-					ExceptionUtils.throwWhenNotEquals(arg1, null, SOMETHING_WENT_WRONG);
-				});
-				Assertions.assertEquals(SOMETHING_WENT_WRONG, exception.getMessage());
-			}
+				//throwable of Exception
+				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new Exception()));
+				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new Exception()));
 
+				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new Exception(SOMETHING_WENT_WRONG)));
+				Assertions.assertThrows(Exception.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new Exception(SOMETHING_WENT_WRONG)));
+
+				//throwable of RuntimeException
+				Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new NullPointerException()));
+				Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new NullPointerException()));
+				Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new NullPointerException(SOMETHING_WENT_WRONG)));
+				Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new NullPointerException(SOMETHING_WENT_WRONG)));
+
+				//throwable of Error
+				//throwable of RuntimeException
+				Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new Error()));
+				Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new Error()));
+				Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenNotEquals(null, arg2, new Error(SOMETHING_WENT_WRONG)));
+				Assertions.assertThrows(Error.class, () -> ExceptionUtils.throwWhenNotEquals(arg1, null, new Error(SOMETHING_WENT_WRONG)));
+			}
 		}
 	}
 
