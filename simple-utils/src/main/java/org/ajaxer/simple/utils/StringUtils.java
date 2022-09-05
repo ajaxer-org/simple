@@ -2,7 +2,7 @@ package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -52,33 +52,31 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String removePrefix(String str, String prefix)
+	public static String removePrefix(String string, String prefix)
 	{
-		log.debug("str: {}, prefix: {}", str, prefix);
-		ExceptionUtils.throwWhenBlank(str);
-		ExceptionUtils.throwWhenBlank(prefix);
+		log.debug("string: {}, prefix: {}", string, prefix);
+		if (isBlank(string) || isBlank(prefix)) return string;
 
-		if (str.startsWith(prefix))
+		if (string.startsWith(prefix))
 		{
-			return str.substring(prefix.length());
+			return string.substring(prefix.length());
 		}
-		return str;
+		return string;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static String removeSuffix(String str, String suffix)
+	public static String removeSuffix(String string, String suffix)
 	{
-		log.debug("str: {}, suffix: {}", str, suffix);
-		ExceptionUtils.throwWhenBlank(str);
-		ExceptionUtils.throwWhenBlank(suffix);
+		log.debug("string: {}, suffix: {}", string, suffix);
+		if (isBlank(string) || isBlank(suffix)) return string;
 
-		if (str.endsWith(suffix))
+		if (string.endsWith(suffix))
 		{
-			return str.substring(0, str.length() - suffix.length());
+			return string.substring(0, string.length() - suffix.length());
 		}
-		return str;
+		return string;
 	}
 
 	/**
@@ -92,9 +90,13 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String getUUID(String str)
+	public static String getUUID(String string)
 	{
-		return UUID.nameUUIDFromBytes(str.getBytes()).toString();
+		log.debug("string: {}", string);
+
+		return isBlank(string)
+				? getUUID()
+				: UUID.nameUUIDFromBytes(string.getBytes()).toString();
 	}
 
 	/**
@@ -102,6 +104,9 @@ public class StringUtils
 	 */
 	public static boolean equalsToAny(char[] array, char val)
 	{
+		log.debug("char: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array)) return false;
+
 		for (char e : array)
 		{
 			if (e == val)
@@ -117,22 +122,10 @@ public class StringUtils
 	 */
 	public static boolean equalsToAny(String[] array, String val)
 	{
-		for (String s : array)
-		{
-			if (s.equals(val))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+		log.debug("string: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array)) return false;
 
-	/**
-	 * @since v0.0.1
-	 */
-	public static boolean equalsToAny(List<String> list, String val)
-	{
-		for (String s : list)
+		for (String s : array)
 		{
 			if (s.equals(val))
 			{
