@@ -100,6 +100,64 @@ public class StringUtils
 	}
 
 	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isLowercase(char c)
+	{
+		log.debug("char: {}", c);
+		return c >= 97 && c <= 122;
+	}
+
+	/**
+	 * @return returns true, if all the characters in given are in lowercase
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isLowercase(String string)
+	{
+		log.debug("string: {}", string);
+		if (isBlank(string)) return false;
+
+		for (char c : string.toCharArray())
+		{
+			if (isUppercase(c)) return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isUppercase(char c)
+	{
+		log.debug("char: {}", c);
+		return c >= 65 && c <= 90;
+	}
+
+	/**
+	 * @return returns true, if all the characters in given are in uppercase
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isUppercase(String string)
+	{
+		log.debug("string: {}", string);
+		if (isBlank(string)) return false;
+
+		for (char c : string.toCharArray())
+		{
+			if (isLowercase(c)) return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static boolean equalsToAny(char[] array, char val)
@@ -118,12 +176,46 @@ public class StringUtils
 	}
 
 	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean equalsIgnoreCaseToAny(char[] array, char c)
+	{
+		log.debug("char: {}, array: {}", c, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array)) return false;
+
+		boolean lowercaseC = isLowercase(c);
+		log.debug("lowercaseC: {}", lowercaseC);
+
+		boolean uppercaseC = isUppercase(c);
+		log.debug("uppercaseC: {}", uppercaseC);
+
+		for (char e : array)
+		{
+			//No need to check further if bo characters are same.
+			if (e == c) return true;
+
+			boolean lowercaseE = isLowercase(e);
+			boolean uppercaseE = isUppercase(e);
+
+			// arg = Z and array[i] = z
+			if (uppercaseC && lowercaseE && c == e - 32) return true;
+
+			// arg = z and array[i] = Z
+			if (lowercaseC && uppercaseE && c == e + 32) return true;
+		}
+		return false;
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static boolean equalsToAny(String[] array, String val)
 	{
 		log.debug("string: {}, array: {}", val, Arrays.toString(array));
-		if (ArrayUtils.isBlank(array)) return false;
+		if (ArrayUtils.isBlank(array) || val == null) return false;
 
 		for (String s : array)
 		{
@@ -138,9 +230,27 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
+	public static boolean equalsIgnoreCaseToAny(String[] array, String val)
+	{
+		log.debug("string: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array) || val == null) return false;
+
+		for (String s : array)
+		{
+			if (s.equalsIgnoreCase(val))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
 	public static <T> String valueOf(T object)
 	{
-		return object == null ? null : object.toString();
+		return valueOf(object, null);
 	}
 
 	/**
