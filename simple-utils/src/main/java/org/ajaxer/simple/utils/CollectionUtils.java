@@ -35,44 +35,19 @@ public class CollectionUtils
 	 */
 	public static <T> boolean equals(Collection<T> c1, Collection<T> c2)
 	{
-		if (c1 == null && c2 == null)
-		{
-			return true;
-		}
+		// prevent NullPointerException
+		if (c1 == null && c2 == null) return true;
+		if (c1 == null) return false;
+		if (c2 == null) return false;
 
-		if (c1 == null)
-		{
-			return false;
-		}
+		if (c1.isEmpty() && c2.isEmpty()) return true;
+		if (c1.isEmpty()) return false;
+		if (c2.isEmpty()) return false;
 
-		if (c2 == null)
-		{
-			return false;
-		}
+		if (c1.size() != c2.size()) return false;
 
-		if (c1.isEmpty() && c2.isEmpty())
-		{
-			return true;
-		}
+		for (int i = 0; i < c1.size(); i++)
 
-		if (c1.isEmpty())
-		{
-			return false;
-		}
-
-		if (c2.isEmpty())
-		{
-			return false;
-		}
-
-		int size1 = c1.size();
-		int size2 = c2.size();
-		if (size1 != size2)
-		{
-			return false;
-		}
-
-		for (int i = 0; i < size1; i++)
 		{
 			if (!c1.equals(c2))
 			{
@@ -81,6 +56,24 @@ public class CollectionUtils
 		}
 
 		return true;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static <T> boolean equalsToAny(Collection<T> collection, T val)
+	{
+		// prevent NullPointerException
+		if (isBlank(collection) || val == null) return false;
+
+		for (T s : collection)
+		{
+			if (s.equals(val))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
