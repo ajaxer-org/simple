@@ -136,6 +136,35 @@ public class CollectionUtilsTest
 	}
 
 	@Nested
+	class EqualsToAny
+	{
+		String val = "ajaxer";
+		List<String> list = Arrays.asList("hello", "world", "foo", "bar", "ajaxer");
+
+		@Test
+		void equalsToAny_with_blank_collection()
+		{
+			Assertions.assertFalse(CollectionUtils.equalsToAny(null, val));
+			Assertions.assertFalse(CollectionUtils.equalsToAny(new ArrayList<>(), val));
+		}
+
+		@Test
+		void equalsToAny_with_blank_value()
+		{
+			Assertions.assertFalse(CollectionUtils.equalsToAny(list, null));
+		}
+
+		@Test
+		void equalsToAny()
+		{
+			Assertions.assertFalse(CollectionUtils.equalsToAny(list, ""));
+			Assertions.assertFalse(CollectionUtils.equalsToAny(list, "  "));
+			Assertions.assertFalse(CollectionUtils.equalsToAny(list, "hello-world"));
+			Assertions.assertTrue(CollectionUtils.equalsToAny(list, "hello"));
+		}
+	}
+
+	@Nested
 	class Concat
 	{
 		@Test
