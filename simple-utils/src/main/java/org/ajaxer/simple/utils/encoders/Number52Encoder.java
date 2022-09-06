@@ -46,17 +46,13 @@ public class Number52Encoder implements Encoder
 
 	public String convert(int x)
 	{
-		if (x == 0)
-		{
-			return String.valueOf(numberScale.charAt(0));
-		}
+		if (x == 0) return String.valueOf(numberScale.charAt(0));
 
 		StringBuilder num52 = new StringBuilder();
-		int temp;
 
 		while (x > 0)
 		{
-			temp = x % numberScale.length();
+			int temp = x % numberScale.length();
 			num52.insert(0, numberScale.charAt(temp));
 			x /= numberScale.length();
 		}
@@ -66,14 +62,11 @@ public class Number52Encoder implements Encoder
 	public int convert(String s)
 	{
 		int val = 0;
-
 		for (int i = 0; i < s.length(); i++)
 		{
 			int d = numberScale.indexOf(s.charAt(i));
-			if (d == -1)
-			{
-				throw new IllegalArgumentException("Invalid number format");
-			}
+			ExceptionUtils.throwWhenEquals(d, -1, INVALID_ENCRYPTION_FORMAT);
+
 			val = numberScale.length() * val + d;
 		}
 		return val;
@@ -82,16 +75,13 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
-		int ch;
 		int length = message.length();
-
 		StringBuilder encoded = new StringBuilder();
-
 		for (int i = 0; i < length; i++)
 		{
-			ch = message.charAt(i);
+			int ch = message.charAt(i);
 			int first = ch % 10;
 			int second = ch / 10;
 			encoded.append(first).append(convert(second));
@@ -103,13 +93,10 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String pattern = "^[0-9a-zA-Z]*$";
-		if (!message.matches(pattern))
-		{
-			throw new IllegalArgumentException(INVALID_ENCRYPTION_FORMAT);
-		}
+		ExceptionUtils.throwWhenFalse(message.matches(pattern), INVALID_ENCRYPTION_FORMAT);
 
 		/*
 		 * ASCII
