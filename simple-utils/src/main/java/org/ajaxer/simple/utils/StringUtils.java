@@ -160,6 +160,28 @@ public class StringUtils
 	}
 
 	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static char toLowerCase(char c)
+	{
+		log.debug("char: {}", c);
+		return isUppercase(c) ? (char) (c + 32) : c;
+	}
+
+	/**
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static char toUppercase(char c)
+	{
+		log.debug("char: {}", c);
+		return isLowercase(c) ? (char) (c - 32) : c;
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static boolean equalsToAny(char[] array, char val)

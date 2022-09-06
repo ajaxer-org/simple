@@ -139,6 +139,12 @@ public class StringUtilsTest
 			{
 				Assertions.assertTrue(StringUtils.isLowercase((char) (i + 97)));
 			}
+
+			Assertions.assertFalse(StringUtils.isLowercase('A'));
+			Assertions.assertFalse(StringUtils.isLowercase('Z'));
+			Assertions.assertFalse(StringUtils.isLowercase('1'));
+			Assertions.assertFalse(StringUtils.isLowercase('*'));
+			Assertions.assertFalse(StringUtils.isLowercase('\\'));
 		}
 
 		@Test
@@ -159,6 +165,26 @@ public class StringUtilsTest
 			Assertions.assertTrue(StringUtils.isLowercase("hello"));
 			Assertions.assertTrue(StringUtils.isLowercase("hello world"));
 			Assertions.assertTrue(StringUtils.isLowercase("ajaxer org"));
+		}
+
+		@Test
+		void toLowerCase_char()
+		{
+			for (int i = 0; i < 26; i++)
+			{
+				char lcase = (char) (i + 97);
+				char ucase = (char) (i + 65);
+				log.info("lcase: {}, ucase: {}", lcase, ucase);
+
+				Assertions.assertEquals(lcase, StringUtils.toLowerCase(ucase));
+			}
+
+			Assertions.assertEquals('a', StringUtils.toLowerCase('a'));
+			Assertions.assertEquals('g', StringUtils.toLowerCase('g'));
+			Assertions.assertEquals('1', StringUtils.toLowerCase('1'));
+			Assertions.assertEquals('0', StringUtils.toLowerCase('0'));
+			Assertions.assertEquals('-', StringUtils.toLowerCase('-'));
+			Assertions.assertEquals('&', StringUtils.toLowerCase('&'));
 		}
 	}
 
@@ -196,110 +222,130 @@ public class StringUtilsTest
 
 		}
 
-		@Nested
-		class EqualsToAny
+		@Test
+		void toUppercase_char()
 		{
-			char[] chars = {'a', 'j', 'a', 'x', 'e', 'r', '.', 'o', 'r', 'g'};
-			char[] emptyChars = {};
-
-			String[] emptyStrings = {};
-			String[] strings = {"hello", "world", "foo", "bar", "ajaxer"};
-
-			@Test
-			void equalsToAny_with_blank_char_array()
+			for (int i = 0; i < 26; i++)
 			{
-				Assertions.assertFalse(StringUtils.equalsToAny(null, chars[0]));
-				Assertions.assertFalse(StringUtils.equalsToAny(emptyChars, chars[0]));
+				char lcase = (char) (i + 97);
+				char ucase = (char) (i + 65);
+				log.info("lcase: {}, ucase: {}", lcase, ucase);
+
+				Assertions.assertEquals(ucase, StringUtils.toUppercase(lcase));
 			}
 
-			@Test
-			void equalsToAny_with_char_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsToAny(chars, 'q'));
-				Assertions.assertFalse(StringUtils.equalsToAny(chars, 's'));
-				Assertions.assertTrue(StringUtils.equalsToAny(chars, 'a'));
-				Assertions.assertTrue(StringUtils.equalsToAny(chars, '.'));
-			}
+			Assertions.assertEquals('A', StringUtils.toUppercase('A'));
+			Assertions.assertEquals('G', StringUtils.toUppercase('G'));
+			Assertions.assertEquals('1', StringUtils.toUppercase('1'));
+			Assertions.assertEquals('0', StringUtils.toUppercase('0'));
+			Assertions.assertEquals('-', StringUtils.toUppercase('-'));
+			Assertions.assertEquals('&', StringUtils.toUppercase('&'));
+		}
+	}
 
-			@Test
-			void equalsToAny_with_blank_string_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsToAny(null, strings[0]));
-				Assertions.assertFalse(StringUtils.equalsToAny(emptyStrings, strings[0]));
-			}
+	@Nested
+	class EqualsToAny
+	{
+		char[] chars = {'a', 'j', 'a', 'x', 'e', 'r', '.', 'o', 'r', 'g'};
+		char[] emptyChars = {};
 
-			@Test
-			void equalsToAny_with_blank_val()
-			{
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, null));
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, ""));
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, "  "));
-				Assertions.assertTrue(StringUtils.equalsToAny(strings, "world"));
-				Assertions.assertTrue(StringUtils.equalsToAny(strings, "ajaxer"));
-			}
+		String[] emptyStrings = {};
+		String[] strings = {"hello", "world", "foo", "bar", "ajaxer"};
 
-			@Test
-			void equalsToAny_with_string_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, "sagamore"));
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, "hello-world"));
-				Assertions.assertFalse(StringUtils.equalsToAny(strings, "HELLO"));
-				Assertions.assertTrue(StringUtils.equalsToAny(strings, "world"));
-				Assertions.assertTrue(StringUtils.equalsToAny(strings, "ajaxer"));
-			}
+		@Test
+		void equalsToAny_with_blank_char_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsToAny(null, chars[0]));
+			Assertions.assertFalse(StringUtils.equalsToAny(emptyChars, chars[0]));
 		}
 
-		@Nested
-		class EqualsIgnoreCaseToAny
+		@Test
+		void equalsToAny_with_char_array()
 		{
-			char[] chars = {'A', 'j', 'A', 'x', 'e', 'R', '.', 'o', 'R', 'g'};
-			char[] emptyChars = {};
+			Assertions.assertFalse(StringUtils.equalsToAny(chars, 'q'));
+			Assertions.assertFalse(StringUtils.equalsToAny(chars, 's'));
+			Assertions.assertTrue(StringUtils.equalsToAny(chars, 'a'));
+			Assertions.assertTrue(StringUtils.equalsToAny(chars, '.'));
+		}
 
-			String[] emptyStrings = {};
-			String[] strings = {"hello", "WORLD", "foo", "bar", "ajaxer"};
+		@Test
+		void equalsToAny_with_blank_string_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsToAny(null, strings[0]));
+			Assertions.assertFalse(StringUtils.equalsToAny(emptyStrings, strings[0]));
+		}
 
-			@Test
-			void equalsIgnoreCaseToAny_with_blank_char_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(null, chars[0]));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(emptyChars, chars[0]));
-			}
+		@Test
+		void equalsToAny_with_blank_val()
+		{
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, null));
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, ""));
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, "  "));
+			Assertions.assertTrue(StringUtils.equalsToAny(strings, "world"));
+			Assertions.assertTrue(StringUtils.equalsToAny(strings, "ajaxer"));
+		}
 
-			@Test
-			void equalsIgnoreCaseToAny_with_char_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(chars, 'q'));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(chars, 's'));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(chars, 'a'));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(chars, '.'));
-			}
+		@Test
+		void equalsToAny_with_string_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, "sagamore"));
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, "hello-world"));
+			Assertions.assertFalse(StringUtils.equalsToAny(strings, "HELLO"));
+			Assertions.assertTrue(StringUtils.equalsToAny(strings, "world"));
+			Assertions.assertTrue(StringUtils.equalsToAny(strings, "ajaxer"));
+		}
+	}
 
-			@Test
-			void equalsIgnoreCaseToAny_with_blank_string_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(null, strings[0]));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(emptyStrings, strings[0]));
-			}
+	@Nested
+	class EqualsIgnoreCaseToAny
+	{
+		char[] chars = {'A', 'j', 'A', 'x', 'e', 'R', '.', 'o', 'R', 'g'};
+		char[] emptyChars = {};
 
-			@Test
-			void equalsIgnoreCaseToAny_with_blank_val()
-			{
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, null));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, ""));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "  "));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "world"));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "ajaxer"));
-			}
+		String[] emptyStrings = {};
+		String[] strings = {"hello", "WORLD", "foo", "bar", "ajaxer"};
 
-			@Test
-			void equalsIgnoreCaseToAny_with_string_array()
-			{
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "sagamore"));
-				Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "hello-world"));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "HELLO"));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "worLd"));
-				Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "Ajaxer"));
-			}
+		@Test
+		void equalsIgnoreCaseToAny_with_blank_char_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(null, chars[0]));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(emptyChars, chars[0]));
+		}
+
+		@Test
+		void equalsIgnoreCaseToAny_with_char_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(chars, 'q'));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(chars, 's'));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(chars, 'a'));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(chars, '.'));
+		}
+
+		@Test
+		void equalsIgnoreCaseToAny_with_blank_string_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(null, strings[0]));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(emptyStrings, strings[0]));
+		}
+
+		@Test
+		void equalsIgnoreCaseToAny_with_blank_val()
+		{
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, null));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, ""));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "  "));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "world"));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "ajaxer"));
+		}
+
+		@Test
+		void equalsIgnoreCaseToAny_with_string_array()
+		{
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "sagamore"));
+			Assertions.assertFalse(StringUtils.equalsIgnoreCaseToAny(strings, "hello-world"));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "HELLO"));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "worLd"));
+			Assertions.assertTrue(StringUtils.equalsIgnoreCaseToAny(strings, "Ajaxer"));
 		}
 	}
 
@@ -331,7 +377,7 @@ public class StringUtilsTest
 		@Test
 		void valueOf_not_null_object_with_defaultValue()
 		{
-			Assertions.assertEquals("123",StringUtils.valueOf(123, "def"));
+			Assertions.assertEquals("123", StringUtils.valueOf(123, "def"));
 			Assertions.assertEquals("123", StringUtils.valueOf(123L, "def"));
 		}
 	}
