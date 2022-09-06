@@ -2,6 +2,7 @@ package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
 import org.ajaxer.simple.utils.AbstractTest;
+import org.ajaxer.simple.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -45,7 +46,7 @@ public class DesEncoderTest extends AbstractTest
 	@RepeatedTest(10)
 	void encode_decode_with_valid_message()
 	{
-		String message = notBlankString;//StringUtils.getUUID();
+		String message = StringUtils.getUUID();
 		String encoded = encoder.encode(message);
 		String decoded = encoder.decode(encoded);
 		log.info("encoded: {}, decoded: {}", encoded, decoded);
