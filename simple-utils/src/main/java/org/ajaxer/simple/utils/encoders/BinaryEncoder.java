@@ -27,7 +27,7 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String encoded = "";
 
@@ -43,13 +43,10 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String pattern = "^[0-3]*$";
-		if (!message.matches(pattern))
-		{
-			throw new IllegalArgumentException("Invalid number format");
-		}
+		ExceptionUtils.throwWhenFalse(message.matches(pattern), "Unknown format");
 
 		//splitting with two delimiters [2 or 3]
 		String[] charInt = message.split("[23]");
