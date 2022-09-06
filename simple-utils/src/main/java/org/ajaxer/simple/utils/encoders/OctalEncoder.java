@@ -27,7 +27,7 @@ public class OctalEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		StringBuilder encoded = new StringBuilder();
 
@@ -43,13 +43,10 @@ public class OctalEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String pattern = "^[0-9]*$";
-		if (!message.matches(pattern))
-		{
-			throw new IllegalArgumentException("Invalid number format");
-		}
+		ExceptionUtils.throwWhenFalse(message.matches(pattern), "Unknown format");
 
 		//splitting with two delimiters [8 or 9]
 		String[] charInt = message.split("[89]");
