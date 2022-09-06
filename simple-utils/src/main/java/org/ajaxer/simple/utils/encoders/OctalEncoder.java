@@ -30,7 +30,6 @@ public class OctalEncoder implements Encoder
 		if (message == null || message.isEmpty()) return null;
 
 		StringBuilder encoded = new StringBuilder();
-
 		for (int i = 0; i < message.length(); i++)
 		{
 			encoded.append((i % 2 == 0) ? "8" : "9");
@@ -46,7 +45,7 @@ public class OctalEncoder implements Encoder
 		if (message == null || message.isEmpty()) return null;
 
 		String pattern = "^[0-9]*$";
-		ExceptionUtils.throwWhenFalse(message.matches(pattern), "Unknown format");
+		ExceptionUtils.throwWhenFalse(message.matches(pattern), INVALID_ENCRYPTION_FORMAT);
 
 		//splitting with two delimiters [8 or 9]
 		String[] charInt = message.split("[89]");

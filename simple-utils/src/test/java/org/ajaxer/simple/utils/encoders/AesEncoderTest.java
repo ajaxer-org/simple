@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.AbstractTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,14 +12,8 @@ import org.junit.jupiter.api.Test;
  * @since v0.0.1
  */
 @Log4j2
-public class AesEncoderTest
+public class AesEncoderTest extends AbstractTest
 {
-	private String blankString1 = null;
-	private String blankString2 = "";
-	private String blankString3 = "   ";
-	private String notBlankString = "ajaxer.org";
-	private final String key = "org.ajaxer";
-
 	private Encoder encoder;
 
 	@BeforeEach

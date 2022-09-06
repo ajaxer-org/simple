@@ -70,7 +70,7 @@ public class HexaEncoder implements Encoder
 		String messageLowerCase = message.toLowerCase();
 
 		String pattern = "^[0-9a-h]*$";
-		ExceptionUtils.throwWhenFalse(messageLowerCase.toLowerCase().matches(pattern), "Unknown format");
+		ExceptionUtils.throwWhenFalse(messageLowerCase.toLowerCase().matches(pattern), INVALID_ENCRYPTION_FORMAT);
 
 		//splitting with two delimiters [g or h]
 		String[] charInt = messageLowerCase.split("[gh]");

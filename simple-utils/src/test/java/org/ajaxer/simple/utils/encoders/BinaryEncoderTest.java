@@ -1,6 +1,8 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.AbstractTest;
+import org.ajaxer.simple.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -12,13 +14,8 @@ import org.junit.jupiter.api.Test;
  * @since v0.0.1
  */
 @Log4j2
-public class BinaryEncoderTest
+public class BinaryEncoderTest extends AbstractTest
 {
-	private String blankString1 = null;
-	private String blankString2 = "";
-	private String blankString3 = "   ";
-	private String message = "ajaxer.org";
-
 	private Encoder encoder;
 
 	@BeforeEach
@@ -47,6 +44,7 @@ public class BinaryEncoderTest
 	@RepeatedTest(10)
 	void encode_decode_with_valid_message()
 	{
+		String message = StringUtils.getUUID();
 		String encoded = encoder.encode(message);
 		String decoded = encoder.decode(encoded);
 		log.info("encoded: {}, decoded: {}", encoded, decoded);
