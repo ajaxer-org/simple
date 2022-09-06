@@ -2,17 +2,24 @@ package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
 
-import java.util.Random;
-
 /**
  * @author Shakir
  * @version 2022-08-22
  * @since v0.0.1
  */
-@SuppressWarnings("unused")
 @Log4j2
 public class RandomUtils
 {
+	private RandomUtils() {}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static boolean getBoolean()
+	{
+		return getByte() % 2 == 0;
+	}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -26,23 +33,23 @@ public class RandomUtils
 	 */
 	public static byte getByte(byte min, byte max)
 	{
-		return (byte) (min + (byte) (Math.random() * (max - min)));
+		return (byte) getDouble(min, max);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static byte getByteLessThanOrEqualTo(byte lowerValue)
+	public static byte getByteLessThanOrEqualTo(byte limit)
 	{
-		return getByte(Byte.MIN_VALUE, lowerValue);
+		return getByte(Byte.MIN_VALUE, limit);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static byte getByteGreaterThanOrEqualTo(byte highValue)
+	public static byte getByteGreaterThanOrEqualTo(byte limit)
 	{
-		return getByte(highValue, Byte.MAX_VALUE);
+		return getByte(limit, Byte.MAX_VALUE);
 	}
 
 	/**
@@ -58,23 +65,23 @@ public class RandomUtils
 	 */
 	public static short getShort(short min, short max)
 	{
-		return (short) (min + (short) (Math.random() * (max - min)));
+		return (short) getDouble(min, max);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static short getShortLessThanOrEqualTo(short lowerValue)
+	public static short getShortLessThanOrEqualTo(short limit)
 	{
-		return getShort(Short.MIN_VALUE, lowerValue);
+		return getShort(Short.MIN_VALUE, limit);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static short getShortGreaterThanOrEqualTo(short highValue)
+	public static short getShortGreaterThanOrEqualTo(short limit)
 	{
-		return getShort(highValue, Short.MAX_VALUE);
+		return getShort(limit, Short.MAX_VALUE);
 	}
 
 	/**
@@ -82,7 +89,7 @@ public class RandomUtils
 	 */
 	public static int getInt()
 	{
-		return new Random().nextInt();
+		return getInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
 	/**
@@ -90,23 +97,23 @@ public class RandomUtils
 	 */
 	public static int getInt(int min, int max)
 	{
-		return new Random().nextInt((max - min) + 1) + min;
+		return (int) getDouble(min, max);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static int getIntLessThan(int lowerValue)
+	public static int getIntLessThanOrEqualTo(int limit)
 	{
-		return new Random().nextInt(lowerValue - 1);
+		return getInt(Integer.MIN_VALUE, limit);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static int getIntGreaterThan(int highValue)
+	public static int getIntGreaterThanOrEqualTo(int limit)
 	{
-		return getInt(highValue + 1, Integer.MAX_VALUE);
+		return getInt(limit, Integer.MAX_VALUE);
 	}
 
 	/**
@@ -114,7 +121,7 @@ public class RandomUtils
 	 */
 	public static long getLong()
 	{
-		return new Random().nextLong();
+		return getLong(Long.MIN_VALUE, Long.MAX_VALUE);
 	}
 
 	/**
@@ -122,24 +129,23 @@ public class RandomUtils
 	 */
 	public static long getLong(long min, long max)
 	{
-		return min + (long) (Math.random() * (max - min));
-//		return min + (getLong() * (max - min));
+		return (long) getDouble(min, max);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static long getLongLessThanOrEqualTo(long lowValue)
+	public static long getLongLessThanOrEqualTo(long limit)
 	{
-		return getLong(Long.MIN_VALUE, lowValue);
+		return getLong(Long.MIN_VALUE, limit);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static long getLongGreaterThanOrEqualTo(long highValue)
+	public static long getLongGreaterThanOrEqualTo(long limit)
 	{
-		return getLong(highValue, Long.MAX_VALUE);
+		return getLong(limit, Long.MAX_VALUE);
 	}
 
 	/**
@@ -147,7 +153,7 @@ public class RandomUtils
 	 */
 	public static float getFloat()
 	{
-		return new Random().nextFloat();
+		return getFloat(Float.MIN_VALUE, Float.MAX_VALUE);
 	}
 
 	/**
@@ -155,7 +161,23 @@ public class RandomUtils
 	 */
 	public static float getFloat(float min, float max)
 	{
-		return (getFloat() % (max - min + 1)) + min;
+		return (float) getDouble(min, max);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static float getFloatLessThanOrEqualTo(float limit)
+	{
+		return getFloat(Float.MIN_VALUE, limit);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static float getFloatGreaterThanOrEqualTo(float limit)
+	{
+		return getFloat(limit, Float.MAX_VALUE);
 	}
 
 	/**
@@ -163,7 +185,7 @@ public class RandomUtils
 	 */
 	public static double getDouble()
 	{
-		return new Random().nextDouble();
+		return getDouble(Double.MIN_VALUE, Double.MAX_VALUE);
 	}
 
 	/**
@@ -171,7 +193,23 @@ public class RandomUtils
 	 */
 	public static double getDouble(double min, double max)
 	{
-		return (getDouble() % (max - min + 1)) + min;
+		return min + (Math.random() * Math.abs(max - min + 1));
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double getDoubleLessThanOrEqualTo(double limit)
+	{
+		return getDouble(Double.MIN_VALUE, limit);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double getDoubleGreaterThanOrEqualTo(double limit)
+	{
+		return getDouble(limit, Double.MAX_VALUE);
 	}
 
 	/**
@@ -187,7 +225,7 @@ public class RandomUtils
 	 */
 	public static char getCharUppercase()
 	{
-		return getChar('A', 'Z');
+		return (char) getInt('A', 'Z');
 	}
 
 	/**
@@ -201,10 +239,104 @@ public class RandomUtils
 	/**
 	 * @since v0.0.1
 	 */
-	//TODO
-	public static char getChar(char[] array)
+	public static boolean[] arrayOfBoolean(int length)
 	{
-		return array[getInt(0, array.length - 1)];
+		boolean[] array = new boolean[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getBoolean();
+		}
+		return array;
 	}
 
+	/**
+	 * @since v0.0.1
+	 */
+	public static char[] arrayOfChar(int length)
+	{
+		char[] array = new char[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getChar();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static byte[] arrayOfBytes(int length)
+	{
+		byte[] array = new byte[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getByte();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static short[] arrayOfShort(int length)
+	{
+		short[] array = new short[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getShort();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static int[] arrayOfInt(int length)
+	{
+		int[] array = new int[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getInt();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static long[] arrayOfLong(int length)
+	{
+		long[] array = new long[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getLong();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static float[] arrayOfFloat(int length)
+	{
+		float[] array = new float[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getFloat();
+		}
+		return array;
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static double[] arrayOfDouble(int length)
+	{
+		double[] array = new double[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = getDouble();
+		}
+		return array;
+	}
 }

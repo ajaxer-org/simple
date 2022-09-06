@@ -7,6 +7,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.io.IOException;
+
+/**
+ * @author Shakir
+ * @version 2022-08-27
+ * @since v0.0.1
+ */
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AppPropertyUtilsTest
@@ -14,15 +21,9 @@ class AppPropertyUtilsTest
 	private AppPropertyUtils propertyUtils;
 
 	@BeforeAll
-	void beforeAll()
+	void beforeAll() throws IOException
 	{
-		try
-		{
-			propertyUtils = new AppPropertyUtils("app.properties");
-		} catch (Exception exception)
-		{
-			ExceptionUtils.rethrow(exception);
-		}
+		propertyUtils = new AppPropertyUtils("app.properties");
 	}
 
 	@AfterAll
@@ -34,8 +35,8 @@ class AppPropertyUtilsTest
 	@Test
 	public void getKeyWhenKeyIsBlank()
 	{
-		Assertions.assertThrows(NullPointerException.class, () -> propertyUtils.getKey(null));
-		Assertions.assertThrows(NullPointerException.class, () -> propertyUtils.getKey(""));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> propertyUtils.getKey(null));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> propertyUtils.getKey(""));
 	}
 
 	@Test

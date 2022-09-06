@@ -1,6 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.StringUtils;
 
 import java.util.Arrays;
@@ -26,10 +27,9 @@ public class OctalEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		StringBuilder encoded = new StringBuilder();
-
 		for (int i = 0; i < message.length(); i++)
 		{
 			encoded.append((i % 2 == 0) ? "8" : "9");
@@ -42,13 +42,10 @@ public class OctalEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String pattern = "^[0-9]*$";
-		if (!message.matches(pattern))
-		{
-			throw new IllegalArgumentException("Invalid number format");
-		}
+		ExceptionUtils.throwWhenFalse(message.matches(pattern), INVALID_ENCRYPTION_FORMAT);
 
 		//splitting with two delimiters [8 or 9]
 		String[] charInt = message.split("[89]");

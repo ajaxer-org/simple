@@ -1,7 +1,6 @@
 package org.ajaxer.simple.utils;
 
 import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  * @author Shakir
@@ -10,6 +9,8 @@ import java.util.Locale;
  */
 public class NumberUtils
 {
+	private NumberUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -17,7 +18,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return NumberFormat.getInstance(Locale.US).parse(str);
+			return NumberFormat.getInstance().parse(str);
 		} catch (Exception e)
 		{
 			return null;
@@ -43,7 +44,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Byte.parseByte(str);
+			return toNumber(str).byteValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;
@@ -69,7 +70,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Short.parseShort(str);
+			return toNumber(str).shortValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;
@@ -95,7 +96,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Integer.parseInt(str);
+			return toNumber(str).intValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;
@@ -121,7 +122,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Long.parseLong(str);
+			return toNumber(str).longValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;
@@ -147,7 +148,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Float.parseFloat(str);
+			return toNumber(str).floatValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;
@@ -173,7 +174,7 @@ public class NumberUtils
 	{
 		try
 		{
-			return Double.parseDouble(str);
+			return toNumber(str).doubleValue();
 		} catch (Exception exception)
 		{
 			return defaultValue;

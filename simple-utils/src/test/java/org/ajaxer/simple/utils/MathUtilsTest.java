@@ -15,71 +15,72 @@ import java.util.Arrays;
 @Log4j2
 public class MathUtilsTest
 {
+	byte[] byteArray = {-9, -8, 4, 5, 7, 2, 8, 3, Byte.MAX_VALUE};
+	short[] shortArray = {-9, -8, 4, 5, 7, 2, 8, 3, Short.MAX_VALUE};
+	int[] intArray = {-9, -8, 4, 5, 7, 2, 8, 3, Integer.MIN_VALUE};
+	long[] longArray = {-9L, -8L, 4L, 5L, 7L, 2L, 8L, 3L, Long.MIN_VALUE, 45678900L};
+	float[] floatArray = {-9.5F, -8F, 4.44F, 5F, 7F, 2F, 8F, 32.5f, 3F};
+	double[] doubleArray = {-9.5D, -8D, 4.567D, 5.90D, 7.12D, 2.98D, 8.2341D, 32.5D, 3.22D};
+
 	@Nested
 	class MinTests
 	{
 		@Test
-		void withByteArray()
+		void min_withByteArray()
 		{
-			byte[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Byte.MAX_VALUE};
-			byte result = MathUtils.min(array);
+			byte result = MathUtils.min(byteArray);
 			byte expected = -9;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(byteArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withShortArray()
+		void min_withShortArray()
 		{
-			short[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Short.MAX_VALUE};
-			short result = MathUtils.min(array);
+			short result = MathUtils.min(shortArray);
 			short expected = -9;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(shortArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withIntArray()
+		void min_withIntArray()
 		{
-			int[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Integer.MIN_VALUE};
-			int result = MathUtils.min(array);
+			int result = MathUtils.min(intArray);
 			int expected = Integer.MIN_VALUE;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(intArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withLongArray()
+		void min_withLongArray()
 		{
-			long[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Integer.MIN_VALUE};
-			long result = MathUtils.min(array);
-			long expected = Integer.MIN_VALUE;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			long result = MathUtils.min(longArray);
+			long expected = Long.MIN_VALUE;
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(longArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withFloatArray()
+		void min_withFloatArray()
 		{
-			float[] array = {-9.5F, -8, 4, 5, 7, 2, 8, 32.5f, 3};
-			float result = MathUtils.min(array);
+			float result = MathUtils.min(floatArray);
 			float expected = -9.5F;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(floatArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withDoubleArray()
+		void min_withDoubleArray()
 		{
-			double[] array = {-9.5D, -8, 4, 5, 7, 2, 8, 32.5f, 3};
-			double result = MathUtils.min(array);
+			double result = MathUtils.min(doubleArray);
 			double expected = -9.5D;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(doubleArray));
 
 			Assertions.assertEquals(expected, result);
 		}
@@ -89,67 +90,61 @@ public class MathUtilsTest
 	class MaxTests
 	{
 		@Test
-		void withByteArray()
+		void max_withByteArray()
 		{
-			byte[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Byte.MAX_VALUE};
-			byte result = MathUtils.max(array);
+			byte result = MathUtils.max(byteArray);
 			byte expected = Byte.MAX_VALUE;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(byteArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withShortArray()
+		void max_withShortArray()
 		{
-			short[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Short.MAX_VALUE};
-			short result = MathUtils.max(array);
+			short result = MathUtils.max(shortArray);
 			short expected = Short.MAX_VALUE;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(shortArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withIntArray()
+		void max_withIntArray()
 		{
-			int[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Integer.MIN_VALUE};
-			int result = MathUtils.max(array);
+			int result = MathUtils.max(intArray);
 			int expected = 8;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(intArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withLongArray()
+		void max_withLongArray()
 		{
-			long[] array = {-9, -8, 4, 5, 7, 2, 8, 3, Long.MAX_VALUE};
-			long result = MathUtils.max(array);
-			long expected = Long.MAX_VALUE;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			long result = MathUtils.max(longArray);
+			long expected = 45678900L;
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(longArray));
 
 			Assertions.assertEquals(expected, result);
 		}
 
 		@Test
-		void withFloatArray()
+		void max_withFloatArray()
 		{
-			float[] array = {-9.5F, -8, 4, 5, 7, 2, 8, 32.5F, 3};
-			float result = MathUtils.max(array);
+			float result = MathUtils.max(floatArray);
 			float expected = 32.5F;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(floatArray));
 
 			Assertions.assertEquals(expected, result, 0.001F);
 		}
 
 		@Test
-		void withDoubleArray()
+		void max_withDoubleArray()
 		{
-			double[] array = {-9.5D, -8, 4, 5, 7, 2, 8, 37.55D, 3};
-			double result = MathUtils.max(array);
-			double expected = 37.55D;
-			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(array));
+			double result = MathUtils.max(doubleArray);
+			double expected = 32.5D;
+			log.info("expected: {}, result: {}, array: {}", expected, result, Arrays.toString(doubleArray));
 
 			Assertions.assertEquals(expected, result, 0.001D);
 		}
@@ -159,7 +154,7 @@ public class MathUtilsTest
 	class Percentage
 	{
 		@Test
-		void withIntValue()
+		void getPercentage_withIntValue()
 		{
 			int result = MathUtils.getPercentage(100, 25);
 			int expected = 25;
@@ -167,11 +162,65 @@ public class MathUtilsTest
 		}
 
 		@Test
-		void withDoubleValue()
+		void getPercentage_withFloatValue()
 		{
-			double result = MathUtils.getPercentage(200.00D, 12.5F);
+			double result = MathUtils.getPercentage(200.00F, 12.5F);
+			double expected = 25.00F;
+			Assertions.assertEquals(expected, result, 0.01F);
+		}
+
+		@Test
+		void getPercentage_withDoubleValue()
+		{
+			double result = MathUtils.getPercentage(200.00D, 12.5D);
 			double expected = 25.00D;
 			Assertions.assertEquals(expected, result, 0.01D);
+		}
+	}
+
+	@Nested
+	class EqualsToAny
+	{
+		@Test
+		void equalsToAny_byte_array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(byteArray, (byte) 5));
+			Assertions.assertFalse(MathUtils.equalsToAny(byteArray, (byte) 55));
+		}
+
+		@Test
+		void equalsToAny_short_array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(shortArray, (short) 5));
+			Assertions.assertFalse(MathUtils.equalsToAny(shortArray, (short) 55));
+		}
+
+		@Test
+		void equalsToAny_int_array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(intArray, 5));
+			Assertions.assertFalse(MathUtils.equalsToAny(intArray, 55));
+		}
+
+		@Test
+		void equalsToAny_long_array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(longArray, -9L));
+			Assertions.assertFalse(MathUtils.equalsToAny(longArray, 5509234L));
+		}
+
+		@Test
+		void equalsToAny_float_array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(floatArray, 4.44F));
+			Assertions.assertFalse(MathUtils.equalsToAny(floatArray, 55.90F));
+		}
+
+		@Test
+		void equalsToAny__array()
+		{
+			Assertions.assertTrue(MathUtils.equalsToAny(doubleArray, 5.90D));
+			Assertions.assertFalse(MathUtils.equalsToAny(doubleArray, 55345234.656D));
 		}
 	}
 }

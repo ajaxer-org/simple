@@ -1,5 +1,6 @@
 package org.ajaxer.simple.utils.encoders;
 
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.StringUtils;
 
 /**
@@ -14,7 +15,7 @@ public class TwoPipeEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		StringBuilder firstHalf = new StringBuilder();
 		StringBuilder secondHalf = new StringBuilder();
@@ -34,24 +35,21 @@ public class TwoPipeEncoder implements Encoder
 	}
 
 	@Override
-	public String decode(String msg)
+	public String decode(String message)
 	{
-		StringUtils.throwWhenBlank(msg);
+		if (message == null || message.isEmpty()) return null;
 
-		if (!msg.endsWith(EXTENSION))
-		{
-			throw new IllegalArgumentException(INVALID_ENCRYPTION_FORMAT);
-		}
+		ExceptionUtils.throwWhenFalse(message.endsWith(EXTENSION), INVALID_ENCRYPTION_FORMAT);
 
 		// removing extension
-		msg = StringUtils.removeSuffix(msg, EXTENSION);
+		message = StringUtils.removeSuffix(message, EXTENSION);
 
 		// new length
-		int len = msg.length();
+		int len = message.length();
 		int point = (len + 1) / 2;
 
-		String firstHalf = msg.substring(0, point);
-		String secondHalf = msg.substring(point);
+		String firstHalf = message.substring(0, point);
+		String secondHalf = message.substring(point);
 
 		StringBuilder deMsg = new StringBuilder();
 		int lenF = firstHalf.length();

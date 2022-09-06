@@ -2,7 +2,7 @@ package org.ajaxer.simple.utils;
 
 import lombok.extern.log4j.Log4j2;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -13,6 +13,8 @@ import java.util.UUID;
 @Log4j2
 public class StringUtils
 {
+	private StringUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
@@ -35,7 +37,7 @@ public class StringUtils
 	public static int charCount(String string, char ch)
 	{
 		log.debug("string: {}, ch: {}", string, ch);
-		throwWhenBlank(string);
+		if (isBlank(string)) return -1;
 
 		int count = 0;
 		for (char chatAt : string.toCharArray())
@@ -52,33 +54,31 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String removePrefix(String str, String prefix)
+	public static String removePrefix(String string, String prefix)
 	{
-		log.debug("str: {}, prefix: {}", str, prefix);
-		throwWhenBlank(str);
-		throwWhenBlank(prefix);
+		log.debug("string: {}, prefix: {}", string, prefix);
+		if (isBlank(string) || isBlank(prefix)) return string;
 
-		if (str.startsWith(prefix))
+		if (string.startsWith(prefix))
 		{
-			return str.substring(prefix.length());
+			return string.substring(prefix.length());
 		}
-		return str;
+		return string;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static String removeSuffix(String str, String suffix)
+	public static String removeSuffix(String string, String suffix)
 	{
-		log.debug("str: {}, suffix: {}", str, suffix);
-		throwWhenBlank(str);
-		throwWhenBlank(suffix);
+		log.debug("string: {}, suffix: {}", string, suffix);
+		if (isBlank(string) || isBlank(suffix)) return string;
 
-		if (str.endsWith(suffix))
+		if (string.endsWith(suffix))
 		{
-			return str.substring(0, str.length() - suffix.length());
+			return string.substring(0, string.length() - suffix.length());
 		}
-		return str;
+		return string;
 	}
 
 	/**
@@ -92,42 +92,93 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static String getUUID(String str)
+	public static String getUUID(String string)
 	{
-		return UUID.nameUUIDFromBytes(str.getBytes()).toString();
+		log.debug("string: {}", string);
+
+		return isBlank(string)
+				? getUUID()
+				: UUID.nameUUIDFromBytes(string.getBytes()).toString();
 	}
 
 	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenBlank(String string)
+	public static boolean isLowercase(char c)
 	{
-		if (StringUtils.isBlank(string))
-		{
-			throw new NullPointerException();
-		}
+		log.debug("char: {}", c);
+		return c >= 97 && c <= 122;
 	}
 
 	/**
+	 * @return returns true, if all the characters in given are in lowercase
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenBlank(String string, String customExceptionMessage)
+	public static boolean isLowercase(String string)
 	{
-		if (StringUtils.isBlank(string))
+		log.debug("string: {}", string);
+		if (isBlank(string)) return false;
+
+		for (char c : string.toCharArray())
 		{
-			throw new NullPointerException(customExceptionMessage);
+			if (isUppercase(c)) return false;
 		}
+
+		return true;
 	}
 
 	/**
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
 	 * @since v0.0.1
 	 */
-	public static void throwWhenBlank(String string, Throwable throwable)
+	public static boolean isUppercase(char c)
 	{
-		if (StringUtils.isBlank(string))
+		log.debug("char: {}", c);
+		return c >= 65 && c <= 90;
+	}
+
+	/**
+	 * @return returns true, if all the characters in given are in uppercase
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean isUppercase(String string)
+	{
+		log.debug("string: {}", string);
+		if (isBlank(string)) return false;
+
+		for (char c : string.toCharArray())
 		{
-			ExceptionUtils.rethrow(throwable);
+			if (isLowercase(c)) return false;
 		}
+
+		return true;
+	}
+
+	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static char toLowerCase(char c)
+	{
+		log.debug("char: {}", c);
+		return isUppercase(c) ? (char) (c + 32) : c;
+	}
+
+	/**
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static char toUppercase(char c)
+	{
+		log.debug("char: {}", c);
+		return isLowercase(c) ? (char) (c - 32) : c;
 	}
 
 	/**
@@ -135,6 +186,9 @@ public class StringUtils
 	 */
 	public static boolean equalsToAny(char[] array, char val)
 	{
+		log.debug("char: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array)) return false;
+
 		for (char e : array)
 		{
 			if (e == val)
@@ -146,10 +200,47 @@ public class StringUtils
 	}
 
 	/**
+	 * <p>The ASCII value of lowercase alphabets(a-z) are from 97 to 122</p>
+	 * <p>The ASCII value of uppercase alphabets(A-Z) are from 65 to 90</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static boolean equalsIgnoreCaseToAny(char[] array, char c)
+	{
+		log.debug("char: {}, array: {}", c, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array)) return false;
+
+		boolean lowercaseC = isLowercase(c);
+		log.debug("lowercaseC: {}", lowercaseC);
+
+		boolean uppercaseC = isUppercase(c);
+		log.debug("uppercaseC: {}", uppercaseC);
+
+		for (char e : array)
+		{
+			//No need to check further if bo characters are same.
+			if (e == c) return true;
+
+			boolean lowercaseE = isLowercase(e);
+			boolean uppercaseE = isUppercase(e);
+
+			// arg = Z and array[i] = z
+			if (uppercaseC && lowercaseE && c == e - 32) return true;
+
+			// arg = z and array[i] = Z
+			if (lowercaseC && uppercaseE && c == e + 32) return true;
+		}
+		return false;
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static boolean equalsToAny(String[] array, String val)
 	{
+		log.debug("string: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array) || val == null) return false;
+
 		for (String s : array)
 		{
 			if (s.equals(val))
@@ -163,11 +254,14 @@ public class StringUtils
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean equalsToAny(List<String> list, String val)
+	public static boolean equalsIgnoreCaseToAny(String[] array, String val)
 	{
-		for (String s : list)
+		log.debug("string: {}, array: {}", val, Arrays.toString(array));
+		if (ArrayUtils.isBlank(array) || val == null) return false;
+
+		for (String s : array)
 		{
-			if (s.equals(val))
+			if (s.equalsIgnoreCase(val))
 			{
 				return true;
 			}
@@ -180,7 +274,7 @@ public class StringUtils
 	 */
 	public static <T> String valueOf(T object)
 	{
-		return object == null ? null : object.toString();
+		return valueOf(object, null);
 	}
 
 	/**

@@ -10,34 +10,38 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SimpleUtils
 {
+	private SimpleUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
-	public static void close(AutoCloseable autoCloseable)
+	public static boolean close(AutoCloseable autoCloseable)
 	{
 		try
 		{
 			autoCloseable.close();
-			log.debug("autoCloseable.close() executed successfully: {}", autoCloseable.toString());
+			log.debug("autoCloseable.close() executed successfully: {}", autoCloseable);
+			return true;
 		} catch (Exception exception)
 		{
-			log.warn("autoCloseable.close() executed unsuccessfully: {}", autoCloseable.toString());
+			log.debug("autoCloseable.close() executed unsuccessfully: {}", autoCloseable);
+			return false;
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static void sleep(long mili)
+	public static void sleep(long milli)
 	{
-		if (mili <= 0)
+		if (milli <= 0)
 		{
 			return;
 		}
 
 		try
 		{
-			Thread.sleep(mili);
+			Thread.sleep(milli);
 		} catch (InterruptedException ignored)
 		{
 		}

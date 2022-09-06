@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -19,129 +20,159 @@ public class GZipUtils
 {
 	private final static String EXTENSION = ".gz";
 
+	private GZipUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(FileInputStream fileInputStream, GZIPOutputStream gZIPOutputStream)
+	public static long zip(FileInputStream fileInputStream, GZIPOutputStream gZIPOutputStream) throws IOException
 	{
-		FileUtils.copyBytes(fileInputStream, gZIPOutputStream);
-		return true;
+		return FileUtils.copy(fileInputStream, gZIPOutputStream);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(GZIPInputStream gZIPInputStream, FileOutputStream fileOutputStream)
+	public static long unzip(GZIPInputStream gZIPInputStream, FileOutputStream fileOutputStream) throws IOException
 	{
-		FileUtils.copyBytes(gZIPInputStream, fileOutputStream);
-		return true;
+		return FileUtils.copy(gZIPInputStream, fileOutputStream);
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(File sourceFile, File targetFile)
+	public static long zip(File source, File target) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		log.debug("targetFile: {}", targetFile);
+		log.debug("source: {}, target: {}", source, target);
 
-		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
-			 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(Files.newOutputStream(targetFile.toPath())))
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
+
+		try (FileInputStream fileInputStream = new FileInputStream(source);
+			 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(Files.newOutputStream(target.toPath())))
 		{
 			return zip(fileInputStream, gZIPOutputStream);
-		} catch (Exception exception)
-		{
-			ExceptionUtils.rethrow(exception);
-			return false;
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(File sourceFile)
+	public static long zip(String source, String target) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		return zip(sourceFile.getAbsolutePath());
+		log.debug("source: {}, target: {}", source, target);
+
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
+
+		return zip(new File(source), new File(target));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(String sourceFile, String targetFile)
+	public static File zip(File source) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		log.debug("targetFile: {}", targetFile);
+		log.debug("source: {}", source);
+		ExceptionUtils.throwWhenInvalid(source);
 
-		return zip(new File(sourceFile), new File(targetFile));
+		return new File(zip(source.getAbsolutePath()));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean zip(String sourceFile)
+	public static String zip(String source) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		return zip(sourceFile, getTargetFileName(sourceFile));
+		log.debug("source: {}", source);
+		ExceptionUtils.throwWhenBlank(source);
+
+		String target = getTargetFileName(source);
+		log.debug("target: {}", target);
+		ExceptionUtils.throwWhenBlank(target);
+
+		if (!new File(target).exists())
+		{
+			boolean created = new File(target).createNewFile();
+			log.info("target file created=[{}] as - {}", created, target);
+		}
+
+		zip(source, target);
+
+		return target;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(File sourceFile, File targetFile)
+	public static long unzip(File source, File target) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		log.debug("targetFile: {}", targetFile);
+		log.debug("source: {}, target: {}", source, target);
 
-		try (GZIPInputStream gZIPInputStream = new GZIPInputStream(Files.newInputStream(sourceFile.toPath()));
-			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
+
+		try (GZIPInputStream gZIPInputStream = new GZIPInputStream(Files.newInputStream(source.toPath()));
+			 FileOutputStream fileOutputStream = new FileOutputStream(target))
 		{
 			return unzip(gZIPInputStream, fileOutputStream);
-		} catch (Exception exception)
-		{
-			ExceptionUtils.rethrow(exception);
-			return false;
 		}
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(File sourceFile)
+	public static long unzip(String source, String target) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
+		log.debug("source: {}, target: {}", source, target);
 
-		return unzip(sourceFile.getAbsolutePath());
+		ExceptionUtils.throwWhenInvalid(source, "invalid source file");
+		ExceptionUtils.throwWhenInvalid(target, "invalid target file");
+
+		return unzip(new File(source), new File(target));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(String sourceFile, String targetFile)
+	public static File unzip(File source) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
-		log.debug("targetFile: {}", targetFile);
+		log.debug("source: {}", source);
+		ExceptionUtils.throwWhenInvalid(source);
 
-		return unzip(new File(sourceFile), new File(targetFile));
+		return new File(unzip(source.getAbsolutePath()));
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	public static boolean unzip(String sourceFile)
+	public static String unzip(String source) throws IOException
 	{
-		log.debug("sourceFile: {}", sourceFile);
+		log.debug("source: {}", source);
+		ExceptionUtils.throwWhenBlank(source);
 
-		return unzip(sourceFile, getSourceFileName(sourceFile));
+		String target = getSourceFileName(source);
+		log.debug("target: {}", target);
+		ExceptionUtils.throwWhenBlank(target);
+
+		if (!new File(target).exists())
+		{
+			boolean created = new File(target).createNewFile();
+			log.info("target file created=[{}] as - {}", created, target);
+		}
+
+		unzip(source, target);
+
+		return target;
 	}
 
 	/**
 	 * @since v0.0.1
 	 */
-	private static String getTargetFileName(String sourceFileName)
+	private static String getTargetFileName(String source)
 	{
-		log.debug("sourceFileName: {}", sourceFileName);
-		String targetFileName = sourceFileName + EXTENSION;
+		log.debug("source: {}", source);
+		String targetFileName = source + EXTENSION;
 		log.debug("targetFileName: {}", targetFileName);
 
 		return targetFileName;
@@ -150,15 +181,15 @@ public class GZipUtils
 	/**
 	 * @since v0.0.1
 	 */
-	private static String getSourceFileName(String targetFileName)
+	private static String getSourceFileName(String target)
 	{
-		log.debug("targetFileName: {}", targetFileName);
-		if (!targetFileName.endsWith(EXTENSION))
+		log.debug("target: {}", target);
+		if (!target.endsWith(EXTENSION))
 		{
 			throw new IllegalArgumentException("Given target file is not " + EXTENSION + " file");
 		}
 
-		String sourceFileName = StringUtils.removeSuffix(targetFileName, EXTENSION);
+		String sourceFileName = StringUtils.removeSuffix(target, EXTENSION);
 		log.debug("sourceFileName: {}", sourceFileName);
 
 		return sourceFileName;

@@ -12,13 +12,18 @@ import java.util.Properties;
 @Log4j2
 public class SystemUtils
 {
+	private SystemUtils() {}
+
 	/**
 	 * @since v0.0.1
 	 */
-	public static void setProperty(String key, String value)
+	public static String setProperty(String key, String value)
 	{
-		log.info("key: {}, value: {}", key, value);
+		log.debug("key: {}, value: {}", key, value);
+		if (StringUtils.isBlank(key) || StringUtils.isBlank(value)) return null;
+
 		System.setProperty(key, value);
+		return value;
 	}
 
 	/**
@@ -26,7 +31,9 @@ public class SystemUtils
 	 */
 	public static String getProperty(String key)
 	{
-		log.info("key: {}", key);
+		log.debug("key: {}", key);
+		if (StringUtils.isBlank(key)) return null;
+
 		return System.getProperty(key);
 	}
 
@@ -35,8 +42,18 @@ public class SystemUtils
 	 */
 	public static String clearProperty(String key)
 	{
-		log.info("key: {}", key);
+		log.debug("key: {}", key);
+		if (StringUtils.isBlank(key)) return null;
+
 		return System.clearProperty(key);
+	}
+
+	/**
+	 * @since v0.0.1
+	 */
+	public static Properties allProperties()
+	{
+		return System.getProperties();
 	}
 
 	/**
@@ -45,6 +62,16 @@ public class SystemUtils
 	public static String getOsName()
 	{
 		return SystemUtils.getProperty("os.name");
+	}
+
+	/**
+	 * <p>os.version</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String osVersion()
+	{
+		return SystemUtils.getProperty("os.version");
 	}
 
 	/**
@@ -77,7 +104,7 @@ public class SystemUtils
 	public static boolean isUnix()
 	{
 		String osName = getOsName();
-		log.info("osName: {}", osName);
+		log.debug("osName: {}", osName);
 
 		return osName.toLowerCase().contains("nix")
 				|| osName.toLowerCase().contains("nux")
@@ -85,19 +112,163 @@ public class SystemUtils
 	}
 
 	/**
+	 * <p>java.class.version</p>
+	 *
 	 * @since v0.0.1
 	 */
-	public static String getClasspathFromProperty()
+	public static int javaClassVersion()
+	{
+		return NumberUtils.toInt(System.getProperty("java.class.version"));
+	}
+
+	/**
+	 * <p>java.class.path</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String getJavaClasspath()
 	{
 		return System.getProperty("java.class.path");
 	}
 
 	/**
+	 * <p>java.home</p>
+	 *
 	 * @since v0.0.1
 	 */
-	public static String getUserHomeDirectory()
+	public static String javaHome()
+	{
+		return System.getProperty("java.home");
+	}
+
+	/**
+	 * <p>java.runtime.name</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaRuntimeName()
+	{
+		return System.getProperty("java.runtime.name");
+	}
+
+	/**
+	 * <p>java.specification.version</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaVersion()
+	{
+		return System.getProperty("java.specification.version");
+	}
+
+	/**
+	 * <p>java.vm.specification.version</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaVMVersion()
+	{
+		return System.getProperty("java.vm.specification.version");
+	}
+
+	/**
+	 * <p>java.vm.vendor</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaVMVendor()
+	{
+		return System.getProperty("java.vm.vendor");
+	}
+
+	/**
+	 * <p>java.specification.vendor</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaVendor()
+	{
+		return System.getProperty("java.specification.vendor");
+	}
+
+	/**
+	 * <p>java.vendor.url</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaVendorUrl()
+	{
+		return System.getProperty("java.vendor.url");
+	}
+
+	/**
+	 * <p>java.io.tmpdir</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String javaTempDirectory()
+	{
+		return System.getProperty("java.io.tmpdir");
+	}
+
+	/**
+	 * <p>user.timezone</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userTimezone()
+	{
+		return System.getProperty("java.vendor.url");
+	}
+
+	/**
+	 * <p>user.home</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userHomeDirectory()
 	{
 		return SystemUtils.getProperty("user.home");
+	}
+
+	/**
+	 * <p>user.dir</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userDir()
+	{
+		return SystemUtils.getProperty("user.dir");
+	}
+
+	/**
+	 * <p>user.name</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userName()
+	{
+		return SystemUtils.getProperty("user.name");
+	}
+
+	/**
+	 * <p>user.country</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userCountry()
+	{
+		return SystemUtils.getProperty("user.country");
+	}
+
+	/**
+	 * <p>user.language</p>
+	 *
+	 * @since v0.0.1
+	 */
+	public static String userLanguage()
+	{
+		return SystemUtils.getProperty("user.language");
 	}
 
 	/**
@@ -114,18 +285,5 @@ public class SystemUtils
 	public static String getTempDirectory()
 	{
 		return SystemUtils.getProperty("java.io.tmpdir");
-	}
-
-	/**
-	 * @since v0.0.1
-	 */
-	public static void printAllProperties()
-	{
-		Properties properties = System.getProperties();
-		for (String key : properties.stringPropertyNames())
-		{
-			String value = properties.getProperty(key);
-			log.info("[{} = {}]", key, value);
-		}
 	}
 }

@@ -1,12 +1,13 @@
 package org.ajaxer.simple.utils.encoders;
 
 import org.ajaxer.simple.utils.ExceptionUtils;
-import org.ajaxer.simple.utils.StringUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 /**
@@ -21,7 +22,7 @@ public class DesEncoder implements Encoder
 	private static SecretKey secretKey;
 	private static Cipher cipher;
 
-	private static void init() throws Exception
+	private static void init() throws NoSuchAlgorithmException, NoSuchPaddingException
 	{
 		if (keygenerator == null)
 		{
@@ -42,7 +43,8 @@ public class DesEncoder implements Encoder
 	@Override
 	public String encode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
+
 		try
 		{
 			init();
@@ -55,15 +57,15 @@ public class DesEncoder implements Encoder
 
 		} catch (Exception exception)
 		{
-			ExceptionUtils.rethrow(exception);
-			return null;
+			return ExceptionUtils.rethrow(exception, String.class);
 		}
 	}
 
 	@Override
 	public String decode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
+
 		try
 		{
 			init();
@@ -76,8 +78,7 @@ public class DesEncoder implements Encoder
 
 		} catch (Exception exception)
 		{
-			ExceptionUtils.rethrow(exception);
-			return null;
+			return ExceptionUtils.rethrow(exception, String.class);
 		}
 	}
 }

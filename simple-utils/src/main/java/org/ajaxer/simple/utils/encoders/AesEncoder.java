@@ -1,8 +1,7 @@
 package org.ajaxer.simple.utils.encoders;
 
+import lombok.extern.log4j.Log4j2;
 import org.ajaxer.simple.utils.ExceptionUtils;
-import org.ajaxer.simple.utils.StringUtils;
-import org.ajaxer.simple.utils.ValidationUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,10 +11,13 @@ import java.util.Arrays;
 import java.util.Base64;
 
 /**
+ * Beta version
+ *
  * @author Shakir
  * @version 2022-08-23
  * @since v0.0.1
  */
+@Log4j2
 public class AesEncoder implements Encoder
 {
 	public static final String ENCRYPTION_NAME = "AES";
@@ -25,24 +27,20 @@ public class AesEncoder implements Encoder
 
 	private static byte[] getKeyBytes(String key)
 	{
-		StringUtils.throwWhenBlank(key, "Key cannot be null");
-
-		StringBuilder keyBuilder = new StringBuilder(key);
-		while (keyBuilder.length() < 16)
-		{
-			keyBuilder.append("0");
-		}
-		key = keyBuilder.toString();
-
-		ValidationUtils.throwWhenTrue(key.length() != 16, "Secret key should must be 16 char long only");
+//		StringBuilder keyBuilder = new StringBuilder(key);
+//		while (keyBuilder.length() < 16)
+//		{
+//			keyBuilder.append("0");
+//		}
+//		key = keyBuilder.toString();
 
 //		if (key.length() > 16)
 //		{
 //			key = key.substring(0, 15);
 //		}
-//		System.out.println("AesEncryptor.checkKey() - key: [" + key + "], len: [" + key.length() + "]");
+		log.info("key: [{}], len: [{}]", key, key.length());
 
-		return Base64.getDecoder().decode(key);
+		return key.getBytes();
 	}
 
 	private static SecretKeySpec getSecretKeySpec(String key)
@@ -52,13 +50,15 @@ public class AesEncoder implements Encoder
 
 	public AesEncoder(String key)
 	{
+		log.info("key: {}", key);
+		ExceptionUtils.throwWhenBlank(key);
 		this.key = key;
 	}
 
 	@Override
 	public String encode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null) return null;
 
 		try
 		{
@@ -77,8 +77,7 @@ public class AesEncoder implements Encoder
 
 		} catch (Exception exception)
 		{
-			ExceptionUtils.rethrow(exception);
-			return null;
+			return ExceptionUtils.rethrow(exception, String.class);
 		}
 
 	}
@@ -86,7 +85,7 @@ public class AesEncoder implements Encoder
 	@Override
 	public String decode(final String message)
 	{
-		StringUtils.throwWhenBlank(message);
+		if (message == null) return null;
 
 		try
 		{
@@ -98,13 +97,12 @@ public class AesEncoder implements Encoder
 			SecretKey secretKey = getSecretKeySpec(key);
 
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
-			byte[] cipherText = cipher.doFinal(Base64.getDecoder().decode(message));
+			byte[] cipherText = cipher.doFinal(message.getBytes());
 
 			return new String(cipherText);
 		} catch (Exception exception)
 		{
-			ExceptionUtils.rethrow(exception);
-			return null;
+			return ExceptionUtils.rethrow(exception, String.class);
 		}
 	}
 }
