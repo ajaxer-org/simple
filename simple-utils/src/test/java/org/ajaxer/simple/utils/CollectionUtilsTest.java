@@ -159,7 +159,7 @@ public class CollectionUtilsTest
 		{
 			List<String> list1 = new ArrayList<>();
 			List<String> list2 = new ArrayList<>();
-			
+
 			//noinspection ConstantConditions
 			int value = CollectionUtils.concat(list1, list2).size();
 
