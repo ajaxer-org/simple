@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.Base64;
 
 /**
+ * Beta version
+ *
  * @author Shakir
  * @version 2022-08-23
  * @since v0.0.1
