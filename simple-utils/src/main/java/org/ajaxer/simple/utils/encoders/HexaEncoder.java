@@ -19,14 +19,12 @@ public class HexaEncoder implements Encoder
 	public String convert(int x)
 	{
 		//return Integer.toHexString(x);
-		if (x == 0)
-		{
-			return "0";
-		}
+		if (x == 0) return "0";
 		StringBuilder hex = new StringBuilder();
+
 		while (x > 0)
 		{
-			int digit = x % 16;                // rightmost digit
+			int digit = x % 16; // rightmost digit
 			hex.insert(0, digits.charAt(digit));  // string concatenation
 			x = x / 16;
 		}
@@ -36,7 +34,6 @@ public class HexaEncoder implements Encoder
 	public int convert(String s)
 	{
 		//return Integer.parseInt(string, 16);
-
 		s = s.toUpperCase();
 
 		int val = 0;
@@ -52,7 +49,7 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		StringBuilder encoded = new StringBuilder();
 
@@ -68,15 +65,12 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		ExceptionUtils.throwWhenBlank(message);
+		if (message == null || message.isEmpty()) return null;
 
 		String messageLowerCase = message.toLowerCase();
 
 		String pattern = "^[0-9a-h]*$";
-		if (!messageLowerCase.matches(pattern))
-		{
-			throw new IllegalArgumentException("Invalid number format");
-		}
+		ExceptionUtils.throwWhenFalse(messageLowerCase.toLowerCase().matches(pattern), "Unknown format");
 
 		//splitting with two delimiters [g or h]
 		String[] charInt = messageLowerCase.split("[gh]");
