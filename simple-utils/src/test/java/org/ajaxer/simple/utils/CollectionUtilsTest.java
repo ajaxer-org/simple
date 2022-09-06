@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -227,7 +228,7 @@ public class CollectionUtilsTest
 		{
 			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
 			List<String> resultList = CollectionUtils.subList(l1, 1, 2);
-			List<String> expectedList = Arrays.asList("foo", "bar");
+			List<String> expectedList = Collections.singletonList("dot");
 			boolean expected = true;
 
 			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
