@@ -24,13 +24,17 @@ public class CollectionUtilsTest
 		@Test
 		void when_list_null()
 		{
+			//noinspection ConstantConditions
 			Assertions.assertTrue(CollectionUtils.isBlank(null));
+
+			//noinspection ConstantConditions
 			Assertions.assertFalse(CollectionUtils.isNotBlank(null));
 		}
 
 		@Test
 		void when_list_empty()
 		{
+			//noinspection MismatchedQueryAndUpdateOfCollection
 			List<String> list = new ArrayList<>();
 			Assertions.assertTrue(CollectionUtils.isBlank(list));
 			Assertions.assertFalse(CollectionUtils.isNotBlank(list));
@@ -48,8 +52,8 @@ public class CollectionUtilsTest
 	@Test
 	void throwWhenBlank_null()
 	{
-		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank((Collection) null));
-		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank((Collection) null, new NullPointerException()));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank((Collection<?>) null));
+		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank((Collection<?>) null, new NullPointerException()));
 	}
 
 	@Test
@@ -65,43 +69,20 @@ public class CollectionUtilsTest
 	class Equals
 	{
 		@Test
-		void when_both_list_null()
+		void when_both_lists_blank()
 		{
-			List<String> l1 = null;
-			List<String> l2 = null;
-			boolean expected = true;
-
-			Assertions.assertEquals(expected, CollectionUtils.equals(l1, l2));
 		}
 
 		@Test
-		void when_both_list_empty()
+		void when_lists_are_blank()
 		{
-			List<String> l1 = new ArrayList<>();
-			List<String> l2 = new ArrayList<>();
-			boolean expected = true;
+			Assertions.assertTrue(CollectionUtils.equals(null, null));
 
-			Assertions.assertEquals(expected, CollectionUtils.equals(l1, l2));
-		}
+			Assertions.assertTrue(CollectionUtils.equals(new ArrayList<>(), new ArrayList<>()));
 
-		@Test
-		void when_first_list_null_second_list_empty()
-		{
-			List<String> l1 = null;
-			List<String> l2 = new ArrayList<>();
-			boolean expected = false;
+			Assertions.assertFalse(CollectionUtils.equals(null, new ArrayList<>()));
 
-			Assertions.assertEquals(expected, CollectionUtils.equals(l1, l2));
-		}
-
-		@Test
-		void when_second_list_null_first_list_empty()
-		{
-			List<String> l1 = new ArrayList<>();
-			List<String> l2 = null;
-			boolean expected = false;
-
-			Assertions.assertEquals(expected, CollectionUtils.equals(l1, l2));
+			Assertions.assertFalse(CollectionUtils.equals(new ArrayList<>(), null));
 		}
 
 		@Test
@@ -178,6 +159,8 @@ public class CollectionUtilsTest
 		{
 			List<String> list1 = new ArrayList<>();
 			List<String> list2 = new ArrayList<>();
+			
+			//noinspection ConstantConditions
 			int value = CollectionUtils.concat(list1, list2).size();
 
 			Assertions.assertEquals(0, value);
@@ -210,9 +193,8 @@ public class CollectionUtilsTest
 		@Test
 		void when_list_null()
 		{
-			List<String> l1 = null;
-			Assertions.assertNull(CollectionUtils.subList(l1, 0));
-			Assertions.assertNull(CollectionUtils.subList(l1, 0, 2));
+			Assertions.assertNull(CollectionUtils.subList(null, 0));
+			Assertions.assertNull(CollectionUtils.subList(null, 0, 2));
 		}
 
 		@Test
@@ -245,7 +227,7 @@ public class CollectionUtilsTest
 		{
 			List<String> l1 = Arrays.asList("ajaxer", "dot", "org");
 			List<String> resultList = CollectionUtils.subList(l1, 1, 2);
-			List<String> expectedList = Arrays.asList("dot");
+			List<String> expectedList = Arrays.asList("foo", "bar");
 			boolean expected = true;
 
 			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
@@ -269,8 +251,7 @@ public class CollectionUtilsTest
 		@Test
 		void when_list_null()
 		{
-			List<String> l1 = null;
-			Assertions.assertNull(CollectionUtils.getNextChunk(l1, 10, 0));
+			Assertions.assertNull(CollectionUtils.getNextChunk(null, 10, 0));
 		}
 
 		@Test
@@ -311,15 +292,10 @@ public class CollectionUtilsTest
 	class Reverse
 	{
 		@Test
-		void when_list_null()
+		void when_list_blank()
 		{
-			List<String> l1 = null;
-			Assertions.assertNull(CollectionUtils.reverse(l1));
-		}
+			Assertions.assertNull(CollectionUtils.reverse(null));
 
-		@Test
-		void when_list_empty()
-		{
 			List<String> l1 = new ArrayList<>();
 			List<String> resultList = CollectionUtils.reverse(l1);
 			List<String> expectedList = new ArrayList<>();
@@ -355,15 +331,10 @@ public class CollectionUtilsTest
 	class AsArrayList
 	{
 		@Test
-		void when_array_null()
+		void when_array_blank()
 		{
-			String[] array = null;
-			Assertions.assertNull(CollectionUtils.asArrayList(array));
-		}
+			Assertions.assertNull(CollectionUtils.asArrayList(null));
 
-		@Test
-		void when_array_empty()
-		{
 			String[] array = {};
 			List<String> resultList = CollectionUtils.asArrayList(array);
 			List<String> expectedList = new ArrayList<>();
