@@ -72,7 +72,7 @@ public class DesEncoder implements Encoder
 
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
-			byte[] cipherBytes = cipher.doFinal(Base64.getDecoder().decode(message.getBytes()));
+			byte[] cipherBytes = cipher.doFinal(Base64.getDecoder().decode(message));
 
 			return new String(cipherBytes);
 
