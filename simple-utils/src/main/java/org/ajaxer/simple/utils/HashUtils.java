@@ -25,6 +25,12 @@ public class HashUtils
 	public static final String SHA_256 = "SHA-256";
 	public static final String SHA_384 = "SHA-384";
 	public static final String SHA_512 = "SHA-512";
+	public static final String SHA3_224 = "SHA3-224";
+	public static final String SHA3_256 = "SHA3-256";
+	public static final String SHA3_384 = "SHA3-384";
+	public static final String SHA3_512 = "SHA3-512";
+
+	//with password
 	public static final String HMAC_SHA1 = "HmacSHA1";
 	public static final String HMAC_SHA224 = "HmacSHA224";
 	public static final String HMAC_SHA256 = "HmacSHA256";
@@ -56,7 +62,7 @@ public class HashUtils
 			MessageDigest digest = MessageDigest.getInstance(encodeType);
 
 			byte[] byteArray = new byte[FileUtils.ONE_BYTE];
-			int bytesCount = 0;
+			int bytesCount;
 			while ((bytesCount = inputStream.read(byteArray)) != -1)
 			{
 				digest.update(byteArray, 0, bytesCount);
@@ -142,6 +148,38 @@ public class HashUtils
 	public static String getSHA512Hash(String msg)
 	{
 		return getHash(msg, SHA_512);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_224Hash(String msg)
+	{
+		return getHash(msg, SHA3_224);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_256Hash(String msg)
+	{
+		return getHash(msg, SHA3_256);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_384Hash(String msg)
+	{
+		return getHash(msg, SHA3_384);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_512Hash(String msg)
+	{
+		return getHash(msg, SHA3_512);
 	}
 
 	/**
