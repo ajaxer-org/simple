@@ -24,4 +24,3 @@ hs_err_pid*
 .idea/workspace.xml
 .flattened-pom.xml
 target/
-effective-pom.xml
