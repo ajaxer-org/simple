@@ -321,6 +321,14 @@ public class HashUtilsTest
 			Assertions.assertEquals(128, result1.length());
 			Assertions.assertTrue(result2.equals(result1));
 		}
+
+		@Test
+		void getSHA512Hash_t2()
+		{
+			String message = "12345";
+			String key = "some-key-with_@#$(&*--special-chars";
+			log.info("result1: {}", HashUtils.getSHA512Hash(message, key));
+		}
 	}
 
 	@Nested
