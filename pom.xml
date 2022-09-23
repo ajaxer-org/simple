@@ -53,8 +53,8 @@
     <build>
         <plugins>
             <!-- flatten-maven-plugin -->
-            <!--<plugin>
-                &lt;!&ndash; https://mvnrepository.com/artifact/org.codehaus.mojo/flatten-maven-plugin &ndash;&gt;
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/flatten-maven-plugin -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>${version.flatten}</version>
@@ -78,7 +78,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <!-- maven-surefire-plugin -->
             <plugin>
