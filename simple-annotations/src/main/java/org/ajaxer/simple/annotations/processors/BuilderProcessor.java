@@ -24,6 +24,7 @@ import static javax.lang.model.element.ElementKind.FIELD;
  * @version 2022-09-18
  * @since 0.0.2
  */
+@SuppressWarnings("unused")
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes("org.ajaxer.simple.annotations.Builder")
@@ -50,6 +51,7 @@ public class BuilderProcessor extends AbstractProcessor
 		//get all getters
 		List<? extends Element> fields = element.getEnclosedElements().stream().filter(e -> FIELD.equals(e.getKind())).collect(Collectors.toList());
 
+		//noinspection CommentedOutCode
 		try (PrintWriter writer = new PrintWriter(processingEnv.getFiler().createSourceFile(builderFullName).openWriter()))
 		{
 			//package org.ajaxer.package;
