@@ -1,6 +1,5 @@
 package model;
 
-import lombok.Setter;
 import org.ajaxer.simple.annotations.BuilderProperty;
 
 /**
