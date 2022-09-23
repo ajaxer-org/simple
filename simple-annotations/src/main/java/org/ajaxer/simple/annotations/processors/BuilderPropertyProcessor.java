@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
  * @version 2022-09-23
  * @since 0.0.2
  */
+@SuppressWarnings("unused")
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes("org.ajaxer.simple.annotations.BuilderProperty")
@@ -106,10 +107,7 @@ public class BuilderPropertyProcessor extends AbstractProcessor
 			out.print("public " + simpleClassName + " build() { return object; }");
 			out.println();
 
-			setterMap.entrySet().forEach(setter -> {
-				String methodName = setter.getKey();
-				String argumentType = setter.getValue();
-
+			setterMap.forEach((methodName, argumentType) -> {
 				out.print("public " + builderSimpleClassName + " " + methodName + "(" + argumentType + " value) ");
 				out.print("{ object." + methodName + "(value); return this; }");
 				out.println();
