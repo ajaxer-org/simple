@@ -24,10 +24,10 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>simple-utils</artifactId>
+    <artifactId>simple-annotations</artifactId>
 
-    <name>Simple Utils</name>
-    <description>Simple and lightweight library to overcome complex task</description>
+    <name>Simple Annotations</name>
+    <description>Simple annotations</description>
     <url>https://github.com/ajaxer-org/simple</url>
 
     <packaging>jar</packaging>
@@ -45,7 +45,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.ajaxer.simple.utils.Application</mainClass>
+                            <mainClass>org.ajaxer.simple.annotations.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -55,36 +55,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ajaxer</groupId>
-            <artifactId>simple-annotations</artifactId>
-            <version>0.0.2</version>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-        </dependency>
     </dependencies>
+
 </project>

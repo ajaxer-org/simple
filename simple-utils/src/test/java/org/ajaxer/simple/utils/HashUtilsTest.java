@@ -153,6 +153,78 @@ public class HashUtilsTest
 			Assertions.assertTrue(result2.equals(result1));
 			Assertions.assertTrue(result1.equals(actual));
 		}
+
+		@Test
+		void with_sha3_224_hash()
+		{
+			// https://emn178.github.io/online-tools/sha3_224.html
+			String actual = "bd1b1777678b750f2017d959e1283e53efbe94048cc5a9fa45929f9a";
+
+			String result1 = HashUtils.getHash(message, HashUtils.SHA3_224);
+			String result2 = HashUtils.getSHA3_224Hash(message);
+			log.info("result1: {}", result1);
+			log.info("result2: {}", result2);
+
+			Assertions.assertNotNull(result1);
+			Assertions.assertNotNull(result2);
+			Assertions.assertEquals(56, result1.length());
+			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertTrue(result1.equals(actual));
+		}
+
+		@Test
+		void with_sha3_256_hash()
+		{
+			// https://emn178.github.io/online-tools/sha3_256.html
+			String actual = "a1b9aa5f37eeadd294fad92c29098837848aea6e793c5a62126f530a7614b61d";
+
+			String result1 = HashUtils.getHash(message, HashUtils.SHA3_256);
+			String result2 = HashUtils.getSHA3_256Hash(message);
+			log.info("result1: {}", result1);
+			log.info("result2: {}", result2);
+
+			Assertions.assertNotNull(result1);
+			Assertions.assertNotNull(result2);
+			Assertions.assertEquals(64, result1.length());
+			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertTrue(result1.equals(actual));
+		}
+
+		@Test
+		void with_sha3_384_hash()
+		{
+			// https://emn178.github.io/online-tools/sha3_384.html
+			String actual = "f6f7297f2d2d2084dec101a0009a42dc41eab6a781e2d7fd8c709d8a513adfca9381c95ee3aa8b0c8fc13358ace7ad78";
+
+			String result1 = HashUtils.getHash(message, HashUtils.SHA3_384);
+			String result2 = HashUtils.getSHA3_384Hash(message);
+			log.info("result1: {}", result1);
+			log.info("result2: {}", result2);
+
+			Assertions.assertNotNull(result1);
+			Assertions.assertNotNull(result2);
+			Assertions.assertEquals(96, result1.length());
+			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertTrue(result1.equals(actual));
+		}
+
+		@Test
+		void getSHA3_512Hash()
+		{
+			// https://emn178.github.io/online-tools/sha3_512.html
+			String actual = "474380591ad2bfcec11d393ee140e54a80be48accd2b4d102e7b79d0df39d29f9bedd81da3ae18390031260486ddab6c88edf30a828761db581625f87ae94ed8";
+
+			String result1 = HashUtils.getHash(message, HashUtils.SHA3_512);
+			String result2 = HashUtils.getSHA3_512Hash(message);
+			log.info("result1: {}", result1);
+			log.info("result2: {}", result2);
+
+			Assertions.assertNotNull(result1);
+			Assertions.assertNotNull(result2);
+			Assertions.assertEquals(128, result1.length());
+			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertTrue(result1.equals(actual));
+		}
 	}
 
 	@Nested
@@ -181,7 +253,7 @@ public class HashUtilsTest
 		}
 
 		@Test
-		void with_sha1_hash()
+		void getSHA1Hash()
 		{
 			String result1 = HashUtils.getHash(message, key, HashUtils.HMAC_SHA1);
 			String result2 = HashUtils.getSHA1Hash(message, key);
@@ -195,7 +267,7 @@ public class HashUtilsTest
 		}
 
 		@Test
-		void with_sha224_hash()
+		void getSHA224Hash()
 		{
 			String result1 = HashUtils.getHash(message, key, HashUtils.HMAC_SHA224);
 			String result2 = HashUtils.getSHA224Hash(message, key);
@@ -209,7 +281,7 @@ public class HashUtilsTest
 		}
 
 		@Test
-		void with_sha256_hash()
+		void getSHA256Hash()
 		{
 			String result1 = HashUtils.getHash(message, key, HashUtils.HMAC_SHA256);
 			String result2 = HashUtils.getSHA256Hash(message, key);
@@ -223,7 +295,7 @@ public class HashUtilsTest
 		}
 
 		@Test
-		void with_sha384_hash()
+		void getSHA384Hash()
 		{
 			String result1 = HashUtils.getHash(message, key, HashUtils.HMAC_SHA384);
 			String result2 = HashUtils.getSHA384Hash(message, key);
@@ -237,7 +309,7 @@ public class HashUtilsTest
 		}
 
 		@Test
-		void with_sha512_hash()
+		void getSHA512Hash()
 		{
 			String result1 = HashUtils.getHash(message, key, HashUtils.HMAC_SHA512);
 			String result2 = HashUtils.getSHA512Hash(message, key);
@@ -248,6 +320,14 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(128, result1.length());
 			Assertions.assertTrue(result2.equals(result1));
+		}
+
+		@Test
+		void getSHA512Hash_t2()
+		{
+			String message = "12345";
+			String key = "some-key-with_@#$(&*--special-chars";
+			log.info("result1: {}", HashUtils.getSHA512Hash(message, key));
 		}
 	}
 

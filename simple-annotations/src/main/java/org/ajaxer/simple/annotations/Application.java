@@ -1,9 +1,9 @@
-package org.ajaxer.simple.utils;
+package org.ajaxer.simple.annotations;
 
 /**
  * @author Shakir
- * @version 2022-08-22
- * @since v0.0.1
+ * @version 2022-09-18
+ * @since 0.0.2
  */
 public class Application
 {
