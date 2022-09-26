@@ -21,11 +21,11 @@
     <parent>
         <groupId>org.ajaxer</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.5</version>
     </parent>
 
     <artifactId>simple</artifactId>
-    <version>${revision}</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <modules>
         <module>simple-utils</module>
@@ -40,68 +40,15 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.2-SNAPSHOT</revision>
-
         <log4j2.console.pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1.}.%M():%L]%n%msg%n%n</log4j2.console.pattern>
 
         <!-- versions -->
-        <version.flatten>1.3.0</version.flatten>
         <version.log4j2>2.18.0</version.log4j2>
     </properties>
 
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <!--maven-jar-plugin-->
-                <plugin>
-                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.2</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <mainClass>com.path.to.MainClass</mainClass>
-                                <addDefaultImplementationEntries>
-                                    true
-                                </addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
-            <!-- flatten-maven-plugin -->
-            <plugin>
-                <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/flatten-maven-plugin -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <version>${version.flatten}</version>
-                <configuration>
-                    <updatePomFile>true</updatePomFile>
-                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>flatten</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>flatten.clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- maven-surefire-plugin -->
             <plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
@@ -123,6 +70,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
+        <profile>
+            <id>release</id>
+        </profile>
     </profiles>
 
     <issueManagement>
@@ -131,10 +81,10 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/ajaxer-org/simple.git</connection>
-        <developerConnection>scm:git:ssh://github.com:ajaxer-org/simple.git</developerConnection>
-        <url>https://github.com/ajaxer-org/simple</url>
-        <tag>v${project.version}</tag>
+        <connection>scm:git:https://github.com/ajaxer-org/simple.git</connection>
+        <developerConnection>scm:git:https://github.com/ajaxer-org/simple.git</developerConnection>
+        <url>https://github.com/ajaxer-org/simple/</url>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencyManagement>

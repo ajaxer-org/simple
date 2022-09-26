@@ -21,7 +21,7 @@
     <parent>
         <artifactId>simple</artifactId>
         <groupId>org.ajaxer</groupId>
-        <version>${revision}</version>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>simple-utils</artifactId>
