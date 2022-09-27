@@ -1,4 +1,4 @@
-package model;
+package org.ajaxer.simple.annotations.dtos;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

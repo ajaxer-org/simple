@@ -10,8 +10,11 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ExecutableType;
+import javax.lang.model.util.ElementFilter;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
@@ -38,6 +41,8 @@ public class BuilderPropertyProcessor extends AbstractProcessor
 		for (TypeElement annotation : annotations)
 		{
 			Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(annotation);
+
+			annotatedElements.forEach(annotatedElement -> checkForDefaultConstructor(((TypeElement) annotatedElement.getEnclosingElement())));
 
 			Map<Boolean, List<Element>> annotatedMethods = annotatedElements
 					.stream()
@@ -71,6 +76,16 @@ public class BuilderPropertyProcessor extends AbstractProcessor
 			}
 		}
 		return true;
+	}
+
+	private void checkForDefaultConstructor(TypeElement type)
+	{
+		for (ExecutableElement cons : ElementFilter.constructorsIn(type.getEnclosedElements()))
+		{
+			if (cons.getParameters().isEmpty()) return;
+		}
+		// Couldn't find any default constructor here
+		processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, type.getQualifiedName() + " is missing a default constructor", type);
 	}
 
 	private void writeBuilderFile(String className, Map<String, String> setterMap) throws IOException

@@ -1,4 +1,4 @@
-package model;
+package org.ajaxer.simple.annotations.dtos;
 
 import org.ajaxer.simple.annotations.Builder;
 

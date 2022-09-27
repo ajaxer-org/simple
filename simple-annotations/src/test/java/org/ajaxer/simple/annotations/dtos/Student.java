@@ -1,4 +1,4 @@
-package model;
+package org.ajaxer.simple.annotations.dtos;
 
 import org.ajaxer.simple.annotations.BuilderProperty;
 
@@ -12,6 +12,13 @@ public class Student
 	private String name;
 	private String subject;
 	private String rollNumber;
+
+	public Student(String name, String subject, String rollNumber)
+	{
+		this.name = name;
+		this.subject = subject;
+		this.rollNumber = rollNumber;
+	}
 
 	public String getName()
 	{
