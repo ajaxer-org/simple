@@ -13,6 +13,8 @@ public class Student
 	private String subject;
 	private String rollNumber;
 
+	public Student() {}
+
 	public Student(String name, String subject, String rollNumber)
 	{
 		this.name = name;
@@ -25,7 +27,7 @@ public class Student
 		return name;
 	}
 
-	@BuilderProperty
+//	@BuilderProperty
 	public void setName(String name)
 	{
 		this.name = name;
@@ -36,7 +38,7 @@ public class Student
 		return subject;
 	}
 
-	@BuilderProperty
+//	@BuilderProperty
 	public void setSubject(String subject)
 	{
 		this.subject = subject;
@@ -47,7 +49,7 @@ public class Student
 		return rollNumber;
 	}
 
-	@BuilderProperty
+//	@BuilderProperty
 	public void setRollNumber(String rollNumber)
 	{
 		this.rollNumber = rollNumber;
