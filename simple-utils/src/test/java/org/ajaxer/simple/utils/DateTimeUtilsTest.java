@@ -21,7 +21,7 @@ public class DateTimeUtilsTest
 	{
 		long milli = 222_222_000L;
 		long result = DateTimeUtils.addMilliSeconds(new Date(milli), 222).getTime();
-		log.warn("result: {}", result);
+		log.info("result: {}", result);
 		long expected = 222_222_222L;
 		Assertions.assertEquals(expected, result);
 	}
