@@ -3,7 +3,7 @@ package org.ajaxer.simple.jdbc;
 /**
  * @author Shakir
  * @version 2022-10-26
- * @since 0.0.2
+ * @since 0.0.3
  */
 public class Application
 {
