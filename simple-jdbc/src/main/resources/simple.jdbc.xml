@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
     <resources>
         <resource name="mysql">
@@ -6,6 +6,11 @@
             <jdbc.url>jdbc:mysql</jdbc.url>
             <jdbc.username>mysql_db_username</jdbc.username>
             <jdbc.password>mysql_db_password</jdbc.password>
+
+            <properties>
+                <property key="show_sql" value="true"/>
+                <property key="enable_transaction" value="true"/>
+            </properties>
         </resource>
 
         <resource name="h2-db-in-mem">
@@ -13,6 +18,14 @@
             <jdbc.url>jdbc:h2</jdbc.url>
             <jdbc.username>h2_db_username</jdbc.username>
             <jdbc.password>h2_db_password</jdbc.password>
+
+            <properties>
+                <property key="sql.print" value="false"/>
+                <property key="transaction.enable" value="false"/>
+                <property key="jdbc.pool.enable" value="false"/>
+                <property key="jdbc.pool.min_size" value="2"/>
+                <property key="jdbc.pool.max_size" value="10"/>
+            </properties>
         </resource>
     </resources>
 </configuration>

@@ -1,6 +1,7 @@
 package org.ajaxer.simple.jdbc;
 
 import org.ajaxer.simple.jdbc.config.Configuration;
+import org.ajaxer.simple.jdbc.config.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -104,7 +105,10 @@ public class ApplicationTest
 		Configuration configuration = (Configuration) jaxbUnmarshaller.unmarshal(xmlFile);
 		Assertions.assertNotNull(configuration);
 
-		configuration.getResourceList().forEach(System.out::println);
+		configuration.getResourceList().forEach(Resource::overrideUserProperties);
+		configuration.getResourceList().forEach(r -> System.out.println(r.getProperties()));
+
+//		configuration.getResourceList().forEach(System.out::println);
 
 		System.out.println(configuration);
 	}

@@ -2,7 +2,6 @@ package org.ajaxer.simple.jdbc.config;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,7 +17,6 @@ import java.util.List;
  * @version 2022-11-08
  */
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 @XmlRootElement(name = "configuration")
