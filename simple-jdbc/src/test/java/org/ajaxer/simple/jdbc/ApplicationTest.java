@@ -1,5 +1,6 @@
 package org.ajaxer.simple.jdbc;
 
+import org.ajaxer.simple.jdbc.config.Configuration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -8,8 +9,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -85,5 +89,23 @@ public class ApplicationTest
 				}
 			}
 		}
+	}
+
+	@Test
+	void xmlToObject() throws Exception
+	{
+		File xmlFile = new File(Application.class.getClassLoader().getResource(FILENAME).getFile());
+
+		JAXBContext jaxbContext;
+		jaxbContext = JAXBContext.newInstance(Configuration.class);
+
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+		Configuration configuration = (Configuration) jaxbUnmarshaller.unmarshal(xmlFile);
+		Assertions.assertNotNull(configuration);
+
+		configuration.getResourceList().forEach(System.out::println);
+
+		System.out.println(configuration);
 	}
 }
