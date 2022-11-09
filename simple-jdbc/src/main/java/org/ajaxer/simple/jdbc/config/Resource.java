@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Properties;
@@ -41,20 +43,32 @@ public class Resource implements Serializable
 	@XmlElement(name = "property")
 	private List<Property> userProperties;
 
-	private final Properties properties;
+	private Properties defaultProperties;
 
-	public Resource()
+	public void loadDefaultProperties()
 	{
-		this.properties = new Properties();
-		this.properties.setProperty("show_sql", String.valueOf(false));
-		this.properties.setProperty("enable_transaction", String.valueOf(false));
+		try (InputStream inputStream = Resource.class.getClassLoader().getResourceAsStream(Constants.FILE_DEFAULT_PROPERTIES))
+		{
+			this.defaultProperties = new Properties();
+			this.defaultProperties.load(inputStream);
+		} catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 
 	public void overrideUserProperties()
 	{
+		loadDefaultProperties();
+
 		if (CollectionUtils.isNotBlank(this.userProperties))
 		{
-			userProperties.forEach(p -> this.properties.setProperty(p.getKey(), p.getValue()));
+			this.defaultProperties.stringPropertyNames().forEach(propName -> this.userProperties
+					.stream()
+					.filter(up -> up.getKey().equals(propName))
+					.findFirst()
+					.ifPresent(property -> this.defaultProperties.setProperty(propName, property.getValue()))
+			);
 		}
 	}
 }

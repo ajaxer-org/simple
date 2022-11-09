@@ -8,8 +8,9 @@
             <jdbc.password>mysql_db_password</jdbc.password>
 
             <properties>
-                <property key="show_sql" value="true"/>
-                <property key="enable_transaction" value="true"/>
+                <property key="transaction.enable" value="false"/>
+                <property key="transaction.enable" value="true"/>
+                <property key="transaction.enable" value="shakir"/>
             </properties>
         </resource>
 

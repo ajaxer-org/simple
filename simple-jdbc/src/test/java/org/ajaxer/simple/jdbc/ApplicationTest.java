@@ -1,6 +1,7 @@
 package org.ajaxer.simple.jdbc;
 
 import org.ajaxer.simple.jdbc.config.Configuration;
+import org.ajaxer.simple.jdbc.config.Constants;
 import org.ajaxer.simple.jdbc.config.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,6 @@ import java.io.InputStream;
  */
 public class ApplicationTest
 {
-	private static final String FILENAME = "simple.jdbc.xml";
-
 	@Test
 	void domParser() throws Exception
 	{
@@ -38,7 +37,7 @@ public class ApplicationTest
 		// parse XML file
 		DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-		try (InputStream inputStream = Application.class.getClassLoader().getResourceAsStream(FILENAME))
+		try (InputStream inputStream = Application.class.getClassLoader().getResourceAsStream(Constants.FILE_JDBC_XML))
 		{
 			Document document = documentBuilder.parse(inputStream);
 
@@ -54,7 +53,7 @@ public class ApplicationTest
 			System.out.println("------ ------");
 
 			//
-			NodeList resourceFactory = document.getElementsByTagName("resourceFactory");
+			NodeList resourceFactory = document.getElementsByTagName("resources");
 			Assertions.assertNotNull(resourceFactory);
 			Assertions.assertEquals(1, resourceFactory.getLength());
 
@@ -95,7 +94,7 @@ public class ApplicationTest
 	@Test
 	void xmlToObject() throws Exception
 	{
-		File xmlFile = new File(Application.class.getClassLoader().getResource(FILENAME).getFile());
+		File xmlFile = new File(Application.class.getClassLoader().getResource(Constants.FILE_JDBC_XML).getFile());
 
 		JAXBContext jaxbContext;
 		jaxbContext = JAXBContext.newInstance(Configuration.class);
@@ -106,10 +105,18 @@ public class ApplicationTest
 		Assertions.assertNotNull(configuration);
 
 		configuration.getResourceList().forEach(Resource::overrideUserProperties);
-		configuration.getResourceList().forEach(r -> System.out.println(r.getProperties()));
+		configuration.getResourceList().forEach(r -> System.out.println(r.getDefaultProperties()));
 
 //		configuration.getResourceList().forEach(System.out::println);
 
 		System.out.println(configuration);
+	}
+
+	@Test
+	void connection()
+	{
+		/*Class.forName(resource.getDriverName());
+
+		DataResource dr = DriverManager.getConnection(resource.getUrl(), resource.getUsername(), resource.getPassword());*/
 	}
 }
