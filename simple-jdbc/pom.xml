@@ -39,6 +39,14 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.ajaxer</groupId>
             <artifactId>simple-utils</artifactId>

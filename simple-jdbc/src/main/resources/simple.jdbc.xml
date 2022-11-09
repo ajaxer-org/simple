@@ -2,10 +2,11 @@
 <configuration>
     <resources>
         <resource name="mysql">
-            <jdbc.driverName>com.mysql</jdbc.driverName>
-            <jdbc.url>jdbc:mysql</jdbc.url>
-            <jdbc.username>mysql_db_username</jdbc.username>
-            <jdbc.password>mysql_db_password</jdbc.password>
+            <!--<jdbc.driverName>com.mysql.cj.jdbc.Drive</jdbc.driverName>-->
+            <jdbc.driverName>com.mysql.jdbc.Driver</jdbc.driverName>
+            <jdbc.url>jdbc:mysql://localhost:3306/</jdbc.url>
+            <jdbc.username>root</jdbc.username>
+            <jdbc.password>Apple#1M</jdbc.password>
 
             <properties>
                 <property key="transaction.enable" value="false"/>

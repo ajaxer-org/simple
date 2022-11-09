@@ -4,6 +4,8 @@ import lombok.Getter;
 import org.ajaxer.simple.jdbc.ConnectionManager;
 import org.ajaxer.simple.jdbc.DataResource;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -22,10 +24,9 @@ public class ConnectionManagerImpl implements ConnectionManager
 
 	public DataResource getDataResource() throws ClassNotFoundException, SQLException
 	{
-		/*Class.forName(resource.getDriverName());
+		Class.forName(resource.getDriverName());
+		Connection connection = DriverManager.getConnection(resource.getUrl(), resource.getUsername(), resource.getPassword());
 
-		DataResource dr = DriverManager.getConnection(resource.getUrl(), resource.getUsername(), resource.getPassword());
-		*/
-		return null;
+		return new MysqlDataResource(connection);
 	}
 }
