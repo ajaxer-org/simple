@@ -2,6 +2,7 @@ package org.ajaxer.simple.jdbc.config;
 
 import lombok.Getter;
 import org.ajaxer.simple.jdbc.ConnectionManager;
+import org.ajaxer.simple.jdbc.DataResource;
 
 import java.sql.SQLException;
 

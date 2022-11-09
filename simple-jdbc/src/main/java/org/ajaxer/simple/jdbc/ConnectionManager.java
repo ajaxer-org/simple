@@ -1,7 +1,5 @@
 package org.ajaxer.simple.jdbc;
 
-import org.ajaxer.simple.jdbc.config.DataResource;
-
 import java.sql.SQLException;
 
 /**

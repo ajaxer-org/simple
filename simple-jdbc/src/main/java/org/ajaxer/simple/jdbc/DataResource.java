@@ -1,4 +1,4 @@
-package org.ajaxer.simple.jdbc.config;
+package org.ajaxer.simple.jdbc;
 
 import java.sql.Connection;
 
@@ -8,5 +8,4 @@ import java.sql.Connection;
  */
 public interface DataResource extends Connection
 {
-//	void hello();
 }
