@@ -1,8 +1,8 @@
 package org.ajaxer.simple.jdbc;
 
-import org.ajaxer.simple.jdbc.config.Configuration;
 import org.ajaxer.simple.jdbc.config.Constants;
-import org.ajaxer.simple.jdbc.config.Resource;
+import org.ajaxer.simple.jdbc.config.xml.Configuration;
+import org.ajaxer.simple.jdbc.config.xml.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;

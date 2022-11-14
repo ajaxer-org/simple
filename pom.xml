@@ -46,7 +46,6 @@
         <version.log4j2>2.18.0</version.log4j2>
     </properties>
 
-
     <build>
         <plugins>
             <!-- maven-surefire-plugin -->

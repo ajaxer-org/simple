@@ -21,52 +21,19 @@
         <Property name="log_pattern">[%level] %d{yyy-MM-dd HH:mm:ss.SSS} [%t] %c{1.}.%M():%L %n%msg%n%n</Property>
         <Property name="filename">${user.home}/logs/${project.groupId}/${project.artifactId}</Property>
     </Properties>
+
     <Appenders>
         <Appender type="Console" name="defaultConsole">
-            <PatternLayout pattern="[%level] %d{HH:mm:ss.SSS} [%t] %c{1.}.%M():%L - %n%msg%n%n"/>
+            <PatternLayout pattern="[%level] %d{HH:mm:ss.SSS} [%t] %c{1.}.%M():%L: %msg%n"/>
         </Appender>
-
-        <!--<Appender type="File" name="defaultFile" fileName="${filename}.log">
-            <PatternLayout pattern="${log_pattern}"/>
-        </Appender>-->
-
-        <RollingFile name="defaultRollingFile" fileName="${filename}.log"
-                     filePattern="${filename}_%d{yyyy-MM-dd}-%i.log.gz">
-            <!--<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
-            <PatternLayout pattern="${log_pattern}"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="10MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="100"/>
-        </RollingFile>
     </Appenders>
 
     <Loggers>
-        <!-- [START] hibernate-specific-->
-        <Logger name="org.hibernate" level="warn" additivity="false">
-            <!-- Log everything in hibernate -->
-            <AppenderRef ref="defaultConsole"/>
-        </Logger>
-        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
-            <!-- Log all SQL statements -->
-            <AppenderRef ref="defaultConsole"/>
-        </Logger>
-        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
-            <!-- Log all SQL parameters binding -->
-            <appender-ref ref="defaultConsole"/>
-        </logger>
-        <!-- [END] hibernate-specific-->
-
-        <!-- drops all DEBUG and TRACE logging done by any class in this package -->
-        <Logger name="org.springframework" level="INFO"/>
-
         <!-- log only ERROR and FATAL logging by classes in this package -->
         <Logger name="com.another.project" level="ERROR"/>
 
         <!-- by default, all log events are written to myFile -->
         <Root level="debug">
-            <AppenderRef ref="defaultRollingFile" level="WARN"/>
             <AppenderRef ref="defaultConsole" level="DEBUG"/>
         </Root>
     </Loggers>

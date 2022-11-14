@@ -1,7 +1,8 @@
-package org.ajaxer.simple.jdbc.config;
+package org.ajaxer.simple.jdbc.config.xml;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.ajaxer.simple.jdbc.config.Constants;
 import org.ajaxer.simple.utils.CollectionUtils;
 
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,7 +1,5 @@
 package org.ajaxer.simple.jdbc;
 
-import java.sql.SQLException;
-
 /**
  * @author Shakir
  * @version 2022-10-27
@@ -9,5 +7,5 @@ import java.sql.SQLException;
  */
 public interface ConnectionManager
 {
-	public DataResource getDataResource() throws ClassNotFoundException, SQLException;
+	DataResource getDataResource();
 }

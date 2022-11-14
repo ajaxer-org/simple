@@ -1,4 +1,4 @@
-package org.ajaxer.simple.jdbc.config;
+package org.ajaxer.simple.jdbc.config.xml;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

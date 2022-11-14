@@ -2,6 +2,7 @@ package org.ajaxer.simple.jdbc.config;
 
 import org.ajaxer.simple.jdbc.ConnectionManager;
 import org.ajaxer.simple.jdbc.SimpleJdbcConfiguration;
+import org.ajaxer.simple.jdbc.config.xml.Configuration;
 import org.ajaxer.simple.jdbc.exception.SimpleJdbcException;
 
 import javax.xml.bind.JAXBContext;

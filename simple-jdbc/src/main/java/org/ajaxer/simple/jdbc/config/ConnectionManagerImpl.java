@@ -3,6 +3,8 @@ package org.ajaxer.simple.jdbc.config;
 import lombok.Getter;
 import org.ajaxer.simple.jdbc.ConnectionManager;
 import org.ajaxer.simple.jdbc.DataResource;
+import org.ajaxer.simple.jdbc.config.xml.Resource;
+import org.ajaxer.simple.jdbc.exception.SimpleJdbcException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,11 +24,23 @@ public class ConnectionManagerImpl implements ConnectionManager
 		this.resource = resource;
 	}
 
-	public DataResource getDataResource() throws ClassNotFoundException, SQLException
+	public DataResource getDataResource()
 	{
-		Class.forName(resource.getDriverName());
-		Connection connection = DriverManager.getConnection(resource.getUrl(), resource.getUsername(), resource.getPassword());
+		try
+		{
+			Class.forName(resource.getDriverName());
+		} catch (ClassNotFoundException classNotFoundException)
+		{
+			throw new SimpleJdbcException("Unable find driver class", classNotFoundException);
+		}
 
-		return new MysqlDataResource(connection);
+		try
+		{
+			Connection connection = DriverManager.getConnection(resource.getUrl(), resource.getUsername(), resource.getPassword());
+			return new MysqlDataResource(connection);
+		} catch (SQLException sqlException)
+		{
+			throw new SimpleJdbcException("sqlException", sqlException);
+		}
 	}
 }
