@@ -15,10 +15,10 @@ public class MathUtils
 	public static byte min(byte... values)
 	{
 		byte min = values[0];
+
 		for (byte val : values)
-		{
 			min = (byte) Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -29,9 +29,8 @@ public class MathUtils
 	{
 		byte max = values[0];
 		for (byte value : values)
-		{
 			max = (byte) Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -42,9 +41,8 @@ public class MathUtils
 	{
 		short min = values[0];
 		for (short val : values)
-		{
 			min = (short) Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -55,9 +53,8 @@ public class MathUtils
 	{
 		short max = values[0];
 		for (short value : values)
-		{
 			max = (short) Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -68,9 +65,8 @@ public class MathUtils
 	{
 		int min = values[0];
 		for (int val : values)
-		{
 			min = Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -81,9 +77,8 @@ public class MathUtils
 	{
 		int max = values[0];
 		for (int value : values)
-		{
 			max = Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -94,9 +89,8 @@ public class MathUtils
 	{
 		long min = values[0];
 		for (long val : values)
-		{
 			min = Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -107,9 +101,8 @@ public class MathUtils
 	{
 		long max = values[0];
 		for (long value : values)
-		{
 			max = Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -120,9 +113,8 @@ public class MathUtils
 	{
 		float min = values[0];
 		for (float val : values)
-		{
 			min = Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -133,9 +125,8 @@ public class MathUtils
 	{
 		float max = values[0];
 		for (float value : values)
-		{
 			max = Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -146,9 +137,8 @@ public class MathUtils
 	{
 		double min = values[0];
 		for (double val : values)
-		{
 			min = Math.min(min, val);
-		}
+
 		return min;
 	}
 
@@ -159,9 +149,8 @@ public class MathUtils
 	{
 		double max = values[0];
 		for (double value : values)
-		{
 			max = Math.max(max, value);
-		}
+
 		return max;
 	}
 
@@ -195,12 +184,9 @@ public class MathUtils
 	public static boolean equalsToAny(byte[] array, byte val)
 	{
 		for (byte e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -210,12 +196,9 @@ public class MathUtils
 	public static boolean equalsToAny(short[] array, short val)
 	{
 		for (short e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -225,12 +208,9 @@ public class MathUtils
 	public static boolean equalsToAny(int[] array, int val)
 	{
 		for (int e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -240,12 +220,9 @@ public class MathUtils
 	public static boolean equalsToAny(long[] array, long val)
 	{
 		for (long e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -255,12 +232,9 @@ public class MathUtils
 	public static boolean equalsToAny(float[] array, float val)
 	{
 		for (float e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -270,12 +244,9 @@ public class MathUtils
 	public static boolean equalsToAny(double[] array, double val)
 	{
 		for (double e : array)
-		{
 			if (e == val)
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 }
