@@ -249,4 +249,76 @@ public class MathUtils
 
 		return false;
 	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(byte val, byte... otherValues)
+	{
+		for (byte v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(short val, short... otherValues)
+	{
+		for (short v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(int val, int... otherValues)
+	{
+		for (int v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(long val, long... otherValues)
+	{
+		for (long v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(float val, float... otherValues)
+	{
+		for (float v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static boolean equalsToAny(double val, double... otherValues)
+	{
+		for (double v : otherValues)
+			if (v == val)
+				return true;
+
+		return false;
+	}
 }

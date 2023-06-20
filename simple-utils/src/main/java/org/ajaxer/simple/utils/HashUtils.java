@@ -47,10 +47,10 @@ public class HashUtils
 	private static String toHexString(byte[] bytes)
 	{
 		Formatter formatter = new Formatter();
+
 		for (byte b : bytes)
-		{
 			formatter.format("%02x", b);
-		}
+
 		return formatter.toString();
 	}
 
@@ -63,10 +63,9 @@ public class HashUtils
 
 			byte[] byteArray = new byte[FileUtils.ONE_BYTE];
 			int bytesCount;
+
 			while ((bytesCount = inputStream.read(byteArray)) != -1)
-			{
 				digest.update(byteArray, 0, bytesCount);
-			}
 
 			return toHexString(digest);
 

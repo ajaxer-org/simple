@@ -24,26 +24,19 @@ public class ExceptionUtils
 	public static void rethrow(Throwable throwable)
 	{
 		if (throwable == null)
-		{
 			throw new NullPointerException();
-		}
 
 		if (throwable instanceof RuntimeException)
-		{
 			throw (RuntimeException) throwable;
-		}
 
 		if (throwable instanceof Error)
-		{
 			throw (Error) throwable;
-		}
 
 		throw throwable;
 	}
 
 	/**
 	 * @return This method will always return null of given type.
-	 *
 	 * @since v0.0.1
 	 */
 	public static <T> T rethrow(Throwable throwable, @SuppressWarnings("unused") Class<T> tClass)
@@ -57,30 +50,28 @@ public class ExceptionUtils
 	 */
 	public static List<String> getStackTraces(Throwable throwable, String packageFilter)
 	{
-		if (throwable == null) return null;
+		if (throwable == null)
+			return null;
 
 		List<String> traces = new ArrayList<>();
 		if (StringUtils.isNotBlank(throwable.getMessage()))
-		{
 			traces.add(throwable.getMessage());
-		}
 
 		StackTraceElement[] stackTraceElements = throwable.getStackTrace();
 
-		if (ArrayUtils.isBlank(stackTraceElements)) return traces;
+		if (ArrayUtils.isBlank(stackTraceElements))
+			return traces;
 
 		for (StackTraceElement stackTraceElement : stackTraceElements)
 		{
 			if (StringUtils.isBlank(packageFilter))
 			{
 				traces.add(stackTraceElement.toString());
-			} else
-			{
-				if (stackTraceElement.toString().startsWith(packageFilter))
-				{
-					traces.add(stackTraceElement.toString());
-				}
+				continue;
 			}
+
+			if (stackTraceElement.toString().contains(packageFilter))
+				traces.add(stackTraceElement.toString());
 		}
 
 		return traces;
@@ -116,9 +107,7 @@ public class ExceptionUtils
 	public static void throwWhenTrue(boolean trueCondition, Throwable throwable)
 	{
 		if (trueCondition)
-		{
 			rethrow(throwable);
-		}
 	}
 
 	/**
@@ -486,8 +475,11 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2)
 	{
-		if (o1 == null && o2 == null) throwWhenTrue(true);
-		if (o1 == null || o2 == null) return;
+		if (o1 == null && o2 == null)
+			throwWhenTrue(true);
+
+		if (o1 == null || o2 == null)
+			return;
 
 		throwWhenTrue(o1.equals(o2));
 	}
@@ -497,8 +489,11 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		if (o1 == null && o2 == null) throwWhenTrue(true, exceptionMessage);
-		if (o1 == null || o2 == null) return;
+		if (o1 == null && o2 == null)
+			throwWhenTrue(true, exceptionMessage);
+
+		if (o1 == null || o2 == null)
+			return;
 
 		throwWhenTrue(o1.equals(o2), exceptionMessage);
 	}
@@ -508,8 +503,10 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenEquals(Object o1, Object o2, Throwable throwable)
 	{
-		if (o1 == null && o2 == null) throwWhenTrue(true, throwable);
-		if (o1 == null || o2 == null) return;
+		if (o1 == null && o2 == null)
+			throwWhenTrue(true, throwable);
+		if (o1 == null || o2 == null)
+			return;
 
 		throwWhenTrue(o1.equals(o2), throwable);
 	}
@@ -519,8 +516,10 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2)
 	{
-		if (o1 == null && o2 == null) return;
-		if (o1 == null || o2 == null) throwWhenFalse(false);
+		if (o1 == null && o2 == null)
+			return;
+		if (o1 == null || o2 == null)
+			throwWhenFalse(false);
 
 		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2));
@@ -531,8 +530,10 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, String exceptionMessage)
 	{
-		if (o1 == null && o2 == null) return;
-		if (o1 == null || o2 == null) throwWhenFalse(false, exceptionMessage);
+		if (o1 == null && o2 == null)
+			return;
+		if (o1 == null || o2 == null)
+			throwWhenFalse(false, exceptionMessage);
 
 		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2), exceptionMessage);
@@ -543,8 +544,10 @@ public class ExceptionUtils
 	 */
 	public static void throwWhenNotEquals(Object o1, Object o2, Throwable throwable)
 	{
-		if (o1 == null && o2 == null) return;
-		if (o1 == null || o2 == null) throwWhenFalse(false, throwable);
+		if (o1 == null && o2 == null)
+			return;
+		if (o1 == null || o2 == null)
+			throwWhenFalse(false, throwable);
 
 		//noinspection ConstantConditions
 		throwWhenFalse(o1.equals(o2), throwable);

@@ -37,6 +37,7 @@ import java.util.Date;
  * @version 2022-08-23
  * @since v0.0.1
  */
+@SuppressWarnings("unused")
 @Log4j2
 public class DateTimeUtils
 {

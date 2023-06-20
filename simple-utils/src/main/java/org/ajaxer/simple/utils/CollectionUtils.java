@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,25 +38,30 @@ public class CollectionUtils
 	 */
 	public static <T> boolean equals(Collection<T> c1, Collection<T> c2)
 	{
-		// prevent NullPointerException
-		if (c1 == null && c2 == null) return true;
-		if (c1 == null) return false;
-		if (c2 == null) return false;
+		if (c1 == null && c2 == null)
+			return true;
 
-		if (c1.isEmpty() && c2.isEmpty()) return true;
-		if (c1.isEmpty()) return false;
-		if (c2.isEmpty()) return false;
+		if (c1 == null)
+			return false;
 
-		if (c1.size() != c2.size()) return false;
+		if (c2 == null)
+			return false;
+
+		if (c1.isEmpty() && c2.isEmpty())
+			return true;
+
+		if (c1.isEmpty())
+			return false;
+
+		if (c2.isEmpty())
+			return false;
+
+		if (c1.size() != c2.size())
+			return false;
 
 		for (int i = 0; i < c1.size(); i++)
-
-		{
 			if (!c1.equals(c2))
-			{
 				return false;
-			}
-		}
 
 		return true;
 	}
@@ -65,8 +71,8 @@ public class CollectionUtils
 	 */
 	public static <T> boolean equalsToAny(Collection<T> collection, T val)
 	{
-		// prevent NullPointerException
-		if (isBlank(collection) || val == null) return false;
+		if (isBlank(collection) || val == null)
+			return false;
 
 		for (T s : collection)
 		{
@@ -89,21 +95,13 @@ public class CollectionUtils
 			return null;
 		}
 
-		//noinspection ConstantConditions
-		if (list1.isEmpty())
-		{
+		if (isBlank(list1))
 			return list2;
-		}
 
-		if (list2.isEmpty())
-		{
+		if (isBlank(list2))
 			return list1;
-		}
 
-		for (T t : list2)
-		{
-			list1.add(t);
-		}
+		list1.addAll(list2);
 
 		return list1;
 	}
@@ -145,7 +143,8 @@ public class CollectionUtils
 
 		if (startIndex > endIndex)
 		{
-			throw new IllegalArgumentException(String.format("startIndex: [%d], cannot be greaterOrEqualsTo endIndex: [%d]", startIndex, endIndex));
+			throw new IllegalArgumentException(
+					String.format("startIndex: [%d], cannot be greaterOrEqualsTo endIndex: [%d]", startIndex, endIndex));
 		}
 
 		if (startIndex == 0 && endIndex == list.size())
@@ -209,20 +208,13 @@ public class CollectionUtils
 	public static <T> List<T> asArrayList(T[] tArray)
 	{
 		if (tArray == null)
-		{
 			return null;
-		}
 
 		if (tArray.length == 0)
-		{
 			return new ArrayList<>();
-		}
 
 		List<T> tList = new ArrayList<>();
-		for (T t : tArray)
-		{
-			tList.add(t);
-		}
+		Collections.addAll(tList, tArray);
 
 		return tList;
 	}

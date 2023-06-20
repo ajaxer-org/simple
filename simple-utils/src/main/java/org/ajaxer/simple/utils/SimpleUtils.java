@@ -35,9 +35,7 @@ public class SimpleUtils
 	public static void sleep(long milli)
 	{
 		if (milli <= 0)
-		{
 			return;
-		}
 
 		try
 		{

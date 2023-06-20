@@ -243,9 +243,8 @@ public class RandomUtils
 	{
 		boolean[] array = new boolean[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getBoolean();
-		}
+
 		return array;
 	}
 
@@ -256,9 +255,8 @@ public class RandomUtils
 	{
 		char[] array = new char[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getChar();
-		}
+
 		return array;
 	}
 
@@ -269,9 +267,8 @@ public class RandomUtils
 	{
 		byte[] array = new byte[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getByte();
-		}
+
 		return array;
 	}
 
@@ -282,9 +279,8 @@ public class RandomUtils
 	{
 		short[] array = new short[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getShort();
-		}
+
 		return array;
 	}
 
@@ -295,9 +291,8 @@ public class RandomUtils
 	{
 		int[] array = new int[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getInt();
-		}
+
 		return array;
 	}
 
@@ -308,9 +303,8 @@ public class RandomUtils
 	{
 		long[] array = new long[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getLong();
-		}
+
 		return array;
 	}
 
@@ -321,9 +315,8 @@ public class RandomUtils
 	{
 		float[] array = new float[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getFloat();
-		}
+
 		return array;
 	}
 
@@ -334,9 +327,8 @@ public class RandomUtils
 	{
 		double[] array = new double[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getDouble();
-		}
+
 		return array;
 	}
 }
