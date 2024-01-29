@@ -1,5 +1,21 @@
 package org.ajaxer.simple.utils;
 
+/*
+ * Copyright (c) 2024 ajaxer.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
@@ -98,7 +114,7 @@ public class FileUtils
 		List<String> lines = new ArrayList<>();
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
-			 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream)))
+		     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream)))
 		{
 			String line;
 			while ((line = bufferedReader.readLine()) != null)
@@ -138,26 +154,12 @@ public class FileUtils
 	public static String readFile(File file) throws IOException
 	{
 		log.debug("file: {}", file);
-		StringBuilder builder = new StringBuilder();
 
 		List<String> lines = readLines(file);
 		if (CollectionUtils.isBlank(lines))
-		{
-			return builder.toString();
-		}
+			return null;
 
-		for (int i = 0; i < lines.size(); i++)
-		{
-			builder.append(lines.get(i));
-
-			if (i + 1 != lines.size())
-			{
-				// DO NOT ADD NEW LINE AT THE END
-				builder.append(System.lineSeparator());
-			}
-		}
-
-		return builder.toString();
+		return String.join(System.lineSeparator(), lines);
 	}
 
 	/**
@@ -225,7 +227,7 @@ public class FileUtils
 		ExceptionUtils.throwWhenNull(file);
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
-			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
+		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
 		{
 			return (T) objectInputStream.readObject();
 		}
@@ -251,7 +253,7 @@ public class FileUtils
 		ExceptionUtils.throwWhenNull(file);
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
-			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
+		     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
 		{
 			objectOutputStream.writeObject(t);
 		}
@@ -280,7 +282,7 @@ public class FileUtils
 		ExceptionUtils.throwWhenNull(tClass);
 
 		try (FileInputStream fileInputStream = new FileInputStream(file);
-			 XMLDecoder xMLDecoder = new XMLDecoder(fileInputStream))
+		     XMLDecoder xMLDecoder = new XMLDecoder(fileInputStream))
 		{
 			return (T) xMLDecoder.readObject();
 		}
@@ -306,7 +308,7 @@ public class FileUtils
 		ExceptionUtils.throwWhenNull(file);
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(file);
-			 XMLEncoder xMLEncoder = new XMLEncoder(fileOutputStream))
+		     XMLEncoder xMLEncoder = new XMLEncoder(fileOutputStream))
 		{
 			xMLEncoder.writeObject(t);
 		}
@@ -429,7 +431,7 @@ public class FileUtils
 		ExceptionUtils.throwWhenFalse(target.exists(), new FileNotFoundException());
 
 		try (FileInputStream fileInputStream = new FileInputStream(source);
-			 FileOutputStream fileOutputStream = new FileOutputStream(target))
+		     FileOutputStream fileOutputStream = new FileOutputStream(target))
 		{
 			return copy(fileInputStream, fileOutputStream);
 		}
@@ -482,9 +484,7 @@ public class FileUtils
 	public static String getExtension(String text)
 	{
 		if (StringUtils.isBlank(text))
-		{
 			return null;
-		}
 
 		return text.contains(".")
 				? text.substring(text.lastIndexOf(".") + 1)
@@ -517,9 +517,7 @@ public class FileUtils
 		log.debug("file: {}, recursive: {}", file, recursive);
 
 		if (!file.exists())
-		{
 			return;
-		}
 
 		if (file.isDirectory())
 		{
@@ -529,14 +527,10 @@ public class FileUtils
 				for (File child : children)
 				{
 					if (child.isFile())
-					{
 						delete(child, false);
-					}
 
 					if (child.isDirectory() && recursive)
-					{
 						delete(child, true);
-					}
 				}
 			}
 		}

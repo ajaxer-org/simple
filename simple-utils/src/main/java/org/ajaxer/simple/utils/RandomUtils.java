@@ -1,5 +1,21 @@
 package org.ajaxer.simple.utils;
 
+/*
+ * Copyright (c) 2024 ajaxer.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -243,9 +259,8 @@ public class RandomUtils
 	{
 		boolean[] array = new boolean[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getBoolean();
-		}
+
 		return array;
 	}
 
@@ -256,9 +271,8 @@ public class RandomUtils
 	{
 		char[] array = new char[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getChar();
-		}
+
 		return array;
 	}
 
@@ -269,9 +283,8 @@ public class RandomUtils
 	{
 		byte[] array = new byte[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getByte();
-		}
+
 		return array;
 	}
 
@@ -282,9 +295,8 @@ public class RandomUtils
 	{
 		short[] array = new short[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getShort();
-		}
+
 		return array;
 	}
 
@@ -295,9 +307,8 @@ public class RandomUtils
 	{
 		int[] array = new int[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getInt();
-		}
+
 		return array;
 	}
 
@@ -308,9 +319,8 @@ public class RandomUtils
 	{
 		long[] array = new long[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getLong();
-		}
+
 		return array;
 	}
 
@@ -321,9 +331,8 @@ public class RandomUtils
 	{
 		float[] array = new float[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getFloat();
-		}
+
 		return array;
 	}
 
@@ -334,9 +343,8 @@ public class RandomUtils
 	{
 		double[] array = new double[length];
 		for (int i = 0; i < length; i++)
-		{
 			array[i] = getDouble();
-		}
+
 		return array;
 	}
 }

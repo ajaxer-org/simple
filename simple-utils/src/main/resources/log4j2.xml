@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2022-2024 ajaxer.org
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<Configuration monitorinterval="30" status="info" strict="true">
+    <Properties>
+        <Property name="log_pattern">[%level] %d{yyy-MM-dd HH:mm:ss.SSS} [%t] %c{1.}.%M():%L %n%msg%n%n</Property>
+        <Property name="filename">${user.home}/logs/${project.groupId}/${project.artifactId}</Property>
+    </Properties>
+    <Appenders>
+        <Appender type="Console" name="defaultConsole">
+            <PatternLayout pattern="[%level] %d{HH:mm:ss.SSS} [%t] %c{1.}.%M():%L - %n%msg%n%n"/>
+        </Appender>
+
+        <!--<Appender type="File" name="defaultFile" fileName="${filename}.log">
+            <PatternLayout pattern="${log_pattern}"/>
+        </Appender>-->
+
+        <RollingFile name="defaultRollingFile" fileName="${filename}.log"
+                     filePattern="${filename}_%d{yyyy-MM-dd}-%i.log.gz">
+            <!--<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
+            <PatternLayout pattern="${log_pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- [START] hibernate-specific-->
+        <Logger name="org.hibernate" level="warn" additivity="false">
+            <!-- Log everything in hibernate -->
+            <AppenderRef ref="defaultConsole"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <!-- Log all SQL statements -->
+            <AppenderRef ref="defaultConsole"/>
+        </Logger>
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+            <!-- Log all SQL parameters binding -->
+            <appender-ref ref="defaultConsole"/>
+        </logger>
+        <!-- [END] hibernate-specific-->
+
+        <!-- drops all DEBUG and TRACE logging done by any class in this package -->
+        <Logger name="org.springframework" level="INFO"/>
+
+        <!-- log only ERROR and FATAL logging by classes in this package -->
+        <Logger name="com.another.project" level="ERROR"/>
+
+        <!-- by default, all log events are written to myFile -->
+        <Root level="debug">
+            <AppenderRef ref="defaultRollingFile" level="WARN"/>
+            <AppenderRef ref="defaultConsole" level="DEBUG"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

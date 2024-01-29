@@ -1,5 +1,21 @@
 package org.ajaxer.simple.utils;
 
+/*
+ * Copyright (c) 2024 ajaxer.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import lombok.extern.log4j.Log4j2;
 
 import javax.crypto.Mac;
@@ -25,6 +41,12 @@ public class HashUtils
 	public static final String SHA_256 = "SHA-256";
 	public static final String SHA_384 = "SHA-384";
 	public static final String SHA_512 = "SHA-512";
+	public static final String SHA3_224 = "SHA3-224";
+	public static final String SHA3_256 = "SHA3-256";
+	public static final String SHA3_384 = "SHA3-384";
+	public static final String SHA3_512 = "SHA3-512";
+
+	//with password
 	public static final String HMAC_SHA1 = "HmacSHA1";
 	public static final String HMAC_SHA224 = "HmacSHA224";
 	public static final String HMAC_SHA256 = "HmacSHA256";
@@ -41,10 +63,10 @@ public class HashUtils
 	private static String toHexString(byte[] bytes)
 	{
 		Formatter formatter = new Formatter();
+
 		for (byte b : bytes)
-		{
 			formatter.format("%02x", b);
-		}
+
 		return formatter.toString();
 	}
 
@@ -56,11 +78,10 @@ public class HashUtils
 			MessageDigest digest = MessageDigest.getInstance(encodeType);
 
 			byte[] byteArray = new byte[FileUtils.ONE_BYTE];
-			int bytesCount = 0;
+			int bytesCount;
+
 			while ((bytesCount = inputStream.read(byteArray)) != -1)
-			{
 				digest.update(byteArray, 0, bytesCount);
-			}
 
 			return toHexString(digest);
 
@@ -142,6 +163,38 @@ public class HashUtils
 	public static String getSHA512Hash(String msg)
 	{
 		return getHash(msg, SHA_512);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_224Hash(String msg)
+	{
+		return getHash(msg, SHA3_224);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_256Hash(String msg)
+	{
+		return getHash(msg, SHA3_256);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_384Hash(String msg)
+	{
+		return getHash(msg, SHA3_384);
+	}
+
+	/**
+	 * @since v0.0.2
+	 */
+	public static String getSHA3_512Hash(String msg)
+	{
+		return getHash(msg, SHA3_512);
 	}
 
 	/**
