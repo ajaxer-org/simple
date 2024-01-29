@@ -93,6 +93,18 @@
         <profile>
             <id>release</id>
         </profile>
+        <profile>
+            <id>resource-readme-update</id>
+            <build>
+                <plugins>
+                    <!--maven-resources-plugin-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <issueManagement>
