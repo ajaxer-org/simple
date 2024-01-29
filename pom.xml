@@ -76,7 +76,7 @@
                 <configuration>
                     <!-- exclude log4j.properties -->
                     <excludes>
-                        <exclude>**/log4j2.properties</exclude>
+                        <exclude>**/log4j2.xml</exclude>
                     </excludes>
                 </configuration>
             </plugin>
