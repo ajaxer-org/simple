@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (C) 2022 ajaxer.org
+  ~ Copyright (c) 2024 ajaxer.org
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
   ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~    http://www.apache.org/licenses/LICENSE-2.0
   ~
   ~ Unless required by applicable law or agreed to in writing, software
   ~ distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,13 +15,13 @@
   ~ limitations under the License.
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.ajaxer</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
     </parent>
 
     <artifactId>simple</artifactId>
@@ -44,7 +44,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <log4j2.console.pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1.}.%M():%L]%n%msg%n%n</log4j2.console.pattern>
+        <log4j2.console.pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1.}.%M():%L]%n%msg%n%n
+        </log4j2.console.pattern>
 
         <!-- versions -->
         <version.log4j2>2.18.0</version.log4j2>
@@ -52,6 +53,7 @@
 
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <!-- maven-surefire-plugin -->
             <plugin>
