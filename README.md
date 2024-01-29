@@ -17,7 +17,7 @@
 <parent>
     <groupId>org.ajaxer</groupId>
     <artifactId>simple</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.1.2</version>
 </parent>
 ```
 
@@ -27,7 +27,7 @@
 <dependency>
     <groupId>org.ajaxer</groupId>
     <artifactId>simple-utils</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.1.2</version>
 </dependency>
 ```
 
@@ -37,6 +37,6 @@
 <dependency>
     <groupId>org.ajaxer</groupId>
     <artifactId>simple-annotations</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.1.2</version>
 </dependency>
 ```
