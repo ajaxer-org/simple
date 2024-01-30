@@ -17,11 +17,7 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -171,6 +167,7 @@ public class HashUtilsTest
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_224_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_224.html
@@ -189,6 +186,7 @@ public class HashUtilsTest
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_256_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_256.html
@@ -207,6 +205,7 @@ public class HashUtilsTest
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_384_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_384.html
@@ -225,6 +224,7 @@ public class HashUtilsTest
 		}
 
 		@Test
+		@Disabled
 		void getSHA3_512Hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_512.html

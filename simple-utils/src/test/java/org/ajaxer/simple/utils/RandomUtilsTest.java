@@ -17,9 +17,7 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -45,10 +43,11 @@ public class RandomUtilsTest
 			byte rand = RandomUtils.getByte();
 			byte min = Byte.MIN_VALUE;
 			byte max = Byte.MAX_VALUE;
-			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+			log.debug("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -65,10 +64,11 @@ public class RandomUtilsTest
 			}
 
 			byte rand = RandomUtils.getByte(min, max);
-			log.info("min: {}, max: {}, rand: {}", min, max, rand);
+			log.debug("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -76,9 +76,9 @@ public class RandomUtilsTest
 		{
 			byte limit = 28;
 			byte rand = RandomUtils.getByteLessThanOrEqualTo(limit);
-			log.info("limit: {}, rand: {}", limit, rand);
+			log.debug("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -88,7 +88,7 @@ public class RandomUtilsTest
 			byte rand = RandomUtils.getByteGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThanOrEqualTo(limit);
 		}
 	}
 
@@ -103,8 +103,9 @@ public class RandomUtilsTest
 			short max = Short.MAX_VALUE;
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -123,8 +124,9 @@ public class RandomUtilsTest
 			short rand = RandomUtils.getShort(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -134,7 +136,7 @@ public class RandomUtilsTest
 			short rand = RandomUtils.getShortLessThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -144,7 +146,7 @@ public class RandomUtilsTest
 			short rand = RandomUtils.getShortGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThanOrEqualTo(limit);
 		}
 	}
 
@@ -159,8 +161,9 @@ public class RandomUtilsTest
 			int max = Integer.MAX_VALUE;
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -179,8 +182,9 @@ public class RandomUtilsTest
 			int rand = RandomUtils.getInt(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -190,7 +194,7 @@ public class RandomUtilsTest
 			int rand = RandomUtils.getIntLessThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -200,7 +204,7 @@ public class RandomUtilsTest
 			int rand = RandomUtils.getIntGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThan(limit);
 		}
 	}
 
@@ -215,8 +219,9 @@ public class RandomUtilsTest
 			long max = Long.MAX_VALUE;
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -235,8 +240,9 @@ public class RandomUtilsTest
 			long rand = RandomUtils.getLong(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -246,7 +252,7 @@ public class RandomUtilsTest
 			long rand = RandomUtils.getLongLessThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -256,7 +262,7 @@ public class RandomUtilsTest
 			long rand = RandomUtils.getLongGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThan(limit);
 		}
 	}
 
@@ -271,8 +277,9 @@ public class RandomUtilsTest
 			float max = Float.MAX_VALUE;
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -291,8 +298,9 @@ public class RandomUtilsTest
 			float rand = RandomUtils.getFloat(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -302,7 +310,7 @@ public class RandomUtilsTest
 			float rand = RandomUtils.getFloatLessThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -312,7 +320,7 @@ public class RandomUtilsTest
 			float rand = RandomUtils.getFloatGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThan(limit);
 		}
 	}
 
@@ -327,8 +335,9 @@ public class RandomUtilsTest
 			double max = Double.MAX_VALUE;
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -347,8 +356,9 @@ public class RandomUtilsTest
 			double rand = RandomUtils.getDouble(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -358,7 +368,7 @@ public class RandomUtilsTest
 			double rand = RandomUtils.getDoubleLessThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + limit, rand, Matchers.lessThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isLessThanOrEqualTo(limit);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -368,7 +378,7 @@ public class RandomUtilsTest
 			double rand = RandomUtils.getDoubleGreaterThanOrEqualTo(limit);
 			log.info("limit: {}, rand: {}", limit, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + limit, rand, Matchers.greaterThanOrEqualTo(limit));
+			Assertions.assertThat(rand).isGreaterThan(limit);
 		}
 	}
 
@@ -383,8 +393,9 @@ public class RandomUtilsTest
 			char max = 'z';
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -403,8 +414,9 @@ public class RandomUtilsTest
 			char rand = RandomUtils.getChar(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -423,8 +435,9 @@ public class RandomUtilsTest
 			char rand = RandomUtils.getChar(min, max);
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 
 		@RepeatedTest(REPEATED_TEST_COUNT)
@@ -435,8 +448,9 @@ public class RandomUtilsTest
 			char max = 'Z';
 			log.info("min: {}, max: {}, rand: {}", min, max, rand);
 
-			MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-			MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+			Assertions.assertThat(rand)
+			          .isGreaterThanOrEqualTo(min)
+			          .isLessThanOrEqualTo(max);
 		}
 	}
 
@@ -450,7 +464,7 @@ public class RandomUtilsTest
 			log.info("random array: {}", Arrays.toString(array));
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
-				Assertions.assertTrue(array[i] || !array[i]);
+				Assertions.assertThat(array[i] || !array[i]).isTrue();
 			}
 		}
 
@@ -465,8 +479,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				char rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -481,8 +496,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				byte rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -497,8 +513,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				short rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -513,8 +530,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				int rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -529,8 +547,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				long rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -545,8 +564,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				float rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 
@@ -561,8 +581,9 @@ public class RandomUtilsTest
 			for (int i = 0; i < RANDOM_ARRAY_LENGTH; i++)
 			{
 				double rand = array[i];
-				MatcherAssert.assertThat(rand + " greaterThanOrEqualTo " + min, rand, Matchers.greaterThanOrEqualTo(min));
-				MatcherAssert.assertThat(rand + " lessThanOrEqualTo " + max, rand, Matchers.lessThanOrEqualTo(max));
+				Assertions.assertThat(rand)
+				          .isGreaterThanOrEqualTo(min)
+				          .isLessThanOrEqualTo(max);
 			}
 		}
 	}

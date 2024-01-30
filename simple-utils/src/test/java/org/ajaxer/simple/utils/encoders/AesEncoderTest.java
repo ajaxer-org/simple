@@ -19,11 +19,7 @@ package org.ajaxer.simple.utils.encoders;
 import lombok.extern.log4j.Log4j2;
 import org.ajaxer.simple.utils.AbstractTest;
 import org.ajaxer.simple.utils.StringUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import javax.crypto.IllegalBlockSizeException;
 
@@ -36,12 +32,15 @@ import javax.crypto.IllegalBlockSizeException;
 @Disabled
 public class AesEncoderTest extends AbstractTest
 {
-	private Encoder encoder;
+	private Encoder<String, String> encoder;
+	private Decoder<String, String> decoder;
 
 	@BeforeEach
 	void beforeEach()
 	{
-		encoder = new AesEncoder(key);
+		AesEncoder aesEncoder = new AesEncoder(key);
+		encoder = aesEncoder;
+		decoder = aesEncoder;
 	}
 
 	@Test
@@ -63,12 +62,12 @@ public class AesEncoderTest extends AbstractTest
 	@Test
 	void decode_with_blank_message()
 	{
-		Assertions.assertNull(encoder.decode(blankString1));
-		Assertions.assertNull(encoder.decode(blankString2));
+		Assertions.assertNull(decoder.decode(blankString1));
+		Assertions.assertNull(decoder.decode(blankString2));
 
 		//unable to decode invalid format
-		Assertions.assertThrows(IllegalBlockSizeException.class, () -> encoder.decode(blankString3));
-		Assertions.assertThrows(IllegalBlockSizeException.class, () -> encoder.decode(notBlankString));
+		Assertions.assertThrows(IllegalBlockSizeException.class, () -> decoder.decode(blankString3));
+		Assertions.assertThrows(IllegalBlockSizeException.class, () -> decoder.decode(notBlankString));
 	}
 
 	@RepeatedTest(10)
@@ -80,7 +79,7 @@ public class AesEncoderTest extends AbstractTest
 		String encoded = encoder.encode(message);
 		log.info("encoded: {}", encoded);
 
-		String decoded = encoder.decode(encoded);
+		String decoded = decoder.decode(encoded);
 		log.info("decoded: {}", decoded);
 
 		log.info("encoded: {}, decoded: {}", encoded, decoded);
