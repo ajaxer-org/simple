@@ -54,13 +54,13 @@ public class JsonUtilsTest
 		void getPrettyJson_with_non_json_string()
 		{
 			String nonJson = StringUtils.getUUID();
-			log.info("nonJson: {}", nonJson);
+			log.debug("nonJson: {}", nonJson);
 
 			String response = JsonUtils.getPrettyJson(nonJson);
-			log.info("response: {}", response);
+			log.debug("response: {}", response);
 
 			String expected = "\"" + nonJson + "\"";
-			log.info("expected: {}", expected);
+			log.debug("expected: {}", expected);
 
 			Assertions.assertEquals(expected, response);
 		}

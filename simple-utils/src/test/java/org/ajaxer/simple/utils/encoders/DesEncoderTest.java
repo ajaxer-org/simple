@@ -32,12 +32,15 @@ import org.junit.jupiter.api.Test;
 @Log4j2
 public class DesEncoderTest extends AbstractTest
 {
-	private Encoder encoder;
+	private Encoder<String, String> encoder;
+	private Decoder<String, String> decoder;
 
 	@BeforeEach
 	void beforeEach()
 	{
-		encoder = new DesEncoder();
+		DesEncoder desEncoder = new DesEncoder();
+		encoder = desEncoder;
+		decoder = desEncoder;
 	}
 
 	@Test
@@ -51,12 +54,12 @@ public class DesEncoderTest extends AbstractTest
 	@Test
 	void decode_with_blank_message()
 	{
-		Assertions.assertNull(encoder.decode(blankString1));
-		Assertions.assertNull(encoder.decode(blankString2));
+		Assertions.assertNull(decoder.decode(blankString1));
+		Assertions.assertNull(decoder.decode(blankString2));
 
 		//unable to decode invalid format
-		Assertions.assertThrows(IllegalArgumentException.class, () -> encoder.decode(blankString3));
-		Assertions.assertThrows(IllegalArgumentException.class, () -> encoder.decode(notBlankString));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> decoder.decode(blankString3));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> decoder.decode(notBlankString));
 	}
 
 	@RepeatedTest(10)
@@ -64,7 +67,7 @@ public class DesEncoderTest extends AbstractTest
 	{
 		String message = StringUtils.getUUID();
 		String encoded = encoder.encode(message);
-		String decoded = encoder.decode(encoded);
+		String decoded = decoder.decode(encoded);
 		log.info("encoded: {}, decoded: {}", encoded, decoded);
 
 		Assertions.assertEquals(decoded, message);

@@ -28,14 +28,15 @@ import java.util.Arrays;
  * @since v0.0.1
  */
 @Log4j2
-public class HexaEncoder implements Encoder
+public class HexaEncoder implements Encoder<String, String>, Decoder<String, String>
 {
 	private final String digits = "0123456789ABCDEF";
 
 	public String convert(int x)
 	{
 		//return Integer.toHexString(x);
-		if (x == 0) return "0";
+		if (x == 0)
+			return "0";
 		StringBuilder hex = new StringBuilder();
 
 		while (x > 0)
@@ -65,7 +66,8 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		StringBuilder encoded = new StringBuilder();
 
@@ -81,7 +83,8 @@ public class HexaEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		String messageLowerCase = message.toLowerCase();
 

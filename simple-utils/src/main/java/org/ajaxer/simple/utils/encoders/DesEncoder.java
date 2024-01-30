@@ -31,7 +31,7 @@ import java.util.Base64;
  * @version 2022-08-24
  * @since v0.0.1
  */
-public class DesEncoder implements Encoder
+public class DesEncoder implements Encoder<String, String>, Decoder<String, String>
 {
 	public static final String ENCRYPTION_NAME = "DES";
 	private static KeyGenerator keygenerator;
@@ -59,7 +59,8 @@ public class DesEncoder implements Encoder
 	@Override
 	public String encode(final String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		try
 		{
@@ -80,7 +81,8 @@ public class DesEncoder implements Encoder
 	@Override
 	public String decode(final String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		try
 		{

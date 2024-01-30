@@ -24,14 +24,15 @@ import org.ajaxer.simple.utils.StringUtils;
  * @version 2022-08-24
  * @since v0.0.1
  */
-public class TwoPipeEncoder implements Encoder
+public class TwoPipeEncoder implements Encoder<String, String>, Decoder<String, String>
 {
 	public static final String EXTENSION = ".tp";
 
 	@Override
 	public String encode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		StringBuilder firstHalf = new StringBuilder();
 		StringBuilder secondHalf = new StringBuilder();
@@ -53,7 +54,8 @@ public class TwoPipeEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		ExceptionUtils.throwWhenFalse(message.endsWith(EXTENSION), INVALID_ENCRYPTION_FORMAT);
 

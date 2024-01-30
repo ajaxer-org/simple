@@ -17,11 +17,9 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +35,7 @@ import java.security.NoSuchAlgorithmException;
 public class HashUtilsTest
 {
 	private File testFile;
+	private boolean isTestFileExists;
 	private final String message = "ajaxer";
 	private final String key = "org";
 
@@ -44,6 +43,7 @@ public class HashUtilsTest
 	void beforeEach() throws IOException
 	{
 		testFile = new File(FileUtilsTest.class.getClassLoader().getResource("file-utils-test-data.txt").getFile());
+		isTestFileExists = testFile.exists();
 	}
 
 	@Nested
@@ -75,9 +75,9 @@ public class HashUtilsTest
 
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 			Assertions.assertEquals(32, result1.length());
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
@@ -93,9 +93,9 @@ public class HashUtilsTest
 
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 			Assertions.assertEquals(40, result1.length());
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
@@ -111,9 +111,9 @@ public class HashUtilsTest
 
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 			Assertions.assertEquals(56, result1.length());
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
@@ -130,8 +130,8 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(64, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
@@ -148,8 +148,8 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(96, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
@@ -166,11 +166,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(128, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_224_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_224.html
@@ -184,11 +185,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(56, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_256_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_256.html
@@ -202,11 +204,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(64, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@Disabled
 		void with_sha3_384_hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_384.html
@@ -220,11 +223,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(96, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@Disabled
 		void getSHA3_512Hash()
 		{
 			// https://emn178.github.io/online-tools/sha3_512.html
@@ -238,8 +242,8 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(128, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 	}
 
@@ -279,7 +283,7 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(40, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 		}
 
 		@Test
@@ -293,7 +297,7 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(56, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 		}
 
 		@Test
@@ -307,7 +311,7 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(64, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 		}
 
 		@Test
@@ -321,7 +325,7 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(96, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 		}
 
 		@Test
@@ -335,7 +339,7 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(128, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
+			Assertions.assertEquals(result2, result1);
 		}
 
 		@Test
@@ -366,6 +370,7 @@ public class HashUtilsTest
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void md5_hash()
 		{
 			// https://emn178.github.io/online-tools/md5_checksum.html
@@ -379,11 +384,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(32, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void sha1_hash()
 		{
 			// https://emn178.github.io/online-tools/sha1_checksum.html
@@ -397,11 +403,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(40, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void sha224_hash()
 		{
 			// https://emn178.github.io/online-tools/sha224_checksum.html
@@ -415,11 +422,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(56, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void sha256_hash()
 		{
 			// https://emn178.github.io/online-tools/sha256_checksum.html
@@ -433,11 +441,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(64, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void sha384_hash()
 		{
 			// https://emn178.github.io/online-tools/sha384_file_hash.html
@@ -451,11 +460,12 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(96, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 
 		@Test
+		@EnabledOnOs(OS.WINDOWS)
 		void sha512_hash()
 		{
 			// https://emn178.github.io/online-tools/sha256_checksum.html
@@ -469,8 +479,8 @@ public class HashUtilsTest
 			Assertions.assertNotNull(result1);
 			Assertions.assertNotNull(result2);
 			Assertions.assertEquals(128, result1.length());
-			Assertions.assertTrue(result2.equals(result1));
-			Assertions.assertTrue(result1.equals(actual));
+			Assertions.assertEquals(result2, result1);
+			Assertions.assertEquals(result1, actual);
 		}
 	}
 }

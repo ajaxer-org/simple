@@ -20,18 +20,12 @@ package org.ajaxer.simple.utils.encoders;
  * @param <I> Input
  * @param <O> Output
  * @author Shakir
- * @version 2022-08-23
- * @since v0.0.1
+ * @since 2024-01-30
  */
-public interface Encoder<I, O>
+public interface Decoder<I, O>
 {
 	/**
-	 * @since v0.0.1
+	 * @since 2024-01-30
 	 */
-	String INVALID_ENCRYPTION_FORMAT = "Invalid encryption format";
-
-	/**
-	 * @since v1.0.4
-	 */
-	O encode(I input);
+	O decode(I input);
 }

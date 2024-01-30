@@ -34,7 +34,7 @@ import java.util.Base64;
  * @since v0.0.1
  */
 @Log4j2
-public class AesEncoder implements Encoder
+public class AesEncoder implements Encoder<String, String>, Decoder<String, String>
 {
 	public static final String ENCRYPTION_NAME = "AES";
 
@@ -43,17 +43,17 @@ public class AesEncoder implements Encoder
 
 	private static byte[] getKeyBytes(String key)
 	{
-//		StringBuilder keyBuilder = new StringBuilder(key);
-//		while (keyBuilder.length() < 16)
-//		{
-//			keyBuilder.append("0");
-//		}
-//		key = keyBuilder.toString();
+		//		StringBuilder keyBuilder = new StringBuilder(key);
+		//		while (keyBuilder.length() < 16)
+		//		{
+		//			keyBuilder.append("0");
+		//		}
+		//		key = keyBuilder.toString();
 
-//		if (key.length() > 16)
-//		{
-//			key = key.substring(0, 15);
-//		}
+		//		if (key.length() > 16)
+		//		{
+		//			key = key.substring(0, 15);
+		//		}
 		log.info("key: [{}], len: [{}]", key, key.length());
 
 		return key.getBytes();
@@ -74,7 +74,8 @@ public class AesEncoder implements Encoder
 	@Override
 	public String encode(final String message)
 	{
-		if (message == null) return null;
+		if (message == null)
+			return null;
 
 		try
 		{
@@ -101,7 +102,8 @@ public class AesEncoder implements Encoder
 	@Override
 	public String decode(final String message)
 	{
-		if (message == null) return null;
+		if (message == null)
+			return null;
 
 		try
 		{

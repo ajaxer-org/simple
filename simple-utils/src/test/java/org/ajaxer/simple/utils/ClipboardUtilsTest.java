@@ -17,11 +17,12 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 /**
  * @author Shakir
@@ -46,29 +47,33 @@ class ClipboardUtilsTest
 	}
 
 	@Test
+	@EnabledOnOs(OS.WINDOWS)
 	void onCopyPasteEmptyString()
 	{
 		String source = "";
 		ClipboardUtils.copy(source);
 		String paste = ClipboardUtils.paste();
-		MatcherAssert.assertThat(source, CoreMatchers.equalTo(paste));
+
+		Assertions.assertThat(source).isEqualTo(paste);
 	}
 
 	@Test
+	@EnabledOnOs(OS.WINDOWS)
 	void onCopyPasteNullValue()
 	{
 		String source = null;
 		ClipboardUtils.copy(source);
 		String paste = ClipboardUtils.paste();
-		MatcherAssert.assertThat(source, CoreMatchers.equalTo(paste));
+		Assertions.assertThat(source).isEqualTo(paste);
 	}
 
 	@Test
+	@EnabledOnOs(OS.WINDOWS)
 	void onCopyPasteSomeLoremIpsum()
 	{
 		String source = StringUtils.getUUID();
 		ClipboardUtils.copy(source);
 		String paste = ClipboardUtils.paste();
-		MatcherAssert.assertThat(source, CoreMatchers.equalTo(paste));
+		Assertions.assertThat(source).isEqualTo(paste);
 	}
 }

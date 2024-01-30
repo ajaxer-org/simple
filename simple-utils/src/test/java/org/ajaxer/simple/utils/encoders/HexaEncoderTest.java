@@ -35,12 +35,14 @@ public class HexaEncoderTest
 	private String blankString2 = "";
 	private String blankString3 = "   ";
 
-	private Encoder encoder;
+	private Encoder<String, String> encoder;
+	private Decoder<String, String> decoder;
 
 	@BeforeEach
 	void beforeEach()
 	{
 		encoder = new HexaEncoder();
+		decoder = new HexaEncoder();
 	}
 
 	@Test
@@ -54,10 +56,10 @@ public class HexaEncoderTest
 	@Test
 	void decode_with_blank_message()
 	{
-		Assertions.assertNull(encoder.decode(blankString1));
-		Assertions.assertNull(encoder.decode(blankString2));
+		Assertions.assertNull(decoder.decode(blankString1));
+		Assertions.assertNull(decoder.decode(blankString2));
 
-		Assertions.assertThrows(IllegalArgumentException.class, () -> encoder.decode(blankString3));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> decoder.decode(blankString3));
 	}
 
 	@RepeatedTest(10)
@@ -65,7 +67,7 @@ public class HexaEncoderTest
 	{
 		String message = StringUtils.getUUID();
 		String encoded = encoder.encode(message);
-		String decoded = encoder.decode(encoded);
+		String decoded = decoder.decode(encoded);
 		log.info("encoded: {}, decoded: {}", encoded, decoded);
 
 		Assertions.assertEquals(decoded, message);

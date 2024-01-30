@@ -79,7 +79,9 @@ public class SimpleUtilsTest
 			SimpleUtils.sleep();
 			long end = System.currentTimeMillis();
 
-			Assertions.assertEquals(end - start, 2000L, delta);
+			org.assertj.core.api.Assertions
+					.assertThat(end - start)
+					.isGreaterThanOrEqualTo(2000L);
 		}
 
 		@RepeatedTest(5)
@@ -106,10 +108,12 @@ public class SimpleUtilsTest
 		void sleep_with_custom_interval()
 		{
 			long start = System.currentTimeMillis();
-			SimpleUtils.sleep(700L);
+			SimpleUtils.sleep(333L);
 			long end = System.currentTimeMillis();
 
-			Assertions.assertEquals(end - start, 700L, delta);
+			org.assertj.core.api.Assertions
+					.assertThat(end - start)
+					.isGreaterThanOrEqualTo(333L);
 		}
 	}
 

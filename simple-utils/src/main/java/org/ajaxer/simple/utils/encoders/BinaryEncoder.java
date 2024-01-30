@@ -28,7 +28,7 @@ import java.util.Arrays;
  * @since v0.0.1
  */
 @Log4j2
-public class BinaryEncoder implements Encoder
+public class BinaryEncoder implements Encoder<String, String>, Decoder<String, String>
 {
 	public String convert(int x)
 	{
@@ -43,7 +43,8 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		StringBuilder encoded = new StringBuilder();
 		for (int i = 0; i < message.length(); i++)
@@ -58,7 +59,8 @@ public class BinaryEncoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		String pattern = "^[0-3]*$";
 		ExceptionUtils.throwWhenFalse(message.matches(pattern), INVALID_ENCRYPTION_FORMAT);
