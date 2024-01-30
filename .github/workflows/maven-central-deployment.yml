@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout for ${{ github.event.inputs.version }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
 
         # DO NOT USE CONTAINER, else gpg sign step will fail
       - name: Set up Java 1.8
