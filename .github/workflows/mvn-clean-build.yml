@@ -1,8 +1,8 @@
 name: Maven Clean Package
 
 on:
-  #  push:
-  #    branches: [ "*" ]
+  push:
+    branches: [ "*" ]
   pull_request:
     branches: [ "master" ]
 
@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
 
       - name: Build with Maven
         run: mvn clean package --no-transfer-progress
