@@ -25,7 +25,7 @@ import org.ajaxer.simple.utils.ExceptionUtils;
  * @since v0.0.1
  */
 @Log4j2
-public class Number52Encoder implements Encoder
+public class Number52Encoder implements Encoder<String, String>, Decoder<String, String>
 {
 	private final String numberScale;
 
@@ -62,7 +62,8 @@ public class Number52Encoder implements Encoder
 
 	public String convert(int x)
 	{
-		if (x == 0) return String.valueOf(numberScale.charAt(0));
+		if (x == 0)
+			return String.valueOf(numberScale.charAt(0));
 
 		StringBuilder num52 = new StringBuilder();
 
@@ -91,7 +92,8 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String encode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		int length = message.length();
 		StringBuilder encoded = new StringBuilder();
@@ -109,7 +111,8 @@ public class Number52Encoder implements Encoder
 	@Override
 	public String decode(String message)
 	{
-		if (message == null || message.isEmpty()) return null;
+		if (message == null || message.isEmpty())
+			return null;
 
 		String pattern = "^[0-9a-zA-Z]*$";
 		ExceptionUtils.throwWhenFalse(message.matches(pattern), INVALID_ENCRYPTION_FORMAT);
@@ -131,7 +134,7 @@ public class Number52Encoder implements Encoder
 				int nextI = i;
 				char nextChar = message.charAt(nextI++);
 				while ((nextChar >= 'a' && nextChar <= 'z')
-						|| (nextChar >= 'A' && nextChar <= 'Z'))
+				       || (nextChar >= 'A' && nextChar <= 'Z'))
 				{
 					nextChar = message.charAt(nextI++);
 				}

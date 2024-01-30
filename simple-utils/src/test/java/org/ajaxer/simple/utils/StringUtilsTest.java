@@ -152,9 +152,7 @@ public class StringUtilsTest
 		void isLowercase_char()
 		{
 			for (int i = 0; i < 26; i++)
-			{
 				Assertions.assertTrue(StringUtils.isLowercase((char) (i + 97)));
-			}
 
 			Assertions.assertFalse(StringUtils.isLowercase('A'));
 			Assertions.assertFalse(StringUtils.isLowercase('Z'));
