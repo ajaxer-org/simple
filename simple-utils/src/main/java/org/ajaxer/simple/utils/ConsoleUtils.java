@@ -32,8 +32,6 @@ public class ConsoleUtils implements AutoCloseable
 
 	private final BufferedReader bufferedReader;
 
-	private boolean autoClose = true;
-
 	/**
 	 * @since v0.0.1
 	 */
@@ -48,7 +46,6 @@ public class ConsoleUtils implements AutoCloseable
 	 */
 	public ConsoleUtils(InputStream inputStream)
 	{
-		this.autoClose = false;
 		this.inputStream = inputStream;
 		bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 	}
@@ -141,10 +138,9 @@ public class ConsoleUtils implements AutoCloseable
 	@Override
 	public void close()
 	{
-		if (this.autoClose)
+		if (this.inputStream != System.in)
 		{
 			SimpleUtils.close(inputStream);
-
 			SimpleUtils.close(bufferedReader);
 		}
 	}

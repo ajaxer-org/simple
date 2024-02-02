@@ -17,10 +17,8 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 /**
  * @author Shakir
@@ -28,20 +26,60 @@ import org.junit.jupiter.api.TestInstance;
  * @since v0.0.1
  */
 @Log4j2
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ConsoleUtilsTest
 {
-	private ConsoleUtils consoleUtils;
-
-	@BeforeAll
-	void beforeAll()
+	@Test
+	@Disabled
+	void singleInput()
 	{
-		consoleUtils = new ConsoleUtils();
+		try (ConsoleUtils consoleUtils = new ConsoleUtils())
+		{
+			System.out.println("Please enter a string");
+			String input = consoleUtils.readString();
+			System.out.println("your input was: [" + input + "]");
+		}
 	}
 
-	@AfterAll
-	void afterAll()
+	@Test
+	@Disabled
+	void multipleInputs_withSameTryBlock()
 	{
-		SimpleUtils.close(consoleUtils);
+		try (ConsoleUtils consoleUtils = new ConsoleUtils())
+		{
+			System.out.println("Please enter a string");
+			String input = consoleUtils.readString();
+			System.out.println("your input was: [" + input + "]");
+
+			System.out.println("Please enter a int");
+			int i0 = consoleUtils.readInt();
+			System.out.println("your input was: [" + i0 + "]");
+		}
+	}
+
+	@Test
+	@Disabled
+	void multipleInputs_withMultipleTryBlock()
+	{
+		try (ConsoleUtils consoleUtils = new ConsoleUtils())
+		{
+			System.out.println("Please enter a string");
+			String input = consoleUtils.readString();
+			System.out.println("your input was: [" + input + "]");
+		}
+
+		try (ConsoleUtils consoleUtils = new ConsoleUtils())
+		{
+			System.out.println("Please enter a int");
+			int i0 = consoleUtils.readInt();
+			System.out.println("your input was: [" + i0 + "]");
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		ConsoleUtilsTest test = new ConsoleUtilsTest();
+		test.singleInput();
+		test.multipleInputs_withSameTryBlock();
+		test.multipleInputs_withMultipleTryBlock();
 	}
 }
