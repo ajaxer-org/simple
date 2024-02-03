@@ -10,10 +10,7 @@ on:
 jobs:
   build:
     name: Maven Clean Package
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     container: ershakiransari/jdk:8-mvn3
 
     steps:
