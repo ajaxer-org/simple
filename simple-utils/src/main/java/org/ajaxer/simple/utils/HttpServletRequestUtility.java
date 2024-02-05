@@ -17,8 +17,6 @@ package org.ajaxer.simple.utils;
  */
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Shakir Ansari
