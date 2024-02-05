@@ -43,8 +43,5 @@
         <option name="SMART_TABS" value="true" />
       </indentOptions>
     </codeStyleSettings>
-    <codeStyleSettings language="Properties">
-      <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
-    </codeStyleSettings>
   </code_scheme>
 </component>
