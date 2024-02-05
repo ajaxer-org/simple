@@ -1,3 +1,3 @@
-# What's new in v0.2.0 ?
+# What's new in v0.2.1 ?
 - Minor improvements
 - Fixed old bugs and added new ones 😕

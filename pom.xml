@@ -25,7 +25,7 @@
     </parent>
 
     <artifactId>simple</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
 
     <name>Simple Parent</name>
     <description>Parent project for managing all simple projects</description>
@@ -182,6 +182,13 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>2.0.11</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>5.0.0</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

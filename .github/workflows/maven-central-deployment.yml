@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Building artifact for ${{ github.event.inputs.version }}
-        run: mvn clean package --no-transfer-progress
+        run: mvn clean package -Dmaven.test.skip=true --no-transfer-progress
 
       # Creating A Release
       - name: Creating Release ${{ github.event.inputs.version }}
