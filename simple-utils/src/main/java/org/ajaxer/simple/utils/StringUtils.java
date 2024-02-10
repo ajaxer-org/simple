@@ -48,12 +48,28 @@ public class StringUtils
 	}
 
 	/**
+	 * @return <b>true</b> if all strings are blank, <b>false</b> if any string is notBlank
+	 * @since v0.4.0
+	 */
+	public static boolean isBlank(String... strings)
+	{
+		for (String string : strings)
+		{
+			if (isNotBlank(string))
+				return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * @since v0.0.1
 	 */
 	public static int charCount(String string, char ch)
 	{
 		log.debug("string: {}, ch: {}", string, ch);
-		if (isBlank(string)) return -1;
+		if (isBlank(string))
+			return -1;
 
 		int count = 0;
 		for (char chatAt : string.toCharArray())
@@ -73,7 +89,8 @@ public class StringUtils
 	public static String removePrefix(String string, String prefix)
 	{
 		log.debug("string: {}, prefix: {}", string, prefix);
-		if (isBlank(string) || isBlank(prefix)) return string;
+		if (isBlank(string) || isBlank(prefix))
+			return string;
 
 		if (string.startsWith(prefix))
 		{
@@ -88,7 +105,8 @@ public class StringUtils
 	public static String removeSuffix(String string, String suffix)
 	{
 		log.debug("string: {}, suffix: {}", string, suffix);
-		if (isBlank(string) || isBlank(suffix)) return string;
+		if (isBlank(string) || isBlank(suffix))
+			return string;
 
 		if (string.endsWith(suffix))
 		{
@@ -130,17 +148,18 @@ public class StringUtils
 
 	/**
 	 * @return returns true, if all the characters in given are in lowercase
-	 *
 	 * @since v0.0.1
 	 */
 	public static boolean isLowercase(String string)
 	{
 		log.debug("string: {}", string);
-		if (isBlank(string)) return false;
+		if (isBlank(string))
+			return false;
 
 		for (char c : string.toCharArray())
 		{
-			if (isUppercase(c)) return false;
+			if (isUppercase(c))
+				return false;
 		}
 
 		return true;
@@ -159,17 +178,18 @@ public class StringUtils
 
 	/**
 	 * @return returns true, if all the characters in given are in uppercase
-	 *
 	 * @since v0.0.1
 	 */
 	public static boolean isUppercase(String string)
 	{
 		log.debug("string: {}", string);
-		if (isBlank(string)) return false;
+		if (isBlank(string))
+			return false;
 
 		for (char c : string.toCharArray())
 		{
-			if (isLowercase(c)) return false;
+			if (isLowercase(c))
+				return false;
 		}
 
 		return true;
@@ -203,7 +223,8 @@ public class StringUtils
 	public static boolean equalsToAny(char[] array, char val)
 	{
 		log.debug("char: {}, array: {}", val, Arrays.toString(array));
-		if (ArrayUtils.isBlank(array)) return false;
+		if (ArrayUtils.isBlank(array))
+			return false;
 
 		for (char e : array)
 		{
@@ -224,7 +245,8 @@ public class StringUtils
 	public static boolean equalsIgnoreCaseToAny(char[] array, char c)
 	{
 		log.debug("char: {}, array: {}", c, Arrays.toString(array));
-		if (ArrayUtils.isBlank(array)) return false;
+		if (ArrayUtils.isBlank(array))
+			return false;
 
 		boolean lowercaseC = isLowercase(c);
 		log.debug("lowercaseC: {}", lowercaseC);
@@ -235,16 +257,19 @@ public class StringUtils
 		for (char e : array)
 		{
 			//No need to check further if bo characters are same.
-			if (e == c) return true;
+			if (e == c)
+				return true;
 
 			boolean lowercaseE = isLowercase(e);
 			boolean uppercaseE = isUppercase(e);
 
 			// arg = Z and array[i] = z
-			if (uppercaseC && lowercaseE && c == e - 32) return true;
+			if (uppercaseC && lowercaseE && c == e - 32)
+				return true;
 
 			// arg = z and array[i] = Z
-			if (lowercaseC && uppercaseE && c == e + 32) return true;
+			if (lowercaseC && uppercaseE && c == e + 32)
+				return true;
 		}
 		return false;
 	}
@@ -255,7 +280,8 @@ public class StringUtils
 	public static boolean equalsToAny(String[] array, String val)
 	{
 		log.debug("string: {}, array: {}", val, Arrays.toString(array));
-		if (ArrayUtils.isBlank(array) || val == null) return false;
+		if (ArrayUtils.isBlank(array) || val == null)
+			return false;
 
 		for (String s : array)
 		{
@@ -273,7 +299,8 @@ public class StringUtils
 	public static boolean equalsIgnoreCaseToAny(String[] array, String val)
 	{
 		log.debug("string: {}, array: {}", val, Arrays.toString(array));
-		if (ArrayUtils.isBlank(array) || val == null) return false;
+		if (ArrayUtils.isBlank(array) || val == null)
+			return false;
 
 		for (String s : array)
 		{
