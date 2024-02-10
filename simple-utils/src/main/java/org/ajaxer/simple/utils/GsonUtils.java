@@ -24,21 +24,19 @@ import java.util.List;
 
 /**
  * @author Shakir
- * @version 2022-08-23
- * @since v0.0.1
- * @deprecated please use {@link GsonUtils}
+ * @version 2024-02-10
+ * @since v0.3.0
  */
 @Log4j2
-@Deprecated
-public class JsonUtils
+public class GsonUtils
 {
 	private static Gson gsonPretty;
 	private static Gson gson;
 
-	private JsonUtils() {}
+	private GsonUtils() {}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static Gson getGson()
 	{
@@ -49,7 +47,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static Gson getGsonPrettyPrinting()
 	{
@@ -60,7 +58,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static String getPrettyJson(String uglyJson)
 	{
@@ -74,7 +72,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static String toJsonString(Object object)
 	{
@@ -82,7 +80,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static <T> T toObject(String jsonString, Class<T> classOfT)
 	{
@@ -94,7 +92,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static <T> List<T> toObjectList(String jsonString, Class<T> classOfT)
 	{
@@ -112,7 +110,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static JsonObject parse(String jsonString)
 	{
@@ -125,7 +123,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static JsonArray getJsonArray(String jsonString, String key)
 	{
@@ -134,7 +132,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static <T> T getElementAsType(String jsonString, Class<T> clazz, String key)
 	{
@@ -146,7 +144,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static JsonPrimitive getJsonPrimitive(String jsonString, String key)
 	{
@@ -161,7 +159,7 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
 	public static String getElementAsString(String jsonString, String key)
 	{
@@ -172,8 +170,9 @@ public class JsonUtils
 	}
 
 	/**
-	 * @since v0.0.1
+	 * @since v0.3.0
 	 */
+	@SuppressWarnings("DataFlowIssue")
 	public static <T> List<T> getElementAsTypeList(String jsonString, Class<T> clazz, String key)
 	{
 		log.debug("key: {}, clazz: {}, jsonString: {}", key, clazz, jsonString);
