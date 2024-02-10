@@ -55,6 +55,14 @@ public class StringUtilsTest
 			Assertions.assertFalse(StringUtils.isNotBlank(blankString3));
 			Assertions.assertTrue(StringUtils.isNotBlank(notBlankString));
 		}
+
+		@Test
+		void isBlank_multiple()
+		{
+			Assertions.assertTrue(StringUtils.isBlank(blankString1, blankString2, blankString3));
+			Assertions.assertFalse(StringUtils.isBlank(notBlankString));
+		}
+
 	}
 
 	@Nested
