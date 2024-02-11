@@ -428,7 +428,6 @@ public class FileUtils
 		ExceptionUtils.throwWhenNull(target);
 
 		ExceptionUtils.throwWhenFalse(source.exists(), new FileNotFoundException());
-		ExceptionUtils.throwWhenFalse(target.exists(), new FileNotFoundException());
 
 		try (FileInputStream fileInputStream = new FileInputStream(source);
 		     FileOutputStream fileOutputStream = new FileOutputStream(target))
