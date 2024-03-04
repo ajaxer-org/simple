@@ -177,6 +177,31 @@ public class CollectionUtils
 		return responseList;
 	}
 
+	public static <T> List<List<T>> subLists(List<T> list, int batchSize)
+	{
+		ExceptionUtils.throwWhenBlank(list, "list cannot be blank");
+		ExceptionUtils.throwWhenTrue(batchSize < 1, "batch size cannot be less than zero");
+
+		List<List<T>> result = new ArrayList<>();
+
+		List<T> batchList = new ArrayList<>();
+		for (T t : list)
+		{
+			batchList.add(t);
+
+			if (batchList.size() == batchSize)
+			{
+				result.add(batchList);
+				batchList = new ArrayList<>();
+			}
+		}
+
+		if (!batchList.isEmpty())
+			result.add(batchList);
+
+		return result;
+	}
+
 	/**
 	 * @since v0.0.1
 	 */
