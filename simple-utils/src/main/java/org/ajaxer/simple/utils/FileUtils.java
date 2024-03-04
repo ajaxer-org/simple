@@ -40,6 +40,7 @@ public class FileUtils
 	 * @since v0.0.1
 	 */
 	public static final int ONE_BYTE = 1024;
+	public static final int BASE = 1024;
 
 	/**
 	 * <p> return true if given file is <b>not</b> <code>null</code> and do <code>exists</code></p>
@@ -535,5 +536,68 @@ public class FileUtils
 		}
 
 		log.info("[{}] \t {}", file.delete(), file.getAbsolutePath());
+	}
+
+	/**
+	 * @param fileLength in bytes
+	 * @return Return file size in human readable format
+	 * i.e. 23.00MB, 4.01KB, 67.78GB
+	 */
+	public static String fileSize(long fileLength)
+	{
+		float size = fileSizeInKB(fileLength);
+		if (size <= (float) BASE)
+			return String.format("%.2f", size) + " KB";
+
+		size = fileSizeInMB(fileLength);
+		if (size <= (float) BASE)
+			return String.format("%.2f", size) + " MB";
+
+		size = fileSizeInGB(fileLength);
+		if (size <= (float) BASE)
+			return String.format("%.2f", size) + " GB";
+
+		size = fileSizeInTB(fileLength);
+		return String.format("%.2f", size) + " TB";
+	}
+
+	/**
+	 * @param length in bytes
+	 * @return Return file size in human readable format
+	 * i.e. 23.00KB, 4.01KB, 67.78KB
+	 */
+	public static float fileSizeInKB(long length)
+	{
+		return length / 1024f;
+	}
+
+	/**
+	 * @param length in bytes
+	 * @return Return file size in human readable format
+	 * i.e. 23.00MB, 4.01MB, 67.78MB
+	 */
+	public static float fileSizeInMB(long length)
+	{
+		return fileSizeInKB(length) / 1024f;
+	}
+
+	/**
+	 * @param length in bytes
+	 * @return Return file size in human readable format
+	 * i.e. 23.00GB, 4.01GB, 67.78GB
+	 */
+	public static float fileSizeInGB(long length)
+	{
+		return fileSizeInMB(length) / 1024f;
+	}
+
+	/**
+	 * @param length in bytes
+	 * @return Return file size in human readable format
+	 * i.e. 23.00TB, 4.01TB, 67.78TB
+	 */
+	public static float fileSizeInTB(long length)
+	{
+		return fileSizeInGB(length) / 1024f;
 	}
 }

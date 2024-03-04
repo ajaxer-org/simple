@@ -274,14 +274,16 @@ public class FileUtilsTest
 		void read_with_null_file()
 		{
 			File nullFile = null;
-			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.readSerializedObject(nullFile, SerializedObject.class));
+			Assertions.assertThrows(IllegalArgumentException.class,
+			                        () -> FileUtils.readSerializedObject(nullFile, SerializedObject.class));
 		}
 
 		@Test
 		void read_with_null_path()
 		{
 			String nullPath = null;
-			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.readSerializedObject(nullPath, SerializedObject.class));
+			Assertions.assertThrows(IllegalArgumentException.class,
+			                        () -> FileUtils.readSerializedObject(nullPath, SerializedObject.class));
 		}
 
 		@Test
@@ -289,7 +291,8 @@ public class FileUtilsTest
 		{
 			File nullFile = null;
 			SerializedObject serializedObject = null;
-			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.writeSerializedObject(nullFile, serializedObject));
+			Assertions.assertThrows(IllegalArgumentException.class,
+			                        () -> FileUtils.writeSerializedObject(nullFile, serializedObject));
 		}
 
 		@Test
@@ -297,7 +300,8 @@ public class FileUtilsTest
 		{
 			String nullPath = null;
 			SerializedObject serializedObject = null;
-			Assertions.assertThrows(IllegalArgumentException.class, () -> FileUtils.writeSerializedObject(nullPath, serializedObject));
+			Assertions.assertThrows(IllegalArgumentException.class,
+			                        () -> FileUtils.writeSerializedObject(nullPath, serializedObject));
 		}
 
 		@Test
@@ -497,7 +501,8 @@ public class FileUtilsTest
 			log.info("tempFile: {}", file.getAbsolutePath());
 			Assertions.assertTrue(file.exists());
 
-			Assertions.assertThrows(FileAlreadyExistsException.class, () -> FileUtils.createTempFile("ajaxer-", "dummy-file", ".txt"));
+			Assertions.assertThrows(FileAlreadyExistsException.class,
+			                        () -> FileUtils.createTempFile("ajaxer-", "dummy-file", ".txt"));
 			file.delete();
 
 		}
@@ -552,7 +557,8 @@ public class FileUtilsTest
 		@Test
 		void when_both_source_and_target_path_not_exists()
 		{
-			Assertions.assertThrows(FileNotFoundException.class, () -> FileUtils.copy(invalidFile1.getAbsolutePath(), invalidFile2.getAbsolutePath()));
+			Assertions.assertThrows(FileNotFoundException.class,
+			                        () -> FileUtils.copy(invalidFile1.getAbsolutePath(), invalidFile2.getAbsolutePath()));
 		}
 
 		@Test
@@ -583,7 +589,7 @@ public class FileUtilsTest
 			Assertions.assertFalse(FileUtils.equals(validFile, tempFile));
 
 			try (InputStream inputStream = new FileInputStream(validFile);
-				 OutputStream outputStream = new FileOutputStream(tempFile);)
+			     OutputStream outputStream = new FileOutputStream(tempFile);)
 			{
 				long copiedBytes = FileUtils.copy(inputStream, outputStream);
 				log.info("copiedBytes: {}", copiedBytes);
@@ -598,7 +604,7 @@ public class FileUtilsTest
 			Assertions.assertFalse(FileUtils.equals(validFile, tempFile));
 
 			try (InputStream inputStream = new FileInputStream(validFile);
-				 OutputStream outputStream = new FileOutputStream(tempFile);)
+			     OutputStream outputStream = new FileOutputStream(tempFile);)
 			{
 				long copiedBytes = FileUtils.copy(12, inputStream, outputStream);
 				log.info("copiedBytes: {}", copiedBytes);
@@ -720,6 +726,51 @@ public class FileUtilsTest
 		void delete_with_path_recursive()
 		{
 			FileUtils.delete(parentFolder.getAbsolutePath(), true);
+		}
+	}
+
+	@Nested
+	class FileSize
+	{
+		@Test
+		void file_size()
+		{
+			Assertions.assertEquals(FileUtils.fileSize((long) (2.5 * 1024)), "2.50 KB");
+			Assertions.assertEquals(FileUtils.fileSize(20L * 1024), "20.00 KB");
+			Assertions.assertEquals(FileUtils.fileSize(25L * 1024 * 1024), "25.00 MB");
+			Assertions.assertEquals(FileUtils.fileSize(30L * 1024 * 1024 * 1024), "30.00 GB");
+		}
+
+		@Test
+		void file_size_in_kb()
+		{
+			Assertions.assertEquals(FileUtils.fileSizeInKB((long) (2.5 * 1024)), 2.50f);
+			Assertions.assertEquals(FileUtils.fileSizeInKB(20L * 1024), 20.00f);
+			Assertions.assertEquals(FileUtils.fileSizeInKB(25L * 1024), 25.00f);
+		}
+
+		@Test
+		void file_size_in_mb()
+		{
+			Assertions.assertEquals(FileUtils.fileSizeInMB((long) (2.5 * 1024 * 1024)), 2.50f);
+			Assertions.assertEquals(FileUtils.fileSizeInMB(20L * 1024 * 1024), 20.00f);
+			Assertions.assertEquals(FileUtils.fileSizeInMB(25L * 1024 * 1024), 25.00f);
+		}
+
+		@Test
+		void file_size_in_gb()
+		{
+			Assertions.assertEquals(FileUtils.fileSizeInGB((long) (2.5 * 1024 * 1024 * 1024)), 2.50f);
+			Assertions.assertEquals(FileUtils.fileSizeInGB(20L * 1024 * 1024 * 1024), 20.00f);
+			Assertions.assertEquals(FileUtils.fileSizeInGB(25L * 1024 * 1024 * 1024), 25.00f);
+		}
+
+		@Test
+		void file_size_in_tb()
+		{
+			Assertions.assertEquals(FileUtils.fileSizeInTB((long) (2.5 * 1024 * 1024 * 1024 * 1024)), 2.50f);
+			Assertions.assertEquals(FileUtils.fileSizeInTB(20L * 1024 * 1024 * 1024 * 1024), 20.00f);
+			Assertions.assertEquals(FileUtils.fileSizeInTB(25L * 1024 * 1024 * 1024 * 1024), 25.00f);
 		}
 	}
 }
