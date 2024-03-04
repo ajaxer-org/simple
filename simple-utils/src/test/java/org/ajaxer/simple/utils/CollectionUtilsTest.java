@@ -70,7 +70,8 @@ public class CollectionUtilsTest
 	void throwWhenBlank_null()
 	{
 		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank((Collection<?>) null));
-		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank((Collection<?>) null, new NullPointerException()));
+		Assertions.assertThrows(NullPointerException.class,
+		                        () -> ExceptionUtils.throwWhenBlank((Collection<?>) null, new NullPointerException()));
 	}
 
 	@Test
@@ -79,7 +80,8 @@ public class CollectionUtilsTest
 		List<String> list = new ArrayList<>();
 
 		Assertions.assertThrows(IllegalArgumentException.class, () -> ExceptionUtils.throwWhenBlank(list));
-		Assertions.assertThrows(NullPointerException.class, () -> ExceptionUtils.throwWhenBlank(list, new NullPointerException()));
+		Assertions.assertThrows(NullPointerException.class,
+		                        () -> ExceptionUtils.throwWhenBlank(list, new NullPointerException()));
 	}
 
 	@Nested
@@ -259,6 +261,63 @@ public class CollectionUtilsTest
 			boolean expected = true;
 
 			Assertions.assertEquals(expected, CollectionUtils.equals(expectedList, resultList));
+		}
+	}
+
+	@Nested
+	class SubLists
+	{
+		@Test
+		void subLists_when_list_is_null()
+		{
+			List<Integer> ints = null;
+
+			Assertions.assertThrowsExactly(IllegalArgumentException.class,
+			                               () -> CollectionUtils.subLists(ints, 15));
+		}
+
+		@Test
+		void subLists_when_list_is_empty()
+		{
+			List<Integer> ints = new ArrayList<>();
+
+			Assertions.assertThrowsExactly(IllegalArgumentException.class,
+			                               () -> CollectionUtils.subLists(ints, 15));
+		}
+
+		@Test
+		void subLists_when_batch_is_invalid()
+		{
+			List<Integer> ints = new ArrayList<>();
+			for (int i = 1; i <= 10; i++)
+				ints.add(i);
+
+			Assertions.assertThrowsExactly(IllegalArgumentException.class,
+			                               () -> CollectionUtils.subLists(ints, 0));
+			Assertions.assertThrowsExactly(IllegalArgumentException.class,
+			                               () -> CollectionUtils.subLists(ints, -1));
+		}
+
+		@Test
+		void subLists_valid_case()
+		{
+			List<Integer> ints = new ArrayList<>();
+
+			for (int i = 1; i <= 100; i++)
+				ints.add(i);
+
+			List<List<Integer>> lists = CollectionUtils.subLists(ints, 15);
+			log.info(lists);
+
+			Assertions.assertNotNull(lists);
+			Assertions.assertEquals(lists.size(), 7);
+			Assertions.assertEquals(lists.get(0).size(), 15);
+			Assertions.assertEquals(lists.get(1).size(), 15);
+			Assertions.assertEquals(lists.get(2).size(), 15);
+			Assertions.assertEquals(lists.get(3).size(), 15);
+			Assertions.assertEquals(lists.get(4).size(), 15);
+			Assertions.assertEquals(lists.get(5).size(), 15);
+			Assertions.assertEquals(lists.get(6).size(), 10);
 		}
 	}
 
