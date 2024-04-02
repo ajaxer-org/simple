@@ -156,13 +156,8 @@ public class StringUtils
 		if (isBlank(string))
 			return false;
 
-		for (char c : string.toCharArray())
-		{
-			if (isUppercase(c))
-				return false;
-		}
-
-		return true;
+		//noinspection SimplifyStreamApiCallChains
+		return !string.chars().mapToObj(i -> (char) i).anyMatch(StringUtils::isUppercase);
 	}
 
 	/**
@@ -186,13 +181,8 @@ public class StringUtils
 		if (isBlank(string))
 			return false;
 
-		for (char c : string.toCharArray())
-		{
-			if (isLowercase(c))
-				return false;
-		}
-
-		return true;
+		//noinspection SimplifyStreamApiCallChains
+		return !string.chars().mapToObj(i -> (char) i).anyMatch(StringUtils::isLowercase);
 	}
 
 	/**
