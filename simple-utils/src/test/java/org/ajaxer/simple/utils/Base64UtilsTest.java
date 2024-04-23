@@ -17,15 +17,10 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 
 /**
  * @author Shakir
@@ -140,5 +135,31 @@ public class Base64UtilsTest
 		Base64Utils.decode(encodedFileName, decodedFileName);
 
 		Assertions.assertTrue(FileUtils.equals(sourceFileName, decodedFileName));
+	}
+
+	@Test
+	void encode_from_file() throws IOException
+	{
+		FileUtils.writeFile(sourceFile, "HelloWorld", false);
+
+		String encodedActual = Base64Utils.encode(sourceFile);
+		log.info("encodedActual: {}", encodedActual);
+
+		String encodedExpected = Base64Utils.encode("HelloWorld");
+		log.info("encodedExpected: {}", encodedExpected);
+
+		Assertions.assertNotNull(encodedActual);
+		Assertions.assertEquals(encodedExpected, encodedActual);
+	}
+
+	@Test
+	void encode_from_file_negative() throws IOException
+	{
+		File sourceFile0 = FileUtils.createTempFile();
+
+		String encodedActual = Base64Utils.encode(sourceFile0);
+		log.info("encodedActual: {}", encodedActual);
+
+		Assertions.assertNull(encodedActual);
 	}
 }

@@ -26,6 +26,7 @@ import java.util.Base64;
  * @version 2022-08-23
  * @since v0.0.1
  */
+@SuppressWarnings("all")
 public class Base64Utils
 {
 	private Base64Utils() {}
@@ -91,20 +92,17 @@ public class Base64Utils
 	/**
 	 * @since v0.0.1
 	 */
-	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void encode(File sourceFile, File targetFile)
 	{
 		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
 		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
-		//noinspection CatchMayIgnoreException
-		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
-			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
+		String encoded = encode(sourceFile);
+		ExceptionUtils.throwWhenNull(encoded, "encoded message cannot be null");
+
+		try (FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{
-			final byte[] byteArray = new byte[(int) sourceFile.length()];
-			fileInputStream.read(byteArray);
-			String file64 = Base64.getEncoder().encodeToString(byteArray);
-			fileOutputStream.write(file64.getBytes());
+			fileOutputStream.write(encoded.getBytes());
 		} catch (Exception exception)
 		{
 			ExceptionUtils.rethrow(exception);
@@ -114,15 +112,13 @@ public class Base64Utils
 	/**
 	 * @since v0.0.1
 	 */
-	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void decode(File sourceFile, File targetFile)
 	{
 		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be null");
 		ExceptionUtils.throwWhenNull(targetFile, "targetFile cannot be null");
 
-		//noinspection CatchMayIgnoreException
 		try (FileInputStream fileInputStream = new FileInputStream(sourceFile);
-			 FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
+		     FileOutputStream fileOutputStream = new FileOutputStream(targetFile))
 		{
 			final byte[] byteArray = new byte[(int) sourceFile.length()];
 			fileInputStream.read(byteArray);
@@ -131,5 +127,24 @@ public class Base64Utils
 		{
 			ExceptionUtils.rethrow(exception);
 		}
+	}
+
+	/**
+	 * @since v0.53.0
+	 */
+	public static String encode(File sourceFile)
+	{
+		ExceptionUtils.throwWhenNull(sourceFile, "sourceFile cannot be blank");
+
+		try (FileInputStream fileInputStream = new FileInputStream(sourceFile))
+		{
+			final byte[] byteArray = new byte[(int) sourceFile.length()];
+			fileInputStream.read(byteArray);
+			return Base64.getEncoder().encodeToString(byteArray);
+		} catch (Exception exception)
+		{
+			ExceptionUtils.rethrow(exception);
+		}
+		return null;
 	}
 }
