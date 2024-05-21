@@ -10,7 +10,7 @@ on:
 jobs:
   read-version:
     runs-on: ubuntu-latest
-    container: ershakiransari/jdk:8-mvn3
+#    container: ershakiransari/jdk:8-mvn3
 
     steps:
       - name: Check out repository
