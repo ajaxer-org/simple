@@ -20,8 +20,11 @@ import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Shakir
@@ -587,4 +590,25 @@ public class RandomUtilsTest
 			}
 		}
 	}
+
+	@Nested
+	public class GenerateUniqueCode
+	{
+		@Test
+		void generateUniqueCode()
+		{
+			List<String> list = new ArrayList<>();
+
+			for (int i = 0; i < 1000; i++)
+			{
+				String uniqueCode = RandomUtils.generateUniqueCode(6);
+
+				Assertions.assertThat(uniqueCode).isNotNull().hasSize(6);
+				Assertions.assertThat(list).doesNotContain(uniqueCode);
+
+				list.add(uniqueCode);
+			}
+		}
+	}
+
 }
