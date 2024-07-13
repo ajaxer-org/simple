@@ -17,6 +17,11 @@ package org.ajaxer.simple.utils;
  */
 
 import lombok.extern.log4j.Log4j2;
+import org.ajaxer.simple.utils.exceptions.SimpleException;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 /**
  * @author Shakir
@@ -346,5 +351,29 @@ public class RandomUtils
 			array[i] = getDouble();
 
 		return array;
+	}
+
+	/**
+	 * @since v0.55.0
+	 */
+	public static String generateUniqueCode(int length)
+	{
+		try
+		{
+			String input = UUID.randomUUID().toString();
+
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = messageDigest.digest(input.getBytes());
+
+			StringBuilder hexString = new StringBuilder();
+
+			for (byte b : hash)
+				hexString.append(Integer.toHexString(0xFF & b));
+
+			return hexString.substring(0, length).toUpperCase();
+		} catch (NoSuchAlgorithmException noSuchAlgorithmException)
+		{
+			throw new SimpleException(noSuchAlgorithmException);
+		}
 	}
 }
