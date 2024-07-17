@@ -17,6 +17,7 @@ package org.ajaxer.simple.utils;
  */
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * @author Shakir
@@ -195,5 +196,26 @@ public class NumberUtils
 		{
 			return defaultValue;
 		}
+	}
+
+	public static String toLocalNumber(long number)
+	{
+		return NumberFormat.getNumberInstance().format(number);
+	}
+
+	/**
+	 * @param number as 10000
+	 * @param language like english as "en" or french as "fr"
+	 * @param country like USA as "US" or france as "FR"
+	 * @return local String as 10,000
+	 */
+	public static String toLocalNumber(long number, String language, String country)
+	{
+		// Create a NumberFormat instance for a specific locale (French in this case)
+		//Locale locale = new Locale("fr", "FR");
+		Locale locale = new Locale(language, country);
+
+		// Format the number for given input
+		return NumberFormat.getNumberInstance(locale).format(number);
 	}
 }
