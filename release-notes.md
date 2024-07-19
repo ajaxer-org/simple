@@ -1,3 +1,3 @@
-# What's new in v0.57.0 ?
+# What's new in v0.58.0 ?
 - Minor improvements
 - Fixed old bugs and added new ones 😕
