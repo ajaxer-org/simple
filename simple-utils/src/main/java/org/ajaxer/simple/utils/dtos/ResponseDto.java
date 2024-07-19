@@ -1,5 +1,21 @@
 package org.ajaxer.simple.utils.dtos;
 
+/*
+ * Copyright (c) 2024 ajaxer.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,58 +40,51 @@ public class ResponseDto
 	public static final String KEY_MESSAGE = "MESSAGE";
 	public static final String KEY_USER_MESSAGES = "USER_MESSAGES";
 
-	private boolean status;
-	private final Map<String, Object> data = new HashMap<>();
-
-	public ResponseDto() {}
+	final private boolean status;
+	final private Map<String, Object> data = new HashMap<>();
 
 	public ResponseDto(boolean status)
 	{
 		this.status = status;
 	}
 
-	public ResponseDto setParameter(String name, Object value)
+	public ResponseDto addParam(String key, Object value)
 	{
-		if (ValidationUtils.isBlank(name) || value == null)
+		if (ValidationUtils.isBlank(key) || value == null)
 			return this;
 
-		data.put(name, value);
+		data.put(key, value);
 		return this;
 	}
 
 	@SuppressWarnings({"UnusedReturnValue", "unchecked"})
-	public ResponseDto addToList(String name, Object value)
+	public ResponseDto addToList(String key, Object value)
 	{
-		if (ValidationUtils.isBlank(name) || value == null)
+		if (ValidationUtils.isBlank(key) || value == null)
 			return this;
 
 		List<Object> objectList;
-		if (data.containsKey(name))
-			objectList = (List<Object>) data.get(name);
+		if (data.containsKey(key))
+			objectList = (List<Object>) data.get(key);
 		else
 			objectList = new ArrayList<>();
 
 		objectList.add(value);
 
-		data.put(name, objectList);
-		return this;
-	}
-
-	public ResponseDto setStatus(boolean status)
-	{
-		this.status = status;
+		data.put(key, objectList);
 		return this;
 	}
 
 	@JsonIgnore
-	public Parameter getParameter(String paramName)
+	public Parameter getParameter(String key)
 	{
-		if (ValidationUtils.isBlank(data) || !data.containsKey(paramName))
+		if (ValidationUtils.isBlank(data) || !data.containsKey(key))
 			return null;
 
-		return new Parameter(paramName, data.get(paramName));
+		return new Parameter(key, data.get(key));
 	}
 
+	@Deprecated
 	@JsonIgnore
 	public <T> T getParameter(String paramName, Class<T> outputClass)
 	{
@@ -87,12 +96,12 @@ public class ResponseDto
 	}
 
 	@JsonIgnore
-	public <T> List<T> getParameterList(String paramName, Class<T> outputClass)
+	public <T> List<T> getParameterList(String key, Class<T> outputClass)
 	{
-		if (ValidationUtils.isBlank(data) || !data.containsKey(paramName))
+		if (ValidationUtils.isBlank(data) || !data.containsKey(key))
 			return null;
 
-		String jsonString = GsonUtils.toJsonString(data.get(paramName));
+		String jsonString = GsonUtils.toJsonString(data.get(key));
 		return GsonUtils.toObjectList(jsonString, outputClass);
 	}
 
@@ -101,7 +110,7 @@ public class ResponseDto
 	@ToString
 	public static class Parameter
 	{
-		private String paramName;
+		private String key;
 		private Object value;
 
 		public String asString()
