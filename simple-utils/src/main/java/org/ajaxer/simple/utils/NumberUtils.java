@@ -200,7 +200,13 @@ public class NumberUtils
 
 	public static String toLocalNumber(long number)
 	{
-		return NumberFormat.getNumberInstance().format(number);
+		try
+		{
+			return NumberFormat.getNumberInstance().format(number);
+		} catch (Exception exception)
+		{
+			return String.valueOf(number);
+		}
 	}
 
 	/**
@@ -211,11 +217,17 @@ public class NumberUtils
 	 */
 	public static String toLocalNumber(long number, String language, String country)
 	{
-		// Create a NumberFormat instance for a specific locale (French in this case)
-		//Locale locale = new Locale("fr", "FR");
-		Locale locale = new Locale(language, country);
+		try
+		{
+			// Create a NumberFormat instance for a specific locale (French in this case)
+			//Locale locale = new Locale("fr", "FR");
+			Locale locale = new Locale(language, country);
 
-		// Format the number for given input
-		return NumberFormat.getNumberInstance(locale).format(number);
+			// Format the number for given input
+			return NumberFormat.getNumberInstance(locale).format(number);
+		} catch (Exception exception)
+		{
+			return String.valueOf(number);
+		}
 	}
 }
