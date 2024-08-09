@@ -317,4 +317,28 @@ public class StringUtils
 	{
 		return object == null ? defaultValue : object.toString();
 	}
+
+	public static String removeStartsWith(String str, String startsWith)
+	{
+		log.debug("str: {}, startsWith: {}", str, startsWith);
+		ExceptionUtils.throwWhenBlank(str, "String cannot be null");
+		ExceptionUtils.throwWhenBlank(startsWith, "startsWith cannot be null");
+
+		if (str.startsWith(startsWith))
+			return str.substring(startsWith.length());
+
+		return str;
+	}
+
+	public static String removeEndsWith(String str, String endsWith)
+	{
+		log.debug("str: {}, endsWith: {}", str, endsWith);
+		ExceptionUtils.throwWhenBlank(str, "String cannot be null");
+		ExceptionUtils.throwWhenBlank(endsWith, "endsWith cannot be null");
+
+		if (str.endsWith(endsWith))
+			return str.substring(0, str.length() - endsWith.length());
+
+		return str;
+	}
 }
