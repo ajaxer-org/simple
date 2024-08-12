@@ -9,24 +9,11 @@ on:
 
 jobs:
   build:
-
-    strategy:
-      matrix:
-        version: [ 8, 11, 17, 18, 19, 20, 21, 22 ]
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-
     name: Maven Clean Package
-    runs-on: ${{ matrix.os }}
-    #container: ershakiransari/jdk:8-mvn3
+    runs-on: ubuntu-latest
+    container: ershakiransari/jdk:8-mvn3
 
     steps:
-      # DO NOT USE CONTAINER, else gpg sign step will fail
-      - name: Set up Java 1.8
-        uses: actions/setup-java@v4.2.2
-        with:
-          distribution: 'corretto'
-          java-version: ${{ matrix.version }}
-
       - name: Code Checkout
         uses: actions/checkout@v4.1.1
 
