@@ -1,4 +1,4 @@
-package org.ajaxer.simple;
+package org.ajaxer.simple.github;
 /*
  * Copyright (c) 2024 ajaxer.org
  *

@@ -1,4 +1,6 @@
-package org.ajaxer.simple;
+package org.ajaxer.simple.github;
+
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * Copyright (c) 2024 ajaxer.org
@@ -15,11 +17,11 @@ package org.ajaxer.simple;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Slf4j
 public class Main
 {
 	public static void main(String[] args)
 	{
-		System.out.println("Please run tests");
+		log.info("Hello World!");
 	}
 }

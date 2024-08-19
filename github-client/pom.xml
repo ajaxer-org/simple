@@ -25,10 +25,7 @@
         <version>0.60.0</version>
     </parent>
 
-    <artifactId>github-utils</artifactId>
-
-    <properties>
-    </properties>
+    <artifactId>github-client</artifactId>
 
     <dependencies>
         <dependency>
@@ -46,6 +43,26 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+        <!-- LOGGER -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <!-- LOGGER -->
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
