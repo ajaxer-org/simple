@@ -33,7 +33,7 @@
 
     <modules>
         <module>simple-utils</module>
-        <module>github-utils</module>
+        <module>github-client</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
@@ -50,7 +50,7 @@
         </log4j2.console.pattern>
 
         <!-- versions -->
-        <version.log4j2>2.18.0</version.log4j2>
+        <version.log4j2>2.23.1</version.log4j2>
     </properties>
 
 
@@ -83,6 +83,55 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-log4j2_xml-to-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>../common</directory>
+                                        <includes>
+                                            <include>log4j2.xml</include>
+                                        </includes>
+                                        <filtering>false</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>copy-log4j2_xml-to-test-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/test-classes</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>../common</directory>
+                                        <includes>
+                                            <include>log4j2.xml</include>
+                                        </includes>
+                                        <filtering>false</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
@@ -138,7 +187,19 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- needed ones -->
+            <!-- LOGGER -->
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.16</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j2-impl</artifactId>
+                <version>${version.log4j2}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -151,7 +212,9 @@
                 <artifactId>log4j-core</artifactId>
                 <version>${version.log4j2}</version>
             </dependency>
+            <!-- LOGGER -->
 
+            <!-- needed ones -->
             <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
@@ -179,12 +242,6 @@
                 <artifactId>assertj-core</artifactId>
                 <version>3.25.2</version>
                 <scope>test</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>2.0.11</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
             <dependency>
