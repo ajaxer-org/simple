@@ -18,6 +18,7 @@ package org.ajaxer.simple.github;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.ajaxer.simple.github.dto.CommitDto;
 import org.ajaxer.simple.github.dto.RepositoryDto;
 import org.ajaxer.simple.utils.GsonUtils;
@@ -34,6 +35,7 @@ import java.util.List;
  * @author Shakir Ansari
  * @since 2024-08-17
  */
+@Slf4j
 @RequiredArgsConstructor
 public class GitHubClient
 {
@@ -44,8 +46,10 @@ public class GitHubClient
 
 	private HttpRequest.Builder getBuilder(String url)
 	{
+		log.debug("url: {}", url);
+
 		return HttpRequest.newBuilder()
-		                  .uri(URI.create(url))
+		                  .uri(URI.create(BASE_URL + url))
 		                  .header("X-GitHubDto-Api-Version", GitHubAuth.HEADER_API_VERSION)
 		                  .header("Accept", GitHubAuth.HEADER_ACCEPT)
 		                  .header("Authorization", "Bearer " + gitHubAuth.getPersonalAccessToken());
@@ -66,11 +70,13 @@ public class GitHubClient
 	@SneakyThrows
 	public List<CommitDto> getAllCommits()
 	{
-		String url = BASE_URL + "/repos/" + gitHubAuth.getUsername() + "/" + gitHubAuth.getRepository() + "/commits";
+		String url = "/repos/" + gitHubAuth.getUsername() + "/" + gitHubAuth.getRepository() + "/commits";
 
 		HttpRequest request = getBuilder(url).GET().build();
+		log.debug("request: {}", request);
 
 		HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+		log.debug("httpResponse: {}", httpResponse);
 
 		return GsonUtils.toObjectList(httpResponse.body(), CommitDto.class);
 	}
@@ -84,12 +90,35 @@ public class GitHubClient
 	@SneakyThrows
 	public RepositoryDto createRepository(final RepositoryDto requestDto)
 	{
-		String url = BASE_URL + "/user/repos";
+		String url = "/user/repos";
 
 		HttpRequest request = getBuilder(url).POST(getBodyPublisher(requestDto)).build();
+		log.debug("request: {}", request);
 
 		HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+		log.debug("httpResponse: {}", httpResponse);
+
 		return GsonUtils.toObject(httpResponse.body(), RepositoryDto.class);
+	}
+
+	/**
+	 * /repos/{owner}/{repo}
+	 *
+	 * @apiNote <a href="https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#delete-a-repository">GitHub Docs</a>
+	 * @implSpec The fine-grained token must have the following permission set: "Administration" repository permissions (write)
+	 */
+	@SneakyThrows
+	public boolean deleteRepository(final String repositoryName)
+	{
+		String url = "/repos/" + gitHubAuth.getUsername() + "/" + repositoryName;
+
+		HttpRequest request = getBuilder(url).DELETE().build();
+		log.debug("request: {}", request);
+
+		HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+		log.debug("httpResponse: {}", httpResponse);
+
+		return httpResponse.statusCode() == 204;
 	}
 
 	/**
