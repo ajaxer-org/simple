@@ -111,7 +111,7 @@
                         </execution>
                         <execution>
                             <id>copy-log4j2_xml-to-test-resources</id>
-                            <phase>process-resources</phase>
+                            <phase>process-test-resources</phase>
                             <goals>
                                 <goal>copy-resources</goal>
                             </goals>
