@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.ajaxer.simple.github.dto.CommitDto;
+import org.ajaxer.simple.github.dto.ContentDto;
 import org.ajaxer.simple.github.dto.RepositoryDto;
 import org.ajaxer.simple.utils.GsonUtils;
 
@@ -53,6 +54,18 @@ public class GitHubClient
 		                  .header("X-GitHubDto-Api-Version", GitHubAuth.HEADER_API_VERSION)
 		                  .header("Accept", GitHubAuth.HEADER_ACCEPT)
 		                  .header("Authorization", "Bearer " + gitHubAuth.getPersonalAccessToken());
+	}
+
+	@SneakyThrows
+	private <T> T getResponseObject(HttpRequest httpRequest, Class<T> classOfT)
+	{
+		HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+		log.debug("httpResponse: {}", httpResponse);
+
+		String responseBody = httpResponse.body();
+		log.debug("responseBody: {}", responseBody);
+
+		return GsonUtils.toObject(httpResponse.body(), classOfT);
 	}
 
 	private HttpRequest.BodyPublisher getBodyPublisher(Object requestBody)
@@ -92,13 +105,9 @@ public class GitHubClient
 	{
 		String url = "/user/repos";
 
-		HttpRequest request = getBuilder(url).POST(getBodyPublisher(requestDto)).build();
-		log.debug("request: {}", request);
+		HttpRequest httpRequest = getBuilder(url).POST(getBodyPublisher(requestDto)).build();
 
-		HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-		log.debug("httpResponse: {}", httpResponse);
-
-		return GsonUtils.toObject(httpResponse.body(), RepositoryDto.class);
+		return getResponseObject(httpRequest, RepositoryDto.class);
 	}
 
 	/**
@@ -127,10 +136,13 @@ public class GitHubClient
 	 * @apiNote <a href="https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content">GitHub Docs</a>
 	 * @implSpec The fine-grained token must have the following permission set: "Contents" repository permissions (read)
 	 */
-	public void getContent(String filePath)
+	@SneakyThrows
+	public ContentDto getContent(String filePath)
 	{
-		String url = BASE_URL + "/repos/" + gitHubAuth.getUsername() + "/" + gitHubAuth.getRepository() + "/contents/" + filePath;
+		String url = "/repos/" + gitHubAuth.getUsername() + "/" + gitHubAuth.getRepository() + "/contents/" + filePath;
 
-		//		HttpRequest request = getBuilder(url).POST(getBodyPublisher(requestDto)).build();
+		HttpRequest httpRequest = getBuilder(url).GET().build();
+
+		return getResponseObject(httpRequest, ContentDto.class);
 	}
 }

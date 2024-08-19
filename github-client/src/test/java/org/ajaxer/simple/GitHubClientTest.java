@@ -20,7 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.ajaxer.simple.github.GitHubAuth;
 import org.ajaxer.simple.github.GitHubClient;
 import org.ajaxer.simple.github.dto.CommitDto;
+import org.ajaxer.simple.github.dto.ContentDto;
 import org.ajaxer.simple.github.dto.RepositoryDto;
+import org.ajaxer.simple.utils.Base64Utils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
@@ -31,20 +33,10 @@ import java.util.List;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GitHubClientTest
 {
-	static private GitHubAuth auth = null;
+	private static final String repositoryName = "test-github-client-repo";
 
-	static private String repositoryName = null;
-
-	@BeforeAll
-	static public void beforeAll()
-	{
-		repositoryName = "test-github-client-repo-" + System.currentTimeMillis();
-
-		auth = new GitHubAuth(
-				System.getenv("PERSONAL_ACCESS_TOKEN"),
-				System.getenv("GITHUB_USERNAME"),
-				repositoryName);
-	}
+	private static final GitHubAuth auth = new GitHubAuth(System.getenv("PERSONAL_ACCESS_TOKEN"),
+	                                                      System.getenv("GITHUB_USERNAME"), repositoryName);
 
 	@BeforeEach
 	void setUp()
@@ -57,6 +49,7 @@ public class GitHubClientTest
 
 	@Test
 	@Order(1)
+	@Disabled
 	void createRepository()
 	{
 		long millis = System.currentTimeMillis();
@@ -82,6 +75,7 @@ public class GitHubClientTest
 
 	@Test
 	@Order(10000)
+	@Disabled
 	void deleteRepository()
 	{
 		boolean deletedRepository = gitHubClient.deleteRepository(repositoryName);
@@ -99,5 +93,40 @@ public class GitHubClientTest
 		Assertions.assertThat(allCommitDtoList).isNotNull();
 
 		allCommitDtoList.forEach(System.out::println);
+	}
+
+	@Test
+	void getContent()
+	{
+		ContentDto contentDto = gitHubClient.getContent("hello.txt");
+		log.info("contentDto = {}", contentDto);
+
+		Assertions.assertThat(contentDto).isNotNull();
+
+		log.info("contentDto.getContent() = {}", contentDto.getContent());
+
+		log.info("contentDto.getContent().length = {}", contentDto.getContent().length());
+		Assertions.assertThat(contentDto.getContent()).isNotNull();
+
+
+		String content = contentDto.getContent();
+
+		//		content = StringUtils.removeSuffix(content, "\\n");
+		//		content = StringUtils.removeSuffix(content, "\\r");
+		content = content.replaceAll("\\r?\\n", "");
+
+		int rem = (content.length() % 4);
+		log.info("rem = {}", rem);
+
+		//		while (rem != 4 && rem != 0)
+		//		{
+		//			content += "=";
+		//			rem -= 1;
+		//		}
+
+		log.info("content = {}", content);
+
+		String decoded = Base64Utils.decode(content);
+		log.info("decoded: {}", decoded);
 	}
 }

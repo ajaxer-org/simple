@@ -18,6 +18,7 @@ package org.ajaxer.simple.github.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -26,7 +27,8 @@ import java.util.List;
  * @since 2024-08-19
  */
 @Data
-public class RepositoryDto
+@EqualsAndHashCode(callSuper = true)
+public class RepositoryDto extends BaseDto
 {
 	@SerializedName("id")
 	@JsonProperty("id")
