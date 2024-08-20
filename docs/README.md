@@ -11,12 +11,12 @@
 [![Maven Central Deployment](https://github.com/ajaxer-org/simple/actions/workflows/maven-central-deployment.yml/badge.svg)](https://github.com/ajaxer-org/simple/actions/workflows/maven-central-deployment.yml)
 ---
 
-### Ajaxer's Simple (Parent pom)
+### Ajaxer's Simple Parent (Parent pom)
 
 ```
 <parent>
     <groupId>${project.groupId}</groupId>
-    <artifactId>simple</artifactId>
+    <artifactId>simple-parent</artifactId>
     <version>${project.version}</version>
 </parent>
 ```
@@ -31,12 +31,12 @@
 </dependency>
 ```
 
-### Ajaxer's Simple Annotations
+### Ajaxer's Github Client
 
 ```
 <dependency>
     <groupId>${project.groupId}</groupId>
-    <artifactId>simple-annotations</artifactId>
+    <artifactId>github-client</artifactId>
     <version>${project.version}</version>
 </dependency>
 ```
