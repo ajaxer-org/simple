@@ -19,9 +19,7 @@ package org.ajaxer.simple;
 import lombok.extern.slf4j.Slf4j;
 import org.ajaxer.simple.github.GitHubAuth;
 import org.ajaxer.simple.github.GitHubClient;
-import org.ajaxer.simple.github.dto.CommitDto;
-import org.ajaxer.simple.github.dto.ContentDto;
-import org.ajaxer.simple.github.dto.RepositoryDto;
+import org.ajaxer.simple.github.dto.*;
 import org.ajaxer.simple.utils.Base64Utils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -30,26 +28,32 @@ import java.net.http.HttpClient;
 import java.util.List;
 
 @Slf4j
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GitHubClientTest
 {
+	private String blobSha;
+	private final String filePath = "folder/hello.txt";
 	private static final String repositoryName = "test-github-client-repo";
 
-	private static final GitHubAuth auth = new GitHubAuth(System.getenv("PERSONAL_ACCESS_TOKEN"),
-	                                                      System.getenv("GITHUB_USERNAME"), repositoryName);
+	private static final GitHubAuth auth = new GitHubAuth(
+			System.getenv("PERSONAL_ACCESS_TOKEN"),
+			System.getenv("GITHUB_USERNAME"),
+			repositoryName
+	);
+
+	private final GitHubClient gitHubClient = new GitHubClient(auth, HttpClient.newHttpClient());
 
 	@BeforeEach
 	void setUp()
 	{
 		Assertions.assertThat(auth).isNotNull();
 		Assertions.assertThat(repositoryName).isNotNull();
+		Assertions.assertThat(filePath).isNotNull();
 	}
-
-	private final GitHubClient gitHubClient = new GitHubClient(auth, HttpClient.newHttpClient());
 
 	@Test
 	@Order(1)
-	@Disabled
 	void createRepository()
 	{
 		long millis = System.currentTimeMillis();
@@ -74,17 +78,103 @@ public class GitHubClientTest
 	}
 
 	@Test
-	@Order(10000)
-	@Disabled
-	void deleteRepository()
+	@Order(20)
+	void createContent()
 	{
-		boolean deletedRepository = gitHubClient.deleteRepository(repositoryName);
-		log.info("deletedRepository = {}", deletedRepository);
-		Assertions.assertThat(deletedRepository).isTrue();
+		WriteContentRequestDto dto = new WriteContentRequestDto();
+		dto.setContent(Base64Utils.encode("test-content"));
+		dto.setFilePath(filePath);
+		dto.setCommitMessage("My Commit Message");
+
+		CommitDto.Author committer = new CommitDto.Author();
+		committer.setName("Octocat");
+		committer.setEmail("octocat@github.com");
+		dto.setCommitter(committer);
+
+		WriteContentResponseDto writeContentResponseDto = gitHubClient.createContent(dto);
+		Assertions.assertThat(writeContentResponseDto).isNotNull();
+
+		Assertions.assertThat(writeContentResponseDto.getContent()).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getContent().getSha()).isNotNull();
+
+		Assertions.assertThat(writeContentResponseDto.getCommit()).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getCommit().getMessage()).isNotNull().isEqualTo("My Commit Message");
+		Assertions.assertThat(writeContentResponseDto.getCommit().getCommitter()).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getCommit().getCommitter().getName()).isNotNull().isEqualTo("Octocat");
+
+		this.blobSha = writeContentResponseDto.getContent().getSha();
+		log.info("blobSha = {}", this.blobSha);
 	}
 
 	@Test
-	@Order(10)
+	@Order(30)
+	void readCreatedContent()
+	{
+		ContentDto contentDto = gitHubClient.readContent(filePath);
+		log.info("contentDto = {}", contentDto);
+
+		Assertions.assertThat(contentDto).isNotNull();
+
+		log.info("contentDto.getContent() = {}", contentDto.getContent());
+
+		log.info("contentDto.getContent().length = {}", contentDto.getContent().length());
+		Assertions.assertThat(contentDto.getContent()).isNotNull();
+
+		log.info("getContent = {}", contentDto.getContent());
+		log.info("getFilteredContent = {}", contentDto.getFilteredContent());
+
+		String decoded = Base64Utils.decode(contentDto.getFilteredContent());
+		log.info("decoded: {}", decoded);
+		Assertions.assertThat(decoded).isNotNull().isEqualTo("test-content");
+	}
+
+	@Test
+	@Order(40)
+	void updateContent()
+	{
+		WriteContentRequestDto dto = new WriteContentRequestDto();
+		dto.setBlobSha(blobSha);
+		dto.setContent(Base64Utils.encode("test-content-updated"));
+		dto.setFilePath(filePath);
+		dto.setCommitMessage("My New Commit Message");
+
+		CommitDto.Author committer = new CommitDto.Author();
+		committer.setName("Octocat");
+		committer.setEmail("octocat@github.com");
+		dto.setCommitter(committer);
+
+		WriteContentResponseDto writeContentResponseDto = gitHubClient.updateContent(dto);
+		Assertions.assertThat(writeContentResponseDto).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getCommit()).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getCommit().getMessage()).isNotNull().isEqualTo("My New Commit Message");
+		Assertions.assertThat(writeContentResponseDto.getCommit().getCommitter()).isNotNull();
+		Assertions.assertThat(writeContentResponseDto.getCommit().getCommitter().getName()).isNotNull().isEqualTo("Octocat");
+	}
+
+	@Test
+	@Order(50)
+	void readUpdatedContent()
+	{
+		ContentDto contentDto = gitHubClient.readContent(filePath);
+		log.info("contentDto = {}", contentDto);
+
+		Assertions.assertThat(contentDto).isNotNull();
+
+		log.info("contentDto.getContent() = {}", contentDto.getContent());
+
+		log.info("contentDto.getContent().length = {}", contentDto.getContent().length());
+		Assertions.assertThat(contentDto.getContent()).isNotNull();
+
+		log.info("getContent = {}", contentDto.getContent());
+		log.info("getFilteredContent = {}", contentDto.getFilteredContent());
+
+		String decoded = Base64Utils.decode(contentDto.getFilteredContent());
+		log.info("decoded: {}", decoded);
+		Assertions.assertThat(decoded).isNotNull().isEqualTo("test-content-updated");
+	}
+
+	@Test
+	@Order(9990)
 	void getAllCommits()
 	{
 		List<CommitDto> allCommitDtoList = gitHubClient.getAllCommits();
@@ -96,37 +186,11 @@ public class GitHubClientTest
 	}
 
 	@Test
-	void getContent()
+	@Order(10000)
+	void deleteRepository()
 	{
-		ContentDto contentDto = gitHubClient.getContent("hello.txt");
-		log.info("contentDto = {}", contentDto);
-
-		Assertions.assertThat(contentDto).isNotNull();
-
-		log.info("contentDto.getContent() = {}", contentDto.getContent());
-
-		log.info("contentDto.getContent().length = {}", contentDto.getContent().length());
-		Assertions.assertThat(contentDto.getContent()).isNotNull();
-
-
-		String content = contentDto.getContent();
-
-		//		content = StringUtils.removeSuffix(content, "\\n");
-		//		content = StringUtils.removeSuffix(content, "\\r");
-		content = content.replaceAll("\\r?\\n", "");
-
-		int rem = (content.length() % 4);
-		log.info("rem = {}", rem);
-
-		//		while (rem != 4 && rem != 0)
-		//		{
-		//			content += "=";
-		//			rem -= 1;
-		//		}
-
-		log.info("content = {}", content);
-
-		String decoded = Base64Utils.decode(content);
-		log.info("decoded: {}", decoded);
+		boolean deletedRepository = gitHubClient.deleteRepository(repositoryName);
+		log.info("deletedRepository = {}", deletedRepository);
+		Assertions.assertThat(deletedRepository).isTrue();
 	}
 }

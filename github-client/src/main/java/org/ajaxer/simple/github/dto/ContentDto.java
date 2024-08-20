@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.ajaxer.simple.utils.StringUtils;
 
 /**
  * @author Shakir Ansari
@@ -91,5 +92,10 @@ public class ContentDto extends BaseDto
 		@SerializedName("html")
 		@JsonProperty("html")
 		private String html;
+	}
+
+	public String getFilteredContent()
+	{
+		return StringUtils.removeTrailingNewline(getContent());
 	}
 }

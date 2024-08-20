@@ -19,9 +19,8 @@ package org.ajaxer.simple.github;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.ajaxer.simple.github.dto.CommitDto;
-import org.ajaxer.simple.github.dto.ContentDto;
-import org.ajaxer.simple.github.dto.RepositoryDto;
+import org.ajaxer.simple.github.dto.*;
+import org.ajaxer.simple.utils.ExceptionUtils;
 import org.ajaxer.simple.utils.GsonUtils;
 
 import java.net.URI;
@@ -65,12 +64,14 @@ public class GitHubClient
 		String responseBody = httpResponse.body();
 		log.debug("responseBody: {}", responseBody);
 
-		return GsonUtils.toObject(httpResponse.body(), classOfT);
+		return GsonUtils.toObject(responseBody, classOfT);
 	}
 
 	private HttpRequest.BodyPublisher getBodyPublisher(Object requestBody)
 	{
 		String jsonRequestBody = GsonUtils.toJsonString(requestBody);
+		log.debug("jsonRequestBody: {}", jsonRequestBody);
+
 		return HttpRequest.BodyPublishers.ofString(jsonRequestBody);
 	}
 
@@ -133,11 +134,57 @@ public class GitHubClient
 	/**
 	 * ${base_url}/repos/{owner}/{repo}/contents/{path}
 	 *
+	 * @apiNote <a href="https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents">GitHub Docs</a>
+	 * @implSpec The fine-grained token must have at least one of the following permission sets: <br/>
+	 * <code>"Contents" repository permissions (write)</code>
+	 * <br/>
+	 * <code>"Contents" repository permissions (write) and "Workflows" repository permissions (write)</code>
+	 */
+	@SneakyThrows
+	public WriteContentResponseDto createContent(WriteContentRequestDto writeContentRequestDto)
+	{
+		String url =
+				"/repos/" + gitHubAuth.getUsername() +
+				"/" + gitHubAuth.getRepository() +
+				"/contents/" + writeContentRequestDto.getFilePath();
+
+		HttpRequest httpRequest = getBuilder(url).PUT(getBodyPublisher(writeContentRequestDto)).build();
+
+		return getResponseObject(httpRequest, WriteContentResponseDto.class);
+	}
+
+	/**
+	 * ${base_url}/repos/{owner}/{repo}/contents/{path}
+	 *
+	 * @apiNote <a href="https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents">GitHub Docs</a>
+	 * @implSpec The fine-grained token must have at least one of the following permission sets: <br/>
+	 * <code>"Contents" repository permissions (write)</code>
+	 * <br/>
+	 * <code>"Contents" repository permissions (write) and "Workflows" repository permissions (write)</code>
+	 */
+	@SneakyThrows
+	public WriteContentResponseDto updateContent(WriteContentRequestDto writeContentRequestDto)
+	{
+		ExceptionUtils.throwWhenBlank(writeContentRequestDto.getBlobSha(), "File SHA is required");
+
+		String url =
+				"/repos/" + gitHubAuth.getUsername() +
+				"/" + gitHubAuth.getRepository() +
+				"/contents/" + writeContentRequestDto.getFilePath();
+
+		HttpRequest httpRequest = getBuilder(url).PUT(getBodyPublisher(writeContentRequestDto)).build();
+
+		return getResponseObject(httpRequest, WriteContentResponseDto.class);
+	}
+
+	/**
+	 * ${base_url}/repos/{owner}/{repo}/contents/{path}
+	 *
 	 * @apiNote <a href="https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content">GitHub Docs</a>
 	 * @implSpec The fine-grained token must have the following permission set: "Contents" repository permissions (read)
 	 */
 	@SneakyThrows
-	public ContentDto getContent(String filePath)
+	public ContentDto readContent(String filePath)
 	{
 		String url = "/repos/" + gitHubAuth.getUsername() + "/" + gitHubAuth.getRepository() + "/contents/" + filePath;
 
