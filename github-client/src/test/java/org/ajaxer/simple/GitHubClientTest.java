@@ -37,8 +37,8 @@ public class GitHubClientTest
 	private static final String repositoryName = "test-github-client-repo";
 
 	private static final GitHubAuth auth = new GitHubAuth(
-			System.getenv("PERSONAL_ACCESS_TOKEN"),
-			System.getenv("GITHUB_USERNAME"),
+			System.getenv("GH_PERSONAL_ACCESS_TOKEN"),
+			System.getenv("GH_USERNAME"),
 			repositoryName
 	);
 

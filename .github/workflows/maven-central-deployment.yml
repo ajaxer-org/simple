@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v4.1.1
 
         # DO NOT USE CONTAINER, else gpg sign step will fail
-      - name: Set up Java 1.8
+      - name: Set up Java 11
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
           # Set this in pom.xml or in parent/pom.xml
           server-id: ossrh-ajaxer-org
           server-username: MAVEN_USERNAME
@@ -30,6 +30,8 @@ jobs:
       - name: Building artifact for ${{ github.event.inputs.version }}
         run: mvn clean deploy -P release -Dmaven.test.skip=true --no-transfer-progress -e
         env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
