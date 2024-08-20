@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.ajaxer</groupId>
         <artifactId>simple</artifactId>
-        <version>1.0.0-alpha</version>
+        <version>1.0.1-alpha</version>
     </parent>
 
     <artifactId>simple-utils</artifactId>
@@ -52,6 +52,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <relocation>
+            <groupId>org.ajaxer.simple</groupId>
+            <message>This artifact has been moved to a new groupId. Please update your dependencies.</message>
+        </relocation>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -86,6 +93,5 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-
     </dependencies>
 </project>
