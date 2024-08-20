@@ -25,7 +25,7 @@
     </parent>
 
     <artifactId>simple</artifactId>
-    <version>1.0.1-alpha</version>
+    <version>1.0.2-alpha </version>
 
     <name>Simple Parent</name>
     <description>Parent project for managing all simple projects</description>
@@ -54,10 +54,13 @@
     <distributionManagement>
         <relocation>
             <groupId>org.ajaxer.simple</groupId>
-            <message>This artifact has been moved to a new groupId. Please update your dependencies.</message>
+            <artifactId>simple-parent</artifactId>
+            <message>
+                This artifact has been moved to a new groupId/artifactId. Please update your dependencies.
+            </message>
         </relocation>
     </distributionManagement>
-    
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
