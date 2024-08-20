@@ -1,4 +1,4 @@
-name: Maven Central Deployment
+name: 🚀 Maven Central Deployment
 
 on:
   workflow_dispatch:
