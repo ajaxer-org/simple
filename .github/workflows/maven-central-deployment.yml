@@ -30,8 +30,8 @@ jobs:
       - name: Building artifact for ${{ github.event.inputs.version }}
         run: mvn clean deploy -P release -Dmaven.test.skip=true --no-transfer-progress -e
         env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ secret.GH_PERSONAL_ACCESS_TOKEN }}
-          GH_USERNAME: ${{ secret.GH_USERNAME }}
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
