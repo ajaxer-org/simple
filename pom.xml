@@ -24,8 +24,9 @@
         <version>0.1.0</version>
     </parent>
 
-    <artifactId>simple</artifactId>
-    <version>1.0.2-alpha </version>
+    <groupId>org.ajaxer.simple</groupId>
+    <artifactId>simple-parent</artifactId>
+    <version>1.0.0</version>
 
     <name>Simple Parent</name>
     <description>Parent project for managing all simple projects</description>
@@ -33,22 +34,24 @@
 
     <modules>
         <module>simple-utils</module>
+        <module>github-client</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.11</revision>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <log4j2.console.pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1.}.%M():%L]%n%msg%n%n
         </log4j2.console.pattern>
 
         <!-- versions -->
-        <version.log4j2>2.18.0</version.log4j2>
+        <version.log4j2>2.23.1</version.log4j2>
     </properties>
 
     <distributionManagement>
@@ -90,6 +93,57 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-log4j2_xml-to-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <!--<outputDirectory>${project.build.directory}/classes</outputDirectory>-->
+                                <outputDirectory>src/main/resources</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>../common</directory>
+                                        <includes>
+                                            <include>log4j2.xml</include>
+                                        </includes>
+                                        <filtering>true</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>copy-log4j2_xml-to-test-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <!--<outputDirectory>${project.build.directory}/test-classes</outputDirectory>-->
+                                <outputDirectory>src/test/resources</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>../common</directory>
+                                        <includes>
+                                            <include>log4j2.xml</include>
+                                        </includes>
+                                        <filtering>true</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
@@ -142,9 +196,22 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.24</version>
+                <scope>provided</scope>
             </dependency>
 
-            <!-- needed ones -->
+            <!-- LOGGER -->
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.16</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j2-impl</artifactId>
+                <version>${version.log4j2}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -157,7 +224,9 @@
                 <artifactId>log4j-core</artifactId>
                 <version>${version.log4j2}</version>
             </dependency>
+            <!-- LOGGER -->
 
+            <!-- needed ones -->
             <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
@@ -185,12 +254,6 @@
                 <artifactId>assertj-core</artifactId>
                 <version>3.25.2</version>
                 <scope>test</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>2.0.11</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
             <dependency>

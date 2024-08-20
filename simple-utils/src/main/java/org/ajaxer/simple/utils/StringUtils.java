@@ -341,4 +341,13 @@ public class StringUtils
 
 		return str;
 	}
+
+	public static String removeTrailingNewline(String input)
+	{
+		if (input == null)
+			return null;
+
+		// Remove the trailing \n, \r, or \r\n from the string
+		return input.replaceAll("(\r\n|\r|\n)$", "");
+	}
 }
