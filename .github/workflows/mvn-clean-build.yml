@@ -19,3 +19,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package --no-transfer-progress
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secret.GH_PERSONAL_ACCESS_TOKEN }}
+          GH_USERNAME: ${{ secret.GH_USERNAME }}
