@@ -67,7 +67,7 @@
 
         <!-- by default, all log events are written to myFile -->
         <Root level="debug">
-            <AppenderRef ref="defaultRollingFile" level="WARN"/>
+            <AppenderRef ref="defaultRollingFile" level="INFO"/>
             <AppenderRef ref="defaultConsole" level="DEBUG"/>
         </Root>
     </Loggers>
