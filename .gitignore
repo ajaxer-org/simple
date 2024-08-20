@@ -57,3 +57,4 @@ replay_pid*
 ### user-defined ###
 .flattened-pom.xml
 effective-pom.xml
+*/src/*/resources/log4j2.xml

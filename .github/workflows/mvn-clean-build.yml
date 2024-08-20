@@ -11,7 +11,7 @@ jobs:
   build:
     name: Maven Clean Package
     runs-on: ubuntu-latest
-    container: ershakiransari/jdk:8-mvn3
+    container: ershakiransari/jdk:11-mvn3
 
     steps:
       - name: Code Checkout
@@ -19,3 +19,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package --no-transfer-progress
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
