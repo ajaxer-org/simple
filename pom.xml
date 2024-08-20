@@ -24,8 +24,9 @@
         <version>0.1.0</version>
     </parent>
 
-    <artifactId>simple</artifactId>
-    <version>0.60.0</version>
+    <groupId>org.ajaxer.simple</groupId>
+    <artifactId>simple-parent</artifactId>
+    <version>1.0.0</version>
 
     <name>Simple Parent</name>
     <description>Parent project for managing all simple projects</description>
