@@ -54,10 +54,13 @@
     <distributionManagement>
         <relocation>
             <groupId>org.ajaxer.simple</groupId>
-            <message>This artifact has been moved to a new groupId. Please update your dependencies.</message>
+            <artifactId>simple-parent</artifactId>
+            <message>
+                This artifact has been moved to a new groupId/artifactId. Please update your dependencies.
+            </message>
         </relocation>
     </distributionManagement>
-    
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
