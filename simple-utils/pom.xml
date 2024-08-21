@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.ajaxer.simple</groupId>
         <artifactId>simple-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>simple-utils</artifactId>
@@ -52,17 +52,7 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <relocation>
-            <groupId>org.ajaxer.simple</groupId>
-            <artifactId>simple-utils</artifactId>
-            <message>
-                This artifact has been moved to a new groupId/artifactId. Please update your dependencies.
-            </message>
-        </relocation>
-    </distributionManagement>
-
+    
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>

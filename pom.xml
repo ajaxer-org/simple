@@ -26,7 +26,7 @@
 
     <groupId>org.ajaxer.simple</groupId>
     <artifactId>simple-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>Simple Parent</name>
     <description>Parent project for managing all simple projects</description>
@@ -53,17 +53,7 @@
         <!-- versions -->
         <version.log4j2>2.23.1</version.log4j2>
     </properties>
-
-    <distributionManagement>
-        <relocation>
-            <groupId>org.ajaxer.simple</groupId>
-            <artifactId>simple-parent</artifactId>
-            <message>
-                This artifact has been moved to a new groupId/artifactId. Please update your dependencies.
-            </message>
-        </relocation>
-    </distributionManagement>
-
+    
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
