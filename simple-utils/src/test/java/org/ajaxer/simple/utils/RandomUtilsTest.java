@@ -16,7 +16,7 @@ package org.ajaxer.simple.utils;
  * limitations under the License.
  */
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
@@ -31,7 +31,7 @@ import java.util.List;
  * @version 2022-08-23
  * @since v0.0.1
  */
-@Log4j2
+@Slf4j
 public class RandomUtilsTest
 {
 	private final int RANDOM_ARRAY_LENGTH = 25;
