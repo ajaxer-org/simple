@@ -160,6 +160,7 @@ public class Base64UtilsTest
 		String encodedActual = Base64Utils.encode(sourceFile0);
 		log.info("encodedActual: {}", encodedActual);
 
-		Assertions.assertNull(encodedActual);
+		Assertions.assertNotNull(encodedActual);
+		Assertions.assertTrue(encodedActual.isEmpty());
 	}
 }
