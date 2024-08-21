@@ -4,9 +4,9 @@
 
 ---
 
-[Maven Central Repository - 🔗](https://mvnrepository.com/artifact/org.ajaxer/simple)
+[Maven Central Repository - 🔗](https://mvnrepository.com/artifact/org.ajaxer.simple)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.ajaxer/simple/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.ajaxer/simple)  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.ajaxer.simple/simple-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.ajaxer.simple/simple-parent)  
 [![mvn-clean-build](https://github.com/ajaxer-org/simple/actions/workflows/mvn-clean-build.yml/badge.svg)](https://github.com/ajaxer-org/simple/actions/workflows/mvn-clean-build.yml)
 [![Maven Central Deployment](https://github.com/ajaxer-org/simple/actions/workflows/maven-central-deployment.yml/badge.svg)](https://github.com/ajaxer-org/simple/actions/workflows/maven-central-deployment.yml)
 ---
