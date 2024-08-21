@@ -17,7 +17,7 @@
 <parent>
     <groupId>org.ajaxer.simple</groupId>
     <artifactId>simple-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </parent>
 ```
 
@@ -27,7 +27,7 @@
 <dependency>
     <groupId>org.ajaxer.simple</groupId>
     <artifactId>simple-utils</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -37,6 +37,6 @@
 <dependency>
     <groupId>org.ajaxer.simple</groupId>
     <artifactId>github-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```

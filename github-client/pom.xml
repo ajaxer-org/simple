@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.ajaxer.simple</groupId>
         <artifactId>simple-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>github-client</artifactId>
